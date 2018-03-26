@@ -39,53 +39,54 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     STRING = 258,
-     AND = 259,
-     OR = 260,
-     EQUALS = 261,
-     FOR = 262,
-     IN = 263,
-     SUM = 264,
-     PRINT = 265,
-     PRINTLN = 266,
-     UNKNOWN = 267,
-     IF = 268,
-     ELSE = 269,
-     WHILE = 270,
-     INTEGER = 271,
-     ID = 272
+     AND = 258,
+     OR = 259,
+     EQUALS = 260,
+     FOR = 261,
+     IN = 262,
+     SUM = 263,
+     PRINT = 264,
+     PRINTLN = 265,
+     UNKNOWN = 266,
+     IF = 267,
+     ELSE = 268,
+     WHILE = 269,
+     INTEGER = 270,
+     ID = 271,
+     STRING = 272
    };
 #endif
 /* Tokens.  */
-#define STRING 258
-#define AND 259
-#define OR 260
-#define EQUALS 261
-#define FOR 262
-#define IN 263
-#define SUM 264
-#define PRINT 265
-#define PRINTLN 266
-#define UNKNOWN 267
-#define IF 268
-#define ELSE 269
-#define WHILE 270
-#define INTEGER 271
-#define ID 272
+#define AND 258
+#define OR 259
+#define EQUALS 260
+#define FOR 261
+#define IN 262
+#define SUM 263
+#define PRINT 264
+#define PRINTLN 265
+#define UNKNOWN 266
+#define IF 267
+#define ELSE 268
+#define WHILE 269
+#define INTEGER 270
+#define ID 271
+#define STRING 272
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 33 "hw3.y"
+#line 32 "hw3.y"
 {
         int number;
         struct ast_node * ast;
         struct symbol_node * symbol;
+        char * string;
 }
 /* Line 1529 of yacc.c.  */
-#line 89 "y.tab.h"
+#line 90 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

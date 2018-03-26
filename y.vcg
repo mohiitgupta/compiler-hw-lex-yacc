@@ -115,28 +115,28 @@ graph: {
 	edge: {
 		sourcename:	"5"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"5"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"5"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"5"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -168,28 +168,28 @@ graph: {
 	edge: {
 		sourcename:	"6"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"6"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"6"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"6"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -349,28 +349,28 @@ graph: {
 	edge: {
 		sourcename:	"11"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"11"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"11"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"11"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -409,28 +409,28 @@ graph: {
 	edge: {
 		sourcename:	"12"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"12"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"12"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"12"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -464,26 +464,26 @@ graph: {
 	}
 	node: {
 		title:	"13"
-		label:	"state 13\n term -> STRING ."
-	}
-	node: {
-		title:	"14"
-		label:	"state 14\n term -> FOR . ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 13\n term -> FOR . ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
 	}
 	edge: {
-		sourcename:	"14"
+		sourcename:	"13"
 		targetname:	"27"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
+		title:	"14"
+		label:	"state 14\n term -> INTEGER ."
+	}
+	node: {
 		title:	"15"
-		label:	"state 15\n term -> INTEGER ."
+		label:	"state 15\n term -> ID ."
 	}
 	node: {
 		title:	"16"
-		label:	"state 16\n term -> ID ."
+		label:	"state 16\n term -> STRING ."
 	}
 	node: {
 		title:	"17"
@@ -492,28 +492,28 @@ graph: {
 	backedge: {
 		sourcename:	"17"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"17"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"17"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"17"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"17"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -767,28 +767,28 @@ graph: {
 	backedge: {
 		sourcename:	"21"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"21"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"21"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"21"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"21"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1044,28 +1044,28 @@ graph: {
 	backedge: {
 		sourcename:	"29"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"29"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"29"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"29"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1090,28 +1090,28 @@ graph: {
 	backedge: {
 		sourcename:	"30"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"30"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"30"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"30"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1136,28 +1136,28 @@ graph: {
 	backedge: {
 		sourcename:	"31"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"31"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"31"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"31"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1182,28 +1182,28 @@ graph: {
 	backedge: {
 		sourcename:	"32"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"32"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"32"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1228,28 +1228,28 @@ graph: {
 	backedge: {
 		sourcename:	"33"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"33"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"33"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"33"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"33"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1274,28 +1274,28 @@ graph: {
 	backedge: {
 		sourcename:	"34"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"34"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"34"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"34"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1320,28 +1320,28 @@ graph: {
 	backedge: {
 		sourcename:	"35"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"35"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"35"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"35"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"35"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1554,28 +1554,28 @@ graph: {
 	backedge: {
 		sourcename:	"41"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"41"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"41"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"41"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"41"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
@@ -1905,28 +1905,28 @@ graph: {
 	backedge: {
 		sourcename:	"64"
 		targetname:	"13"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"64"
-		targetname:	"14"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"64"
-		targetname:	"15"
+		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"64"
-		targetname:	"16"
+		targetname:	"15"
 		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"64"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}

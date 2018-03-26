@@ -4,6 +4,9 @@
     #include <stdlib.h>
     #include "hash.h"
     void yyerror(char *);
+
+    struct symbol_node *symbols[100000];
+    int length = 0; 
 %}
 
 %%
@@ -47,6 +50,7 @@ while {
             }
 
 [\"][^\"]*[\"]     {
+                yylval.string = strdup(yytext);
                 return STRING;
             }
 [=][=]     { return EQUALS; 
