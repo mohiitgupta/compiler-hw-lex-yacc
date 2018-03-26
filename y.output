@@ -1,0 +1,861 @@
+Terminals which are not used
+
+   UNKNOWN
+
+
+State 9 conflicts: 3 shift/reduce
+State 37 conflicts: 4 shift/reduce
+State 38 conflicts: 3 shift/reduce
+State 57 conflicts: 3 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: program statements
+    2        | /* empty */
+
+    3 statements: statements statement ';'
+    4           | '{' statements '}'
+    5           | statement ';'
+    6           | IF expr statements
+    7           | IF expr statements ELSE statements
+    8           | WHILE expr statements
+
+    9 statement: ID '=' expr
+   10          | PRINT '(' listexpr ')'
+   11          | PRINTLN '(' listexpr ')'
+
+   12 listexpr: listexpr ',' expr
+   13         | expr
+
+   14 expr: expr '+' term
+   15     | expr '-' term
+   16     | expr '*' term
+   17     | expr AND term
+   18     | expr OR term
+   19     | expr EQUALS term
+   20     | expr '<' term
+   21     | term
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'
+   23     | '(' expr ')'
+   24     | INTEGER
+   25     | STRING
+   26     | ID
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 10 11 22 23
+')' (41) 10 11 22 23
+'*' (42) 16
+'+' (43) 14
+',' (44) 12 22
+'-' (45) 15
+';' (59) 3 5
+'<' (60) 20
+'=' (61) 9
+'[' (91) 22
+']' (93) 22
+'{' (123) 4
+'}' (125) 4
+error (256)
+STRING (258) 25
+AND (259) 17
+OR (260) 18
+EQUALS (261) 19
+FOR (262) 22
+IN (263) 22
+SUM (264) 22
+PRINT (265) 10
+PRINTLN (266) 11
+UNKNOWN (267)
+IF (268) 6 7
+ELSE (269) 7
+WHILE (270) 8
+INTEGER (271) 22 24
+ID (272) 9 22 26
+
+
+Nonterminals, with rules where they appear
+
+$accept (31)
+    on left: 0
+program (32)
+    on left: 1 2, on right: 0 1
+statements (33)
+    on left: 3 4 5 6 7 8, on right: 1 3 4 6 7 8
+statement (34)
+    on left: 9 10 11, on right: 3 5
+listexpr (35)
+    on left: 12 13, on right: 10 11 12
+expr (36)
+    on left: 14 15 16 17 18 19 20 21, on right: 6 7 8 9 12 13 14 15
+    16 17 18 19 20 22 23
+term (37)
+    on left: 22 23 24 25 26, on right: 14 15 16 17 18 19 20 21
+
+
+state 0
+
+    0 $accept: . program $end
+
+    $default  reduce using rule 2 (program)
+
+    program  go to state 1
+
+
+state 1
+
+    0 $accept: program . $end
+    1 program: program . statements
+
+    $end     shift, and go to state 2
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    ID       shift, and go to state 7
+    '{'      shift, and go to state 8
+
+    statements  go to state 9
+    statement   go to state 10
+
+
+state 2
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 3
+
+   10 statement: PRINT . '(' listexpr ')'
+
+    '('  shift, and go to state 11
+
+
+state 4
+
+   11 statement: PRINTLN . '(' listexpr ')'
+
+    '('  shift, and go to state 12
+
+
+state 5
+
+    6 statements: IF . expr statements
+    7           | IF . expr statements ELSE statements
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 18
+    term  go to state 19
+
+
+state 6
+
+    8 statements: WHILE . expr statements
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 20
+    term  go to state 19
+
+
+state 7
+
+    9 statement: ID . '=' expr
+
+    '='  shift, and go to state 21
+
+
+state 8
+
+    4 statements: '{' . statements '}'
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    ID       shift, and go to state 7
+    '{'      shift, and go to state 8
+
+    statements  go to state 22
+    statement   go to state 10
+
+
+state 9
+
+    1 program: program statements .
+    3 statements: statements . statement ';'
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    ID       shift, and go to state 7
+
+    PRINT     [reduce using rule 1 (program)]
+    PRINTLN   [reduce using rule 1 (program)]
+    ID        [reduce using rule 1 (program)]
+    $default  reduce using rule 1 (program)
+
+    statement  go to state 23
+
+
+state 10
+
+    5 statements: statement . ';'
+
+    ';'  shift, and go to state 24
+
+
+state 11
+
+   10 statement: PRINT '(' . listexpr ')'
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    listexpr  go to state 25
+    expr      go to state 26
+    term      go to state 19
+
+
+state 12
+
+   11 statement: PRINTLN '(' . listexpr ')'
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    listexpr  go to state 27
+    expr      go to state 26
+    term      go to state 19
+
+
+state 13
+
+   25 term: STRING .
+
+    $default  reduce using rule 25 (term)
+
+
+state 14
+
+   22 term: FOR . ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'
+
+    ID  shift, and go to state 28
+
+
+state 15
+
+   24 term: INTEGER .
+
+    $default  reduce using rule 24 (term)
+
+
+state 16
+
+   26 term: ID .
+
+    $default  reduce using rule 26 (term)
+
+
+state 17
+
+   23 term: '(' . expr ')'
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 29
+    term  go to state 19
+
+
+state 18
+
+    6 statements: IF expr . statements
+    7           | IF expr . statements ELSE statements
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+
+    AND      shift, and go to state 30
+    OR       shift, and go to state 31
+    EQUALS   shift, and go to state 32
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    ID       shift, and go to state 7
+    '{'      shift, and go to state 8
+    '+'      shift, and go to state 33
+    '-'      shift, and go to state 34
+    '*'      shift, and go to state 35
+    '<'      shift, and go to state 36
+
+    statements  go to state 37
+    statement   go to state 10
+
+
+state 19
+
+   21 expr: term .
+
+    $default  reduce using rule 21 (expr)
+
+
+state 20
+
+    8 statements: WHILE expr . statements
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+
+    AND      shift, and go to state 30
+    OR       shift, and go to state 31
+    EQUALS   shift, and go to state 32
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    ID       shift, and go to state 7
+    '{'      shift, and go to state 8
+    '+'      shift, and go to state 33
+    '-'      shift, and go to state 34
+    '*'      shift, and go to state 35
+    '<'      shift, and go to state 36
+
+    statements  go to state 38
+    statement   go to state 10
+
+
+state 21
+
+    9 statement: ID '=' . expr
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 39
+    term  go to state 19
+
+
+state 22
+
+    3 statements: statements . statement ';'
+    4           | '{' statements . '}'
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    ID       shift, and go to state 7
+    '}'      shift, and go to state 40
+
+    statement  go to state 23
+
+
+state 23
+
+    3 statements: statements statement . ';'
+
+    ';'  shift, and go to state 41
+
+
+state 24
+
+    5 statements: statement ';' .
+
+    $default  reduce using rule 5 (statements)
+
+
+state 25
+
+   10 statement: PRINT '(' listexpr . ')'
+   12 listexpr: listexpr . ',' expr
+
+    ')'  shift, and go to state 42
+    ','  shift, and go to state 43
+
+
+state 26
+
+   13 listexpr: expr .
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+
+    AND     shift, and go to state 30
+    OR      shift, and go to state 31
+    EQUALS  shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    '*'     shift, and go to state 35
+    '<'     shift, and go to state 36
+
+    $default  reduce using rule 13 (listexpr)
+
+
+state 27
+
+   11 statement: PRINTLN '(' listexpr . ')'
+   12 listexpr: listexpr . ',' expr
+
+    ')'  shift, and go to state 44
+    ','  shift, and go to state 43
+
+
+state 28
+
+   22 term: FOR ID . IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'
+
+    IN  shift, and go to state 45
+
+
+state 29
+
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+   23 term: '(' expr . ')'
+
+    AND     shift, and go to state 30
+    OR      shift, and go to state 31
+    EQUALS  shift, and go to state 32
+    ')'     shift, and go to state 46
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    '*'     shift, and go to state 35
+    '<'     shift, and go to state 36
+
+
+state 30
+
+   17 expr: expr AND . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 47
+
+
+state 31
+
+   18 expr: expr OR . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 48
+
+
+state 32
+
+   19 expr: expr EQUALS . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 49
+
+
+state 33
+
+   14 expr: expr '+' . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 50
+
+
+state 34
+
+   15 expr: expr '-' . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 51
+
+
+state 35
+
+   16 expr: expr '*' . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 52
+
+
+state 36
+
+   20 expr: expr '<' . term
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    term  go to state 53
+
+
+state 37
+
+    3 statements: statements . statement ';'
+    6           | IF expr statements .
+    7           | IF expr statements . ELSE statements
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    ELSE     shift, and go to state 54
+    ID       shift, and go to state 7
+
+    PRINT     [reduce using rule 6 (statements)]
+    PRINTLN   [reduce using rule 6 (statements)]
+    ELSE      [reduce using rule 6 (statements)]
+    ID        [reduce using rule 6 (statements)]
+    $default  reduce using rule 6 (statements)
+
+    statement  go to state 23
+
+
+state 38
+
+    3 statements: statements . statement ';'
+    8           | WHILE expr statements .
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    ID       shift, and go to state 7
+
+    PRINT     [reduce using rule 8 (statements)]
+    PRINTLN   [reduce using rule 8 (statements)]
+    ID        [reduce using rule 8 (statements)]
+    $default  reduce using rule 8 (statements)
+
+    statement  go to state 23
+
+
+state 39
+
+    9 statement: ID '=' expr .
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+
+    AND     shift, and go to state 30
+    OR      shift, and go to state 31
+    EQUALS  shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    '*'     shift, and go to state 35
+    '<'     shift, and go to state 36
+
+    $default  reduce using rule 9 (statement)
+
+
+state 40
+
+    4 statements: '{' statements '}' .
+
+    $default  reduce using rule 4 (statements)
+
+
+state 41
+
+    3 statements: statements statement ';' .
+
+    $default  reduce using rule 3 (statements)
+
+
+state 42
+
+   10 statement: PRINT '(' listexpr ')' .
+
+    $default  reduce using rule 10 (statement)
+
+
+state 43
+
+   12 listexpr: listexpr ',' . expr
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 55
+    term  go to state 19
+
+
+state 44
+
+   11 statement: PRINTLN '(' listexpr ')' .
+
+    $default  reduce using rule 11 (statement)
+
+
+state 45
+
+   22 term: FOR ID IN . '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'
+
+    '['  shift, and go to state 56
+
+
+state 46
+
+   23 term: '(' expr ')' .
+
+    $default  reduce using rule 23 (term)
+
+
+state 47
+
+   17 expr: expr AND term .
+
+    $default  reduce using rule 17 (expr)
+
+
+state 48
+
+   18 expr: expr OR term .
+
+    $default  reduce using rule 18 (expr)
+
+
+state 49
+
+   19 expr: expr EQUALS term .
+
+    $default  reduce using rule 19 (expr)
+
+
+state 50
+
+   14 expr: expr '+' term .
+
+    $default  reduce using rule 14 (expr)
+
+
+state 51
+
+   15 expr: expr '-' term .
+
+    $default  reduce using rule 15 (expr)
+
+
+state 52
+
+   16 expr: expr '*' term .
+
+    $default  reduce using rule 16 (expr)
+
+
+state 53
+
+   20 expr: expr '<' term .
+
+    $default  reduce using rule 20 (expr)
+
+
+state 54
+
+    7 statements: IF expr statements ELSE . statements
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    ID       shift, and go to state 7
+    '{'      shift, and go to state 8
+
+    statements  go to state 57
+    statement   go to state 10
+
+
+state 55
+
+   12 listexpr: listexpr ',' expr .
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+
+    AND     shift, and go to state 30
+    OR      shift, and go to state 31
+    EQUALS  shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    '*'     shift, and go to state 35
+    '<'     shift, and go to state 36
+
+    $default  reduce using rule 12 (listexpr)
+
+
+state 56
+
+   22 term: FOR ID IN '[' . INTEGER ',' INTEGER ']' SUM '(' expr ')'
+
+    INTEGER  shift, and go to state 58
+
+
+state 57
+
+    3 statements: statements . statement ';'
+    7           | IF expr statements ELSE statements .
+
+    PRINT    shift, and go to state 3
+    PRINTLN  shift, and go to state 4
+    ID       shift, and go to state 7
+
+    PRINT     [reduce using rule 7 (statements)]
+    PRINTLN   [reduce using rule 7 (statements)]
+    ID        [reduce using rule 7 (statements)]
+    $default  reduce using rule 7 (statements)
+
+    statement  go to state 23
+
+
+state 58
+
+   22 term: FOR ID IN '[' INTEGER . ',' INTEGER ']' SUM '(' expr ')'
+
+    ','  shift, and go to state 59
+
+
+state 59
+
+   22 term: FOR ID IN '[' INTEGER ',' . INTEGER ']' SUM '(' expr ')'
+
+    INTEGER  shift, and go to state 60
+
+
+state 60
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER . ']' SUM '(' expr ')'
+
+    ']'  shift, and go to state 61
+
+
+state 61
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' . SUM '(' expr ')'
+
+    SUM  shift, and go to state 62
+
+
+state 62
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' SUM . '(' expr ')'
+
+    '('  shift, and go to state 63
+
+
+state 63
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' . expr ')'
+
+    STRING   shift, and go to state 13
+    FOR      shift, and go to state 14
+    INTEGER  shift, and go to state 15
+    ID       shift, and go to state 16
+    '('      shift, and go to state 17
+
+    expr  go to state 64
+    term  go to state 19
+
+
+state 64
+
+   14 expr: expr . '+' term
+   15     | expr . '-' term
+   16     | expr . '*' term
+   17     | expr . AND term
+   18     | expr . OR term
+   19     | expr . EQUALS term
+   20     | expr . '<' term
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr . ')'
+
+    AND     shift, and go to state 30
+    OR      shift, and go to state 31
+    EQUALS  shift, and go to state 32
+    ')'     shift, and go to state 65
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    '*'     shift, and go to state 35
+    '<'     shift, and go to state 36
+
+
+state 65
+
+   22 term: FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')' .
+
+    $default  reduce using rule 22 (term)

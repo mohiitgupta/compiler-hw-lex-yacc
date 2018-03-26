@@ -1,0 +1,33 @@
+a=1; //comment
+/* multiline comment +++ASdfasfsfasf=sd=f=asdfsda
+sdafasdf
+asdfasdf
+sadfasd
+fsdaf\tkkjhkhk********\\\\\\\\//////*
+sadfsda*/
+c=2+4; // single comment +++asdf++++++??SDFASDF?SD?Fsadfsad
+c = d+sdf;
+b=2-3;
+c="a"+2;
+c=1+        	2;
+
+input=2+ for id   in  [123,2] SUM ((a)+2);
+input=2+ for id   in  [1,2] SUM ("asdf");
+Print(a,b== 3, 2+ for id   in  [1,2] SUM ("asdf"));
+Println(a,b==3, 2+ for id   in  [1,2] SUM ("asdf")); //print statement
+inp =     3 +    "asdfas";
+inp = "sadf"; //sagsfsdf sdf// asdfsadfasdfsd f
+a=2;
+b_54 = 2 + "";
+/*_54 = 2 + "";*/
+a="";
+b=4;
+a=2&&b;
+a=2||/*comment+++++*/b;
+a=2||//comment+++++*
+b;
+a=2345-345;
+/**/
+a=((1+2)-3&&4+ for id   in  [1,2] SUM (for id   in  [1,2] SUM ("asdf")));
+a_="b";
+For = "";
