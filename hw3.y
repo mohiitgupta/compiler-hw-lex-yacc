@@ -11,6 +11,7 @@
     struct ast_node * mk_ast_symbol_reference_node (struct symbol_node * symbol);
     struct ast_node * mk_ast_assignment_node (struct symbol_node * symbol, struct ast_node * value);
     void print_tree(struct ast_node * node);
+    struct ast_node * traverse(struct ast_node * node);
 
 
 %}
@@ -97,38 +98,78 @@ int main(int argc, char *argv[]) {
 
 void print_tree(struct ast_node * node) {
     printf("length is %d", length);
+    //struct symbol_node * sym_node = lookup("a");
+    //sym_node->value = 4;
     for (int i=0; i < length; i++) {
         printf("%s", symbols[i]->name);
         printf("%d", symbols[i]->value);
+        printf("\n");
     }
 
-    //traverse(node);
+    traverse(node);
+
+    for (int i=0; i < length; i++) {
+        printf("%s", symbols[i]->name);
+        printf("%d", symbols[i]->value);
+        printf("\n");
+    }
     //fprintf(stderr, "tree test");
 }
 
-/*struct ast_node * traverse(struct ast_node * node) {
-    if (node == NULL) {
+struct ast_node * traverse(struct ast_node * ast_tree) {
+    if (ast_tree == NULL) {
         return NULL;
     }
-    
-    //struct ast_node * right = traverse(node->right);
 
-    switch (node->node_type)
+    //struct ast_node * left = traverse(node->left);
+    //struct ast_node * right = traverse(node->right);
+    //printf("%c\n",node->node_type);
+    //return node;
+    switch (ast_tree->node_type)
     {
         case '+':
-            struct ast_number_node * left = traverse(node->left);
-            struct ast_number_node * right = traverse(node->right);
+            printf("");
+            struct ast_number_node * left = (struct ast_number_node *) traverse(ast_tree->left);
+            struct ast_number_node * right = (struct ast_number_node *) traverse(ast_tree->right);
             struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             result->node_type = 'N';
-            result->value = left->value + left-> right;
-            return result;
+            result->value = left->value + right->value;
+            return (struct ast_node *) result;
+            break;
 
-        case '-';
-        case '*':
+        /*case '-':
+        case '*':*/
         case 'A':
+            printf("");
+            struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
+            struct symbol_node * sym_node = lookup(node->symbol->name);
+            struct ast_node * value_node = traverse(node->value);
+            if (value_node->node_type == 'N') 
+            {
+                struct ast_number_node * result = (struct ast_number_node *) value_node;
+                sym_node->value = result->value;
+                sym_node->initialize = "initialized";
+            } else if (value_node->node_type == 'n')
+            {
+                struct ast_string_node * result = (struct ast_string_node *) value_node;
+                sym_node->string_val = result->value;
+                sym_node->initialize = "initialized";
+            }
+            return ast_tree;
+            break;
 
+        case 'n':
+            return ast_tree;
+            break;
+        case 'N':
+            return ast_tree;
+            break;
+        case 'S':
+            traverse(ast_tree->left);
+            traverse(ast_tree->right);
 
-            
+  
     }
+    return ast_tree;
 
-}*/
+}

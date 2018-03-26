@@ -118,6 +118,7 @@
     struct ast_node * mk_ast_symbol_reference_node (struct symbol_node * symbol);
     struct ast_node * mk_ast_assignment_node (struct symbol_node * symbol, struct ast_node * value);
     void print_tree(struct ast_node * node);
+    struct ast_node * traverse(struct ast_node * node);
 
 
 
@@ -142,7 +143,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 32 "hw3.y"
+#line 33 "hw3.y"
 {
         int number;
         struct ast_node * ast;
@@ -150,7 +151,7 @@ typedef union YYSTYPE
         char * string;
 }
 /* Line 193 of yacc.c.  */
-#line 154 "y.tab.c"
+#line 155 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -163,7 +164,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 167 "y.tab.c"
+#line 168 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -458,9 +459,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    48,    48,    49,    52,    53,    55,    56,    57,    58,
-      59,    60,    61,    64,    65,    68,    69,    70,    71,    72,
-      73,    74,    75,    79,    80,    81,    82,    83
+       0,    49,    49,    50,    53,    54,    56,    57,    58,    59,
+      60,    61,    62,    65,    66,    69,    70,    71,    72,    73,
+      74,    75,    76,    80,    81,    82,    83,    84
 };
 #endif
 
@@ -1413,128 +1414,128 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 48 "hw3.y"
+#line 49 "hw3.y"
     { print_tree((yyvsp[(2) - (2)].ast)); }
     break;
 
   case 4:
-#line 52 "hw3.y"
+#line 53 "hw3.y"
     { (yyval.ast) = mk_ast_node('S',(yyvsp[(1) - (2)].ast), (yyvsp[(2) - (2)].ast));}
     break;
 
   case 5:
-#line 53 "hw3.y"
+#line 54 "hw3.y"
     { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 6:
-#line 55 "hw3.y"
+#line 56 "hw3.y"
     {(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].symbol), (yyvsp[(3) - (4)].ast)); }
     break;
 
   case 7:
-#line 56 "hw3.y"
+#line 57 "hw3.y"
     {(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL); }
     break;
 
   case 8:
-#line 57 "hw3.y"
+#line 58 "hw3.y"
     {(yyval.ast) = mk_ast_node('P', (yyvsp[(3) - (5)].ast), NULL); }
     break;
 
   case 9:
-#line 58 "hw3.y"
+#line 59 "hw3.y"
     {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
     break;
 
   case 10:
-#line 59 "hw3.y"
+#line 60 "hw3.y"
     {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);}
     break;
 
   case 11:
-#line 60 "hw3.y"
+#line 61 "hw3.y"
     {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (5)].ast), (yyvsp[(3) - (5)].ast), (yyvsp[(5) - (5)].ast));}
     break;
 
   case 12:
-#line 61 "hw3.y"
+#line 62 "hw3.y"
     {(yyval.ast) = mk_ast_while_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 13:
-#line 64 "hw3.y"
+#line 65 "hw3.y"
     { (yyval.ast) = mk_ast_node ('L', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 14:
-#line 65 "hw3.y"
+#line 66 "hw3.y"
     { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 15:
-#line 68 "hw3.y"
+#line 69 "hw3.y"
     {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 16:
-#line 69 "hw3.y"
+#line 70 "hw3.y"
     {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 17:
-#line 70 "hw3.y"
+#line 71 "hw3.y"
     {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 18:
-#line 71 "hw3.y"
+#line 72 "hw3.y"
     {(yyval.ast) = mk_ast_node('A', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 19:
-#line 72 "hw3.y"
+#line 73 "hw3.y"
     {(yyval.ast) = mk_ast_node('O', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 20:
-#line 73 "hw3.y"
+#line 74 "hw3.y"
     {(yyval.ast) = mk_ast_node('E', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 21:
-#line 74 "hw3.y"
+#line 75 "hw3.y"
     {(yyval.ast) = mk_ast_node('<', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 22:
-#line 75 "hw3.y"
+#line 76 "hw3.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 24:
-#line 80 "hw3.y"
+#line 81 "hw3.y"
     {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
     break;
 
   case 25:
-#line 81 "hw3.y"
+#line 82 "hw3.y"
     {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
     break;
 
   case 26:
-#line 82 "hw3.y"
+#line 83 "hw3.y"
     {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
     break;
 
   case 27:
-#line 83 "hw3.y"
+#line 84 "hw3.y"
     {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol)); }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1538 "y.tab.c"
+#line 1539 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1748,7 +1749,7 @@ yyreturn:
 }
 
 
-#line 86 "hw3.y"
+#line 87 "hw3.y"
 
 void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);
@@ -1763,38 +1764,78 @@ int main(int argc, char *argv[]) {
 
 void print_tree(struct ast_node * node) {
     printf("length is %d", length);
+    //struct symbol_node * sym_node = lookup("a");
+    //sym_node->value = 4;
     for (int i=0; i < length; i++) {
         printf("%s", symbols[i]->name);
         printf("%d", symbols[i]->value);
+        printf("\n");
     }
 
-    //traverse(node);
+    traverse(node);
+
+    for (int i=0; i < length; i++) {
+        printf("%s", symbols[i]->name);
+        printf("%d", symbols[i]->value);
+        printf("\n");
+    }
     //fprintf(stderr, "tree test");
 }
 
-/*struct ast_node * traverse(struct ast_node * node) {
-    if (node == NULL) {
+struct ast_node * traverse(struct ast_node * ast_tree) {
+    if (ast_tree == NULL) {
         return NULL;
     }
-    
-    //struct ast_node * right = traverse(node->right);
 
-    switch (node->node_type)
+    //struct ast_node * left = traverse(node->left);
+    //struct ast_node * right = traverse(node->right);
+    //printf("%c\n",node->node_type);
+    //return node;
+    switch (ast_tree->node_type)
     {
         case '+':
-            struct ast_number_node * left = traverse(node->left);
-            struct ast_number_node * right = traverse(node->right);
+            printf("");
+            struct ast_number_node * left = (struct ast_number_node *) traverse(ast_tree->left);
+            struct ast_number_node * right = (struct ast_number_node *) traverse(ast_tree->right);
             struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             result->node_type = 'N';
-            result->value = left->value + left-> right;
-            return result;
+            result->value = left->value + right->value;
+            return (struct ast_node *) result;
+            break;
 
-        case '-';
-        case '*':
+        /*case '-':
+        case '*':*/
         case 'A':
+            printf("");
+            struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
+            struct symbol_node * sym_node = lookup(node->symbol->name);
+            struct ast_node * value_node = traverse(node->value);
+            if (value_node->node_type == 'N') 
+            {
+                struct ast_number_node * result = (struct ast_number_node *) value_node;
+                sym_node->value = result->value;
+                sym_node->initialize = "initialized";
+            } else if (value_node->node_type == 'n')
+            {
+                struct ast_string_node * result = (struct ast_string_node *) value_node;
+                sym_node->string_val = result->value;
+                sym_node->initialize = "initialized";
+            }
+            return ast_tree;
+            break;
 
+        case 'n':
+            return ast_tree;
+            break;
+        case 'N':
+            return ast_tree;
+            break;
+        case 'S':
+            traverse(ast_tree->left);
+            traverse(ast_tree->right);
 
-            
+  
     }
+    return ast_tree;
 
-}*/
+}

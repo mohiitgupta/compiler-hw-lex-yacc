@@ -16,6 +16,7 @@ static struct symbol_node * create_symbol(char *name)
     //fprintf(stderr, "hash %s", name);
     newSymbol->name = (char *)malloc(sizeof(name));
     strcpy(newSymbol->name, name);
+    newSymbol->initialize = "notInitialized";
     // newSymbol->value = NULL;
     //newSymbol->next = NULL;
     //fprintf(stderr, "hash test4");

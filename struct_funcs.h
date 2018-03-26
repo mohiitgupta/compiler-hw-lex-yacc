@@ -1,10 +1,13 @@
 #include<stdlib.h>
 extern struct symbol_node *symbols[100000];
 extern int length; 
+typedef enum { false, true } bool;
 struct symbol_node
 {
   char * name;
   int value;
+  char * initialize;
+  char * string_val;
 };
 
 struct ast_node 
@@ -119,3 +122,5 @@ static struct ast_node * mk_ast_string_node (char * value)
   ast_node->value = value;
   return (struct ast_node *) ast_node;
 }
+
+
