@@ -165,6 +165,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
     switch (ast_tree->node_type)
     {
         case '+':
+        {
             //printf("");
             
             //struct ast_number_node * left = (struct ast_number_node *) traverse(ast_tree->left);
@@ -179,6 +180,8 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             //result->value = left->value + right->value;
             return (struct ast_node *) result;
             break;
+        }
+            
 
         /*case '-':
         case '*':*/
@@ -256,10 +259,11 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             return (struct ast_node *) result;
             break;
         }
-        case 'I':
+        /*case 'I':
         {
-
-        }
+            struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
+            struct ast_number_node * condition = (struct ast_number_node *) traverse(ast_tree->)
+        }*/
             
 
 
@@ -267,6 +271,4 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
   
     }
     return ast_tree;
-        }
-
 }
