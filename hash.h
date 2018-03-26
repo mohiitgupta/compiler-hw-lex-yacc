@@ -35,4 +35,14 @@ static struct symbol_node * lookup(char * name) {
     //printf("length = %d", length);
     return symbols[length-1];
 }
+static struct symbol_node * find(char * name) {
+    //fprintf(stderr, "hash test1");
+    for (int i=0; i < length; i++) {
+        if (strcmp(symbols[i]->name, name) == 0) {
+            return symbols[i];
+        }
+    }
+    
+    return NULL;
+}
 #endif

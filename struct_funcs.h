@@ -106,7 +106,7 @@ static struct ast_node * mk_ast_assignment_node (struct symbol_node * symbol, st
 static struct ast_node * mk_ast_number_node (int value)
 {
   //fprintf(stderr, "test2" );
-  printf("number is %d", value);
+  //printf("number is %d", value);
   struct ast_number_node * ast_node = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
   ast_node->node_type = 'N';
   ast_node->value = value;
@@ -116,7 +116,7 @@ static struct ast_node * mk_ast_number_node (int value)
 static struct ast_node * mk_ast_string_node (char * value)
 {
   //fprintf(stderr, "test2" );
-  printf("string is %s", value);
+  //printf("string is %s", value);
   struct ast_string_node * ast_node = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
   ast_node->node_type = 'n';
   ast_node->value = value;

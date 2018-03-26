@@ -78,7 +78,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 33 "hw3.y"
+#line 34 "hw3.y"
 {
         int number;
         struct ast_node * ast;
