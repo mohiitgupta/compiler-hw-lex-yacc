@@ -104,7 +104,7 @@ term:
 
 %%
 void yyerror(char *s) {
-    fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "Syntax Error\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -162,8 +162,9 @@ char * get_value(struct ast_node * value_node) {
             snprintf(snum, 100, "%d", number_dummy);
             //itoa(number_dummy,snum,10);
         } else if (strcmp(result->type, "string") == 0){
-            snum = (char *) malloc(strlen(result->value)+1);
-            strcpy(snum, result->value);
+            //snum = (char *) malloc(strlen(result->value)+1);
+            //strcpy(snum, result->value);
+            snum = (char *)result->value;
         } else {
             printf("not initialized");
         }
@@ -178,9 +179,11 @@ char * get_value(struct ast_node * value_node) {
     }else if (value_node->node_type == 'n') {
         struct ast_string_node * left = (struct ast_string_node *) value_node;
         //fprintf(stderr, "size of string is %lu\n", strlen(left->value));
-        snum = (char *)malloc(strlen(left->value)+1);
-        strcpy(snum, left->value);
+        //snum = (char *)malloc(strlen(left->value)+1);
+        //strcpy(snum, left->value);
         //return left->value;
+
+        snum = (char *)left->value;
     }
     // int len = strlen(snum);
     // snum[len]='\0';
@@ -413,7 +416,9 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
                 printf("%s\n", snum);
             }*/
             char * string_value = get_value(value_node);
-            fprintf(stderr, "%s \n", string_value);            
+            fprintf(stderr, "%s \n", string_value); 
+
+
             break;
         }
             
@@ -422,6 +427,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             struct ast_node * value_node = traverse(ast_tree->left);
             char * string_value = get_value(value_node);
             fprintf(stderr, "%s", string_value);
+            //free(string_value);
             break;
         }
             

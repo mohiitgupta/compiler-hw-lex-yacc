@@ -64,8 +64,10 @@ while {
                 char * dummy = strdup(yytext);
                 int str_len = strlen(dummy);
                 memmove(&dummy[0], &dummy[1], str_len);
-                str_len--;
-                memmove(&dummy[str_len-1], &dummy[str_len], str_len);
+                //str_len--;
+                str_len = strlen(dummy);
+                dummy[str_len-1] = dummy[str_len];
+                //memmove(dummy, dummy+1, strlen(dummy));
                 yylval.string = dummy;
                 return STRING;
             }
