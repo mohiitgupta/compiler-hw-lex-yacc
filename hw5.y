@@ -58,7 +58,7 @@ statement:
         ID '=' expr ';'                     {/*printf("");*/$$= mk_ast_assignment_node($1, $3); }
         | PRINT '(' listexpr ')' ';'        {/*printf("");*/$$ = mk_ast_node('p', $3, NULL); }
         | PRINTLN '(' listexpr ')' ';'      {$$ = mk_ast_node('P', $3, NULL); }
-        | '{' statements '}'                {printf("");$$ = $2;}
+        | '{' statements '}'                {/*printf("");*/$$ = $2;}
         | IF expr statement                {/*printf("");*/$$ = mk_ast_if_node($2, $3, NULL);}
         | IF expr statement ELSE statement    {$$ = mk_ast_if_node($2, $3, $5);}
         | WHILE expr statement             {$$ = mk_ast_while_node($2, $3);}
@@ -95,7 +95,7 @@ expr6:
     ;
 
 term:
-    FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'  {printf("");}
+    FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'  {/*printf("");*/}
     | '(' expr ')'    {$$ = $2;}
     | INTEGER       {$$ = mk_ast_number_node($1);}
     | STRING        {$$ = mk_ast_string_node($1);}
@@ -162,7 +162,7 @@ char * get_value(struct ast_node * value_node) {
             snprintf(snum, 100, "%d", number_dummy);
             //itoa(number_dummy,snum,10);
         } else if (strcmp(result->type, "string") == 0){
-            snum = (char *) malloc(4*strlen(result->value));
+            snum = (char *) malloc(strlen(result->value)+1);
             strcpy(snum, result->value);
         } else {
             printf("not initialized");
@@ -178,7 +178,7 @@ char * get_value(struct ast_node * value_node) {
     }else if (value_node->node_type == 'n') {
         struct ast_string_node * left = (struct ast_string_node *) value_node;
         //fprintf(stderr, "size of string is %lu\n", strlen(left->value));
-        snum = (char *)malloc(4*strlen(left->value));
+        snum = (char *)malloc(strlen(left->value)+1);
         strcpy(snum, left->value);
         //return left->value;
     }
@@ -327,7 +327,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             if (value_node->node_type == 'N') 
             {
                 struct ast_number_node * result = (struct ast_number_node *) value_node;
-                int * number_dummy = (int*)malloc(4*sizeof(int));
+                int * number_dummy = (int*)malloc(sizeof(int));
                 *number_dummy = result->value;
 
                 sym_node->value = (void *) number_dummy;
@@ -340,7 +340,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             {
                 struct ast_string_node * result = (struct ast_string_node *) value_node;
                 //char * string_dummy = result->value;
-                sym_node->value = (char *) malloc(4*strlen(result->value)+100);
+                sym_node->value = (char *) malloc(strlen(result->value)+1);
                 strcpy(sym_node->value, result->value);
                 //sym_node->value = (void *) string_dummy;
                 sym_node->type = "string";
@@ -361,7 +361,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
                     sym_node->type = "number";
                 } else if (strcmp(result->type, "string") == 0){
                     sym_node->type = "string";
-                    sym_node->value = (char *) malloc(4*strlen(result->value)+1);
+                    sym_node->value = (char *) malloc(strlen(result->value)+1);
                     strcpy(sym_node->value, result->value);
                 } else {
                     printf("not initialized");
@@ -436,7 +436,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             struct ast_node * dummy2 = traverse(ast_tree->right);
             char * value2 = get_value(dummy2);
             //printf("value 2 is %s\n", value2);
-            result->value = malloc(4*strlen(value1)+4*strlen(value2)+1);
+            result->value = malloc(strlen(value1)+strlen(value2)+1);
             strcpy(result->value, value1);
             strcat(result->value, " ");
             strcat(result->value, value2);
