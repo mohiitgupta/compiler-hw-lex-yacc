@@ -104,10 +104,11 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "hw3.y"
+#line 1 "hw5.y"
 
     #include <stdio.h>
     #include "hash.h"
+    #include <stdlib.h>
     int yylex(void);
     void yyerror(char *);
     int yydebug = 1;
@@ -144,7 +145,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 34 "hw3.y"
+#line 35 "hw5.y"
 {
         int number;
         struct ast_node * ast;
@@ -152,7 +153,7 @@ typedef union YYSTYPE
         char * string;
 }
 /* Line 193 of yacc.c.  */
-#line 156 "y.tab.c"
+#line 157 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -165,7 +166,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 169 "y.tab.c"
+#line 170 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -380,16 +381,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   145
+#define YYLAST   92
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  31
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  7
+#define YYNNTS  12
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  27
+#define YYNRULES  32
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  67
+#define YYNSTATES  72
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -405,9 +406,9 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      20,    21,    27,    25,    24,    26,     2,     2,     2,     2,
+      20,    21,    28,    26,    24,    27,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,    19,
-      28,    18,     2,     2,     2,     2,     2,     2,     2,     2,
+      25,    18,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,    29,     2,    30,     2,     2,     2,     2,     2,     2,
@@ -437,8 +438,9 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     6,     7,    10,    12,    17,    23,    29,
-      33,    37,    43,    47,    51,    53,    57,    61,    65,    69,
-      73,    77,    81,    83,    96,   100,   102,   104
+      33,    37,    43,    47,    51,    53,    57,    59,    63,    65,
+      69,    71,    75,    77,    81,    85,    87,    91,    93,   106,
+     110,   112,   114
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
@@ -447,12 +449,13 @@ static const yytype_int8 yyrhs[] =
       32,     0,    -1,    32,    33,    -1,    -1,    33,    34,    -1,
       34,    -1,    16,    18,    36,    19,    -1,     9,    20,    35,
       21,    19,    -1,    10,    20,    35,    21,    19,    -1,    22,
-      33,    23,    -1,    12,    36,    33,    -1,    12,    36,    33,
-      13,    33,    -1,    14,    36,    33,    -1,    35,    24,    36,
-      -1,    36,    -1,    36,    25,    37,    -1,    36,    26,    37,
-      -1,    36,    27,    37,    -1,    36,     3,    37,    -1,    36,
-       4,    37,    -1,    36,     5,    37,    -1,    36,    28,    37,
-      -1,    37,    -1,     6,    16,     7,    29,    15,    24,    15,
+      33,    23,    -1,    12,    36,    34,    -1,    12,    36,    34,
+      13,    34,    -1,    14,    36,    34,    -1,    35,    24,    36,
+      -1,    36,    -1,    36,     4,    37,    -1,    37,    -1,    37,
+       3,    38,    -1,    38,    -1,    38,     5,    39,    -1,    39,
+      -1,    39,    25,    40,    -1,    40,    -1,    40,    26,    41,
+      -1,    40,    27,    41,    -1,    41,    -1,    41,    28,    42,
+      -1,    42,    -1,     6,    16,     7,    29,    15,    24,    15,
       30,     8,    20,    36,    21,    -1,    20,    36,    21,    -1,
       15,    -1,    17,    -1,    16,    -1
 };
@@ -460,9 +463,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    50,    50,    51,    54,    55,    57,    58,    59,    60,
-      61,    62,    63,    66,    67,    70,    71,    72,    73,    74,
-      75,    76,    77,    81,    82,    83,    84,    85
+       0,    51,    51,    52,    55,    56,    58,    59,    60,    61,
+      62,    63,    64,    67,    68,    72,    73,    76,    77,    80,
+      81,    84,    85,    88,    89,    90,    93,    94,    98,    99,
+     100,   101,   102
 };
 #endif
 
@@ -473,9 +477,10 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "AND", "OR", "EQUALS", "FOR", "IN",
   "SUM", "PRINT", "PRINTLN", "UNKNOWN", "IF", "ELSE", "WHILE", "INTEGER",
-  "ID", "STRING", "'='", "';'", "'('", "')'", "'{'", "'}'", "','", "'+'",
-  "'-'", "'*'", "'<'", "'['", "']'", "$accept", "program", "statements",
-  "statement", "listexpr", "expr", "term", 0
+  "ID", "STRING", "'='", "';'", "'('", "')'", "'{'", "'}'", "','", "'<'",
+  "'+'", "'-'", "'*'", "'['", "']'", "$accept", "program", "statements",
+  "statement", "listexpr", "expr", "expr2", "expr3", "expr4", "expr5",
+  "expr6", "term", 0
 };
 #endif
 
@@ -486,7 +491,7 @@ static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,    61,    59,
-      40,    41,   123,   125,    44,    43,    45,    42,    60,    91,
+      40,    41,   123,   125,    44,    60,    43,    45,    42,    91,
       93
 };
 # endif
@@ -495,16 +500,18 @@ static const yytype_uint16 yytoknum[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    31,    32,    32,    33,    33,    34,    34,    34,    34,
-      34,    34,    34,    35,    35,    36,    36,    36,    36,    36,
-      36,    36,    36,    37,    37,    37,    37,    37
+      34,    34,    34,    35,    35,    36,    36,    37,    37,    38,
+      38,    39,    39,    40,    40,    40,    41,    41,    42,    42,
+      42,    42,    42
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,     0,     2,     1,     4,     5,     5,     3,
-       3,     5,     3,     3,     1,     3,     3,     3,     3,     3,
-       3,     3,     1,    12,     3,     1,     1,     1
+       3,     5,     3,     3,     1,     3,     1,     3,     1,     3,
+       1,     3,     1,     3,     3,     1,     3,     1,    12,     3,
+       1,     1,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -513,38 +520,42 @@ static const yytype_uint8 yyr2[] =
 static const yytype_uint8 yydefact[] =
 {
        3,     0,     1,     0,     0,     0,     0,     0,     0,     2,
-       5,     0,     0,     0,    25,    27,    26,     0,     0,    22,
-       0,     0,     0,     4,     0,    14,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    10,    12,     0,     9,
-       0,     0,     0,     0,    24,    18,    19,    20,    15,    16,
-      17,    21,     0,     6,     7,    13,     8,     0,    11,     0,
-       0,     0,     0,     0,     0,     0,    23
+       5,     0,     0,     0,    30,    32,    31,     0,     0,    16,
+      18,    20,    22,    25,    27,     0,     0,     0,     4,     0,
+      14,     0,     0,     0,     0,    10,     0,     0,     0,     0,
+       0,     0,    12,     0,     9,     0,     0,     0,     0,    29,
+      15,     0,    17,    19,    21,    23,    24,    26,     6,     7,
+      13,     8,     0,    11,     0,     0,     0,     0,     0,     0,
+       0,    28
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     9,    10,    24,    25,    19
+      -1,     1,     9,    10,    29,    30,    19,    20,    21,    22,
+      23,    24
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -18
+#define YYPACT_NINF -24
 static const yytype_int8 yypact[] =
 {
-     -18,    89,   -18,   -17,   -16,   107,   107,   -13,   116,   116,
-     -18,   107,   107,    -2,   -18,   -18,   -18,   107,    28,   -18,
-      28,   107,    98,   -18,    42,    69,    43,    10,    20,   107,
-     107,   107,   107,   107,   107,   107,    -3,   116,    57,   -18,
-       2,   107,     3,    -1,   -18,   -18,   -18,   -18,   -18,   -18,
-     -18,   -18,   116,   -18,   -18,    69,   -18,    11,   116,    15,
-      12,     4,    27,    23,   107,    65,   -18
+     -24,    13,   -24,   -10,    10,    42,    42,    14,    51,    51,
+     -24,    42,    42,    15,   -24,   -24,   -24,    42,    24,    34,
+      45,    26,   -12,    11,   -24,    24,    42,    33,   -24,   -18,
+      48,   -16,    46,     3,    42,    41,    42,    42,    42,    42,
+      42,    42,   -24,     0,   -24,    47,    42,    49,    40,   -24,
+      34,    51,    45,    26,   -12,    11,    11,   -24,   -24,   -24,
+      48,   -24,    55,   -24,    50,    56,    52,    64,    57,    42,
+       5,   -24
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -18,   -18,     0,    -7,    37,    -5,   110
+     -24,   -24,    67,    -7,    66,    -5,    53,    43,    39,    54,
+     -23,    44
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -554,40 +565,30 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      18,    20,    23,    11,    12,    21,     3,     4,    22,     5,
-      52,     6,    28,     7,    27,    23,    38,    43,    36,     8,
-      37,    54,    56,    29,    30,    31,    59,    61,    57,    23,
-      23,    29,    30,    31,    62,    63,    55,     3,     4,    60,
-       5,    44,     6,    64,     7,    32,    33,    34,    35,    26,
-       8,    23,    58,    32,    33,    34,    35,     0,     0,    65,
-      29,    30,    31,    40,    42,     0,    41,    41,    29,    30,
-      31,     0,    29,    30,    31,     0,    53,     0,     0,     0,
-       0,     0,    32,    33,    34,    35,    66,     0,     0,     2,
-      32,    33,    34,    35,    32,    33,    34,    35,     3,     4,
-       0,     5,     0,     6,     0,     7,     0,     3,     4,     0,
-       5,     8,     6,    13,     7,     0,     0,     0,     0,     0,
-       8,    39,    14,    15,    16,     3,     4,    17,     5,     0,
-       6,     0,     7,     0,     0,     0,     0,     0,     8,    45,
-      46,    47,    48,    49,    50,    51
+      18,    25,    28,    45,    34,    47,    46,    34,    46,    34,
+      11,    35,    33,     2,    39,    40,    55,    56,    42,    58,
+      28,    43,     3,     4,    49,     5,    71,     6,    34,     7,
+      12,    32,    26,     3,     4,     8,     5,    36,     6,    41,
+       7,    60,     3,     4,    63,     5,     8,     6,    13,     7,
+      37,    38,    34,    48,    51,     8,    44,    14,    15,    16,
+       3,     4,    17,     5,    70,     6,    59,     7,    61,    62,
+      64,    66,    68,     8,    65,    27,    53,    69,    31,    52,
+       0,     0,    67,     0,     0,    57,     0,    50,     0,     0,
+       0,     0,    54
 };
 
 static const yytype_int8 yycheck[] =
 {
-       5,     6,     9,    20,    20,    18,     9,    10,     8,    12,
-      13,    14,    17,    16,    16,    22,    21,     7,    18,    22,
-      20,    19,    19,     3,     4,     5,    15,    15,    29,    36,
-      37,     3,     4,     5,    30,     8,    41,     9,    10,    24,
-      12,    21,    14,    20,    16,    25,    26,    27,    28,    12,
-      22,    58,    52,    25,    26,    27,    28,    -1,    -1,    64,
-       3,     4,     5,    21,    21,    -1,    24,    24,     3,     4,
-       5,    -1,     3,     4,     5,    -1,    19,    -1,    -1,    -1,
-      -1,    -1,    25,    26,    27,    28,    21,    -1,    -1,     0,
-      25,    26,    27,    28,    25,    26,    27,    28,     9,    10,
-      -1,    12,    -1,    14,    -1,    16,    -1,     9,    10,    -1,
-      12,    22,    14,     6,    16,    -1,    -1,    -1,    -1,    -1,
-      22,    23,    15,    16,    17,     9,    10,    20,    12,    -1,
-      14,    -1,    16,    -1,    -1,    -1,    -1,    -1,    22,    29,
-      30,    31,    32,    33,    34,    35
+       5,     6,     9,    21,     4,    21,    24,     4,    24,     4,
+      20,    18,    17,     0,    26,    27,    39,    40,    25,    19,
+      27,    26,     9,    10,    21,    12,    21,    14,     4,    16,
+      20,    16,    18,     9,    10,    22,    12,     3,    14,    28,
+      16,    46,     9,    10,    51,    12,    22,    14,     6,    16,
+       5,    25,     4,     7,    13,    22,    23,    15,    16,    17,
+       9,    10,    20,    12,    69,    14,    19,    16,    19,    29,
+      15,    15,     8,    22,    24,     8,    37,    20,    12,    36,
+      -1,    -1,    30,    -1,    -1,    41,    -1,    34,    -1,    -1,
+      -1,    -1,    38
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -596,11 +597,12 @@ static const yytype_uint8 yystos[] =
 {
        0,    32,     0,     9,    10,    12,    14,    16,    22,    33,
       34,    20,    20,     6,    15,    16,    17,    20,    36,    37,
-      36,    18,    33,    34,    35,    36,    35,    16,    36,     3,
-       4,     5,    25,    26,    27,    28,    33,    33,    36,    23,
-      21,    24,    21,     7,    21,    37,    37,    37,    37,    37,
-      37,    37,    13,    19,    19,    36,    19,    29,    33,    15,
-      24,    15,    30,     8,    20,    36,    21
+      38,    39,    40,    41,    42,    36,    18,    33,    34,    35,
+      36,    35,    16,    36,     4,    34,     3,     5,    25,    26,
+      27,    28,    34,    36,    23,    21,    24,    21,     7,    21,
+      37,    13,    38,    39,    40,    41,    41,    42,    19,    19,
+      36,    19,    29,    34,    15,    24,    15,    30,     8,    20,
+      36,    21
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1415,128 +1417,158 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 50 "hw3.y"
+#line 51 "hw5.y"
     { print_tree((yyvsp[(2) - (2)].ast)); }
     break;
 
   case 4:
-#line 54 "hw3.y"
+#line 55 "hw5.y"
     { (yyval.ast) = mk_ast_node('S',(yyvsp[(1) - (2)].ast), (yyvsp[(2) - (2)].ast));}
     break;
 
   case 5:
-#line 55 "hw3.y"
-    { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
+#line 56 "hw5.y"
+    { /*printf("");*/(yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 6:
-#line 57 "hw3.y"
-    {(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].symbol), (yyvsp[(3) - (4)].ast)); }
+#line 58 "hw5.y"
+    {/*printf("");*/(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].symbol), (yyvsp[(3) - (4)].ast)); }
     break;
 
   case 7:
-#line 58 "hw3.y"
-    {(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL); }
+#line 59 "hw5.y"
+    {/*printf("");*/(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL); }
     break;
 
   case 8:
-#line 59 "hw3.y"
+#line 60 "hw5.y"
     {(yyval.ast) = mk_ast_node('P', (yyvsp[(3) - (5)].ast), NULL); }
     break;
 
   case 9:
-#line 60 "hw3.y"
-    {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
+#line 61 "hw5.y"
+    {printf("");(yyval.ast) = (yyvsp[(2) - (3)].ast);}
     break;
 
   case 10:
-#line 61 "hw3.y"
-    {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);}
+#line 62 "hw5.y"
+    {/*printf("");*/(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);}
     break;
 
   case 11:
-#line 62 "hw3.y"
+#line 63 "hw5.y"
     {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (5)].ast), (yyvsp[(3) - (5)].ast), (yyvsp[(5) - (5)].ast));}
     break;
 
   case 12:
-#line 63 "hw3.y"
+#line 64 "hw5.y"
     {(yyval.ast) = mk_ast_while_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 13:
-#line 66 "hw3.y"
+#line 67 "hw5.y"
     { (yyval.ast) = mk_ast_node ('L', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 14:
-#line 67 "hw3.y"
+#line 68 "hw5.y"
     { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 15:
-#line 70 "hw3.y"
-    {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
-    break;
-
-  case 16:
-#line 71 "hw3.y"
-    {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
-    break;
-
-  case 17:
-#line 72 "hw3.y"
-    {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
-    break;
-
-  case 18:
-#line 73 "hw3.y"
-    {(yyval.ast) = mk_ast_node('A', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
-    break;
-
-  case 19:
-#line 74 "hw3.y"
+#line 72 "hw5.y"
     {(yyval.ast) = mk_ast_node('O', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
-  case 20:
-#line 75 "hw3.y"
+  case 16:
+#line 73 "hw5.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
+  case 17:
+#line 76 "hw5.y"
+    {(yyval.ast) = mk_ast_node('a', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+    break;
+
+  case 18:
+#line 77 "hw5.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
+  case 19:
+#line 80 "hw5.y"
     {(yyval.ast) = mk_ast_node('E', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
+  case 20:
+#line 81 "hw5.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
   case 21:
-#line 76 "hw3.y"
+#line 84 "hw5.y"
     {(yyval.ast) = mk_ast_node('<', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 22:
-#line 77 "hw3.y"
+#line 85 "hw5.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
+  case 23:
+#line 88 "hw5.y"
+    {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+    break;
+
   case 24:
-#line 82 "hw3.y"
-    {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
+#line 89 "hw5.y"
+    {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 25:
-#line 83 "hw3.y"
-    {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
+#line 90 "hw5.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 26:
-#line 84 "hw3.y"
-    {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
+#line 93 "hw5.y"
+    {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
     break;
 
   case 27:
-#line 85 "hw3.y"
+#line 94 "hw5.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
+  case 28:
+#line 98 "hw5.y"
+    {printf("");}
+    break;
+
+  case 29:
+#line 99 "hw5.y"
+    {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
+    break;
+
+  case 30:
+#line 100 "hw5.y"
+    {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
+    break;
+
+  case 31:
+#line 101 "hw5.y"
+    {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
+    break;
+
+  case 32:
+#line 102 "hw5.y"
     {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol)); }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1540 "y.tab.c"
+#line 1572 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1750,7 +1782,7 @@ yyreturn:
 }
 
 
-#line 88 "hw3.y"
+#line 105 "hw5.y"
 
 void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);
@@ -1761,6 +1793,81 @@ int main(int argc, char *argv[]) {
     yyparse();
     fclose(yyin);
     return 0;
+}
+
+int add_value(struct ast_node * value_node) {
+    if (value_node->node_type == 's') {
+        struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
+        struct symbol_node * result = left->symbol;
+        /*if (strcmp(result->initialize, "initialized") == 0) {
+            return result->value;
+        } else {
+            printf("not initialized\n");
+        }*/
+        if (result->type == NULL) {
+            printf("Uninitialized variable in %d\n", result->line);
+            exit(0);
+        }
+        int value = 0;
+        if (strcmp(result->type, "number") == 0) {
+           value = (int) *(int *)result->value; 
+        }
+        
+        return value;
+    } else if (value_node->node_type == 'N') {
+        struct ast_number_node * left = (struct ast_number_node *) value_node;
+        return left->value;
+    }
+    return 0;
+}
+
+char * get_value(struct ast_node * value_node) {
+    char *snum;
+    //printf("inside get value block \n");
+    if (value_node->node_type == 's') {
+        //struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
+        //struct symbol_node * result = left->symbol;
+        //printf("inside symbole reference block in get value\n");
+        struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+        
+        struct symbol_node * result = find(value_symbol_node->symbol->name);
+        if (result->type == NULL) {
+            printf("Uninitialized variable in %d\n", result->line);
+            exit(0);
+        }
+        //printf("name of symbol is %s", result->name);
+        if (strcmp(result->type, "number") == 0) {
+            snum = (char *)malloc(100);
+            int number_dummy = *(int *)result->value;
+            //printf("value of %s is %d\n", result->name, number_dummy);
+            snprintf(snum, 100, "%d", number_dummy);
+            //itoa(number_dummy,snum,10);
+        } else if (strcmp(result->type, "string") == 0){
+            snum = (char *) malloc(4*strlen(result->value));
+            strcpy(snum, result->value);
+        } else {
+            printf("not initialized");
+        }
+        //return snum;
+    } else if (value_node->node_type == 'N') {
+        struct ast_number_node * left = (struct ast_number_node *) value_node;
+        snum = (char *)malloc(100);
+        //printf("value of left->value is %d\n",left->value);
+        snprintf(snum, 100, "%d", left->value);
+        //itoa(left->value,snum,10);
+        //return snum;
+    }else if (value_node->node_type == 'n') {
+        struct ast_string_node * left = (struct ast_string_node *) value_node;
+        //fprintf(stderr, "size of string is %lu\n", strlen(left->value));
+        snum = (char *)malloc(4*strlen(left->value));
+        strcpy(snum, left->value);
+        //return left->value;
+    }
+    // int len = strlen(snum);
+    // snum[len]='\0';
+    //fflush(stdin);
+    //printf("value of snum is %s\n", snum);
+    return snum;
 }
 
 void print_tree(struct ast_node * node) {
@@ -1777,106 +1884,170 @@ void print_tree(struct ast_node * node) {
 
     traverse(node);
 
-    /*for (int i=0; i < length; i++) {
-        printf("%s", symbols[i]->name);
-        printf("%d", symbols[i]->value);
-        printf("%s", symbols[i]->initialize);
-        printf("%s", symbols[i]->string_val);
-        printf("\n");
-    }*/
+    // for (int i=0; i < length; i++) {
+    //     printf("%s ", symbols[i]->name);
+    //     int * number = ((int *)symbols[i]->value);
+    //     printf("%d ", *number);
+    //     printf("%s ", symbols[i]->type);
+    //     //printf("%s ", symbols[i]->string_val);
+    //     printf("\n");
+    // }
     //fprintf(stderr, "tree test");
-}
-
-int add_value(struct ast_node * value_node) {
-    if (value_node->node_type == 's') {
-        struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
-        struct symbol_node * result = left->symbol;
-        if (strcmp(result->initialize, "initialized") == 0) {
-            return result->value;
-        } else {
-            printf("not initialized\n");
-        }
-    } else if (value_node->node_type == 'N') {
-        struct ast_number_node * left = (struct ast_number_node *) value_node;
-        return left->value;
-    }
-    return 0;
-}
-
-char * get_value(struct ast_node * value_node) {
-    if (value_node->node_type == 's') {
-        struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
-        struct symbol_node * result = left->symbol;
-        if (strcmp(result->initialize, "initialized") == 0) {
-            return result->string_val;
-        } else {
-            printf("not initialized\n");
-        }
-    } else if (value_node->node_type == 'n') {
-        struct ast_string_node * left = (struct ast_string_node *) value_node;
-        return left->value;
-    }
-    return "";
 }
 
 struct ast_node * traverse(struct ast_node * ast_tree) {
     if (ast_tree == NULL) {
         return NULL;
     }
-
-    //struct ast_node * left = traverse(node->left);
-    //struct ast_node * right = traverse(node->right);
-    //printf("%c\n",node->node_type);
-    //return node;
     switch (ast_tree->node_type)
     {
         case '+':
         {
-            //printf("");
-            
-            //struct ast_number_node * left = (struct ast_number_node *) traverse(ast_tree->left);
-            //struct ast_number_node * right = (struct ast_number_node *) traverse(ast_tree->right);
             struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             result->node_type = 'N';
-
             struct ast_node * dummy = traverse(ast_tree->left);
             result->value = add_value(dummy);
             dummy = traverse(ast_tree->right);
             result->value += add_value(dummy);
-            //result->value = left->value + right->value;
             return (struct ast_node *) result;
             break;
         }
-            
 
-        /*case '-':
-        case '*':*/
+        case '-':
+        {
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            result->value -= add_value(dummy);
+            return (struct ast_node *) result;
+            break;
+        }
+
+        case '*':
+        {
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            result->value *= add_value(dummy);
+            return (struct ast_node *) result;
+            break;
+        }
+        case '<':
+        {
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            if (add_value(dummy) > result->value) {
+                result->value = 1;
+            } else {
+                result->value = 0;
+            }
+            return (struct ast_node *) result;
+            break;
+        }
+        case 'E':
+        {
+            //printf("equality block came\n");
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            if (add_value(dummy) == result->value) {
+                result->value = 1;
+            } else {
+                result->value = 0;
+            }
+            return (struct ast_node *) result;
+            break;
+        }
+        case 'a':
+        {
+            //printf("and block came\n");
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            if (add_value(dummy) && result->value) {
+                result->value = 1;
+            } else {
+                result->value = 0;
+            }
+            return (struct ast_node *) result;
+            break;
+        }
+        case 'O':
+        {
+            //printf("or block came\n");
+            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
+            result->node_type = 'N';
+            struct ast_node * dummy = traverse(ast_tree->left);
+            result->value = add_value(dummy);
+            dummy = traverse(ast_tree->right);
+            if (add_value(dummy) || result->value) {
+                result->value = 1;
+            } else {
+                result->value = 0;
+            }
+            return (struct ast_node *) result;
+            break;
+        }
+
         case 'A':
         {
-            //printf("");
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
-            struct symbol_node * sym_node = lookup(node->symbol->name);
+            struct symbol_node * sym_node = find(node->symbol->name);
             struct ast_node * value_node = traverse(node->value);
             if (value_node->node_type == 'N') 
             {
                 struct ast_number_node * result = (struct ast_number_node *) value_node;
-                sym_node->value = result->value;
-                sym_node->initialize = "initialized";
+                int * number_dummy = (int*)malloc(4*sizeof(int));
+                *number_dummy = result->value;
+
+                sym_node->value = (void *) number_dummy;
+                sym_node->type = "number";
+                //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
+
+                //printf("");
+                //sym_node->initialize = "initialized";
             } else if (value_node->node_type == 'n')
             {
                 struct ast_string_node * result = (struct ast_string_node *) value_node;
-                sym_node->string_val = result->value;
-                sym_node->initialize = "initialized";
+                //char * string_dummy = result->value;
+                sym_node->value = (char *) malloc(4*strlen(result->value)+100);
+                strcpy(sym_node->value, result->value);
+                //sym_node->value = (void *) string_dummy;
+                sym_node->type = "string";
+                //sym_node->initialize = "initialized";
             } else if (value_node->node_type == 's')
             {
                 struct ast_symbol_reference_node * result_sym_node = (struct ast_symbol_reference_node *) value_node;
                 struct symbol_node * result = result_sym_node->symbol;
-                if (strcmp(result->initialize, "initialized") == 0) {
-                    sym_node->value = result->value;
-                    sym_node->initialize = "initialized";
-                } else {
-                    printf("not initialized\n");
+                if (result->type == NULL) {
+                    fprintf(stderr, "Uninitialized variable in %d\n", result->line);
+                    exit(0);
                 }
+                if (strcmp(result->type, "number") == 0) {
+                    int * number_dummy = malloc(sizeof(int));
+                    *number_dummy = *(int *)(result->value);
+
+                    sym_node->value = (void *) number_dummy;
+                    sym_node->type = "number";
+                } else if (strcmp(result->type, "string") == 0){
+                    sym_node->type = "string";
+                    sym_node->value = (char *) malloc(4*strlen(result->value)+1);
+                    strcpy(sym_node->value, result->value);
+                } else {
+                    printf("not initialized");
+                }
+                //sym_node->value = result->value;
                 
             }
             return ast_tree;
@@ -1896,45 +2067,88 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             break;
         case 'P':
         {
-            //printf("");
-            struct ast_string_node * value_string_node = (struct ast_string_node *) traverse(ast_tree->left);
-            printf("%s\n", value_string_node->value);
+            struct ast_node * value_node = traverse(ast_tree->left);
+            /*if (value_node->node_type == 'n')
+            {
+                struct ast_string_node * value_string_node = (struct ast_string_node *) value_node;
+                printf("%s\n", value_string_node->value);
+            } else if (value_node->node_type == 'N') {
+                struct ast_number_node * value_number_node = (struct ast_number_node *) value_node;
+                char *snum;
+                sprintf(snum, "%d", value_number_node->value);
+                printf("%s\n", snum);
+            } else if (value_node->node_type == 's') {
+                struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+                char *snum;
+                struct symbol_node * result = value_symbol_node->symbol;
+                if (strcmp(result->type, "number") == 0) {
+                    snum = (char *)malloc(100);
+                    int number_dummy = *(int *)result->value;
+                    sprintf(snum, "%d", number_dummy);
+                } else if (strcmp(result->type, "string") == 0){
+                    snum = (char *) malloc(strlen(result->value)+1);
+                    strcpy(snum, result->value);
+                } else {
+                    printf("not initialized");
+                }
+                printf("%s\n", snum);
+            }*/
+            char * string_value = get_value(value_node);
+            fprintf(stderr, "%s \n", string_value);            
             break;
         }
             
         case 'p':
         {
-            //printf("");
-            struct ast_string_node * value_string_node = (struct ast_string_node *) traverse(ast_tree->left);
-            printf("%s", value_string_node->value);
+            struct ast_node * value_node = traverse(ast_tree->left);
+            char * string_value = get_value(value_node);
+            fprintf(stderr, "%s", string_value);
             break;
         }
             
         case 'L':
         {  
-            //printf("");
+            //printf("inside L block\n");
             struct ast_string_node * result = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
             result->node_type = 'n';
-            struct ast_node * dummy = (struct ast_node *) traverse(ast_tree->left);
+            struct ast_node * dummy = traverse(ast_tree->left);
             char * value1 = get_value(dummy);
-            dummy = (struct ast_node *) traverse(ast_tree->right);
-            char * value2 = get_value(dummy);
-            result->value = malloc(strlen(value1)+strlen(value2)+1);
+            //printf("value 1 is %s\n", value1);
+            struct ast_node * dummy2 = traverse(ast_tree->right);
+            char * value2 = get_value(dummy2);
+            //printf("value 2 is %s\n", value2);
+            result->value = malloc(4*strlen(value1)+4*strlen(value2)+1);
             strcpy(result->value, value1);
+            strcat(result->value, " ");
             strcat(result->value, value2);
+            // printf("value is %s", result->value);
             return (struct ast_node *) result;
             break;
         }
-        /*case 'I':
+        case 'I':
         {
-            struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
-            struct ast_number_node * condition = (struct ast_number_node *) traverse(ast_tree->)
-        }*/
+            struct ast_if_node * if_node = (struct ast_if_node *) ast_tree;
+            struct ast_number_node * condition = (struct ast_number_node *) traverse(if_node->condition);
+            if (condition->value == 0) {
+                traverse(if_node->else_branch);
+            } else {
+                traverse(if_node->if_branch);
+            }
+            //printf("if block came");
+            break;
+        }
+        case 'W':
+        {
+            struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
+            struct ast_number_node * condition = (struct ast_number_node *) traverse(while_node->condition);
+            while(condition->value != 0) {
+                traverse(while_node->while_branch);
+                condition = (struct ast_number_node *) traverse(while_node->condition);
+            }
+            //printf("while block came");
+            break;
+        }
             
-
-
-
-  
     }
     return ast_tree;
 }

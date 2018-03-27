@@ -7,6 +7,7 @@
 
     struct symbol_node *symbols[100000];
     int length = 0; 
+    int line_numbers = 1;
 %}
 
 %%
@@ -37,10 +38,20 @@ while {
         return WHILE;  
     }
 
+[\n] {
+    line_numbers++;
+}
+
 
 [a-zA-Z][0-9a-zA-Z_]*       {
                 //yylval.string = strdup(yytext);
                 yylval.symbol = lookup(yytext);
+                if (yylval.symbol->line_update == NULL || strcmp(yylval.symbol->line_update, "yes") != 0)
+                {
+                    yylval.symbol->line = line_numbers;
+                    yylval.symbol->line_update = "yes";
+                }
+                
                 return ID;
                 }
 
@@ -50,7 +61,12 @@ while {
             }
 
 [\"][^\"]*[\"]     {
-                yylval.string = strdup(yytext);
+                char * dummy = strdup(yytext);
+                int str_len = strlen(dummy);
+                memmove(&dummy[0], &dummy[1], str_len);
+                str_len--;
+                memmove(&dummy[str_len-1], &dummy[str_len], str_len);
+                yylval.string = dummy;
                 return STRING;
             }
 [=][=]     { return EQUALS; 
@@ -64,7 +80,7 @@ while {
 
 [/]\*([^*]|[\r\n]|([\*]+([^*/]|[\r\n])))*[\*]+[/]   ; /* skip comments */
 [/][/][^\n]*  ;    /* skip comments */
-[ \t\n]   ;       /* skip whitespace */
+[ \t]   ;       /* skip whitespace */
 
 .   {
         return UNKNOWN;

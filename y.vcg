@@ -110,7 +110,7 @@ graph: {
 	}
 	node: {
 		title:	"5"
-		label:	"state  5\n statement -> IF . expr statements\n statement -> IF . expr statements ELSE statements"
+		label:	"state  5\n statement -> IF . expr statement\n statement -> IF . expr statement ELSE statement"
 	}
 	edge: {
 		sourcename:	"5"
@@ -157,13 +157,48 @@ graph: {
 	edge: {
 		sourcename:	"5"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"5"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"6"
-		label:	"state  6\n statement -> WHILE . expr statements"
+		label:	"state  6\n statement -> WHILE . expr statement"
 	}
 	edge: {
 		sourcename:	"6"
@@ -202,7 +237,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"6"
-		targetname:	"20"
+		targetname:	"25"
 		label:	"expr"
 		color:	green
 		textcolor:	black
@@ -210,6 +245,41 @@ graph: {
 	edge: {
 		sourcename:	"6"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"6"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
@@ -220,7 +290,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"7"
-		targetname:	"21"
+		targetname:	"26"
 		label:	"'='"
 		color:	blue
 		textcolor:	black
@@ -273,7 +343,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"8"
-		targetname:	"22"
+		targetname:	"27"
 		label:	"statements"
 		color:	green
 		textcolor:	black
@@ -333,7 +403,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"9"
-		targetname:	"23"
+		targetname:	"28"
 		label:	"statement"
 		color:	green
 		textcolor:	black
@@ -383,14 +453,14 @@ graph: {
 	}
 	edge: {
 		sourcename:	"11"
-		targetname:	"24"
+		targetname:	"29"
 		label:	"listexpr"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"11"
-		targetname:	"25"
+		targetname:	"30"
 		label:	"expr"
 		color:	green
 		textcolor:	black
@@ -398,6 +468,41 @@ graph: {
 	edge: {
 		sourcename:	"11"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
@@ -443,14 +548,14 @@ graph: {
 	}
 	edge: {
 		sourcename:	"12"
-		targetname:	"26"
+		targetname:	"31"
 		label:	"listexpr"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"12"
-		targetname:	"25"
+		targetname:	"30"
 		label:	"expr"
 		color:	green
 		textcolor:	black
@@ -458,6 +563,41 @@ graph: {
 	edge: {
 		sourcename:	"12"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
@@ -468,7 +608,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"13"
-		targetname:	"27"
+		targetname:	"32"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
@@ -526,7 +666,7 @@ graph: {
 	}
 	edge: {
 		sourcename:	"17"
-		targetname:	"28"
+		targetname:	"33"
 		label:	"expr"
 		color:	green
 		textcolor:	black
@@ -534,32 +674,53 @@ graph: {
 	edge: {
 		sourcename:	"17"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"18"
-		label:	"state 18\n statement -> IF expr . statements\n statement -> IF expr . statements ELSE statements\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term"
+		label:	"state 18\n statement -> IF expr . statement\n statement -> IF expr . statement ELSE statement\n expr -> expr . OR expr2"
 	}
 	edge: {
 		sourcename:	"18"
-		targetname:	"29"
-		label:	"AND"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
-		targetname:	"30"
+		targetname:	"34"
 		label:	"OR"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
-		targetname:	"31"
-		label:	"EQUALS"
 		color:	blue
 		textcolor:	black
 	}
@@ -607,669 +768,368 @@ graph: {
 	}
 	edge: {
 		sourcename:	"18"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
 		targetname:	"35"
-		label:	"'<'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"18"
-		targetname:	"36"
-		label:	"statements"
-		color:	green
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"18"
-		targetname:	"10"
 		label:	"statement"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"19"
-		label:	"state 19\n expr -> term ."
-	}
-	node: {
-		title:	"20"
-		label:	"state 20\n statement -> WHILE expr . statements\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term"
+		label:	"state 19\n expr -> expr2 .\n expr2 -> expr2 . AND expr3"
 	}
 	edge: {
-		sourcename:	"20"
-		targetname:	"29"
+		sourcename:	"19"
+		targetname:	"36"
 		label:	"AND"
 		color:	blue
 		textcolor:	black
 	}
-	edge: {
-		sourcename:	"20"
-		targetname:	"30"
-		label:	"OR"
-		color:	blue
-		textcolor:	black
+	node: {
+		title:	"20"
+		label:	"state 20\n expr2 -> expr3 .\n expr3 -> expr3 . EQUALS expr4"
 	}
 	edge: {
 		sourcename:	"20"
-		targetname:	"31"
+		targetname:	"37"
 		label:	"EQUALS"
 		color:	blue
 		textcolor:	black
 	}
+	node: {
+		title:	"21"
+		label:	"state 21\n expr3 -> expr4 .\n expr4 -> expr4 . '<' expr5"
+	}
+	edge: {
+		sourcename:	"21"
+		targetname:	"38"
+		label:	"'<'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"22"
+		label:	"state 22\n expr4 -> expr5 .\n expr5 -> expr5 . '+' expr6\n expr5 -> expr5 . '-' expr6"
+	}
+	edge: {
+		sourcename:	"22"
+		targetname:	"39"
+		label:	"'+'"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"22"
+		targetname:	"40"
+		label:	"'-'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"23"
+		label:	"state 23\n expr5 -> expr6 .\n expr6 -> expr6 . '*' term"
+	}
+	edge: {
+		sourcename:	"23"
+		targetname:	"41"
+		label:	"'*'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"24"
+		label:	"state 24\n expr6 -> term ."
+	}
+	node: {
+		title:	"25"
+		label:	"state 25\n statement -> WHILE expr . statement\n expr -> expr . OR expr2"
+	}
+	edge: {
+		sourcename:	"25"
+		targetname:	"34"
+		label:	"OR"
+		color:	blue
+		textcolor:	black
+	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"3"
 		label:	"PRINT"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"4"
 		label:	"PRINTLN"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"5"
 		label:	"IF"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"6"
 		label:	"WHILE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"7"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"20"
+		sourcename:	"25"
 		targetname:	"8"
 		label:	"'{'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"20"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"20"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"20"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"20"
-		targetname:	"35"
-		label:	"'<'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"20"
-		targetname:	"37"
-		label:	"statements"
-		color:	green
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"20"
-		targetname:	"10"
+		sourcename:	"25"
+		targetname:	"42"
 		label:	"statement"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"21"
-		label:	"state 21\n statement -> ID '=' . expr ';'"
+		title:	"26"
+		label:	"state 26\n statement -> ID '=' . expr ';'"
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"13"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"15"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"16"
 		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"17"
 		label:	"'('"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"21"
-		targetname:	"38"
+		sourcename:	"26"
+		targetname:	"43"
 		label:	"expr"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"21"
+		sourcename:	"26"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"26"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"26"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"26"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"26"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"26"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"22"
-		label:	"state 22\n statements -> statements . statement\n statement -> '{' statements . '}'"
+		title:	"27"
+		label:	"state 27\n statements -> statements . statement\n statement -> '{' statements . '}'"
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"3"
 		label:	"PRINT"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"4"
 		label:	"PRINTLN"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"5"
 		label:	"IF"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"6"
 		label:	"WHILE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"7"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"22"
+		sourcename:	"27"
 		targetname:	"8"
 		label:	"'{'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"22"
-		targetname:	"39"
+		sourcename:	"27"
+		targetname:	"44"
 		label:	"'}'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"22"
-		targetname:	"23"
+		sourcename:	"27"
+		targetname:	"28"
 		label:	"statement"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"23"
-		label:	"state 23\n statements -> statements statement ."
+		title:	"28"
+		label:	"state 28\n statements -> statements statement ."
 	}
 	node: {
-		title:	"24"
-		label:	"state 24\n statement -> PRINT '(' listexpr . ')' ';'\n listexpr -> listexpr . ',' expr"
+		title:	"29"
+		label:	"state 29\n statement -> PRINT '(' listexpr . ')' ';'\n listexpr -> listexpr . ',' expr"
 	}
 	edge: {
-		sourcename:	"24"
-		targetname:	"40"
+		sourcename:	"29"
+		targetname:	"45"
 		label:	"')'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"24"
-		targetname:	"41"
+		sourcename:	"29"
+		targetname:	"46"
 		label:	"','"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"25"
-		label:	"state 25\n listexpr -> expr .\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term"
+		title:	"30"
+		label:	"state 30\n listexpr -> expr .\n expr -> expr . OR expr2"
 	}
 	edge: {
-		sourcename:	"25"
-		targetname:	"29"
-		label:	"AND"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"30"
+		sourcename:	"30"
+		targetname:	"34"
 		label:	"OR"
 		color:	blue
 		textcolor:	black
 	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"31"
-		label:	"EQUALS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"25"
-		targetname:	"35"
-		label:	"'<'"
-		color:	blue
-		textcolor:	black
-	}
 	node: {
-		title:	"26"
-		label:	"state 26\n statement -> PRINTLN '(' listexpr . ')' ';'\n listexpr -> listexpr . ',' expr"
+		title:	"31"
+		label:	"state 31\n statement -> PRINTLN '(' listexpr . ')' ';'\n listexpr -> listexpr . ',' expr"
 	}
 	edge: {
-		sourcename:	"26"
-		targetname:	"42"
+		sourcename:	"31"
+		targetname:	"47"
 		label:	"')'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"26"
-		targetname:	"41"
+		sourcename:	"31"
+		targetname:	"46"
 		label:	"','"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"27"
-		label:	"state 27\n term -> FOR ID . IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		title:	"32"
+		label:	"state 32\n term -> FOR ID . IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
 	}
 	edge: {
-		sourcename:	"27"
-		targetname:	"43"
+		sourcename:	"32"
+		targetname:	"48"
 		label:	"IN"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"28"
-		label:	"state 28\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term\n term -> '(' expr . ')'"
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"29"
-		label:	"AND"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"30"
-		label:	"OR"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"31"
-		label:	"EQUALS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"44"
-		label:	"')'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"28"
-		targetname:	"35"
-		label:	"'<'"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"29"
-		label:	"state 29\n expr -> expr AND . term"
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"13"
-		label:	"FOR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"14"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"16"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"29"
-		targetname:	"17"
-		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"29"
-		targetname:	"45"
-		label:	"term"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"30"
-		label:	"state 30\n expr -> expr OR . term"
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"13"
-		label:	"FOR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"14"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"16"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"30"
-		targetname:	"17"
-		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"30"
-		targetname:	"46"
-		label:	"term"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"31"
-		label:	"state 31\n expr -> expr EQUALS . term"
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"13"
-		label:	"FOR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"14"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"16"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"31"
-		targetname:	"17"
-		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"31"
-		targetname:	"47"
-		label:	"term"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"32"
-		label:	"state 32\n expr -> expr '+' . term"
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"13"
-		label:	"FOR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"14"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"16"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"32"
-		targetname:	"17"
-		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"32"
-		targetname:	"48"
-		label:	"term"
-		color:	green
-		textcolor:	black
-	}
-	node: {
 		title:	"33"
-		label:	"state 33\n expr -> expr '-' . term"
+		label:	"state 33\n expr -> expr . OR expr2\n term -> '(' expr . ')'"
 	}
-	backedge: {
+	edge: {
 		sourcename:	"33"
-		targetname:	"13"
-		label:	"FOR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"33"
-		targetname:	"14"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"33"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"33"
-		targetname:	"16"
-		label:	"STRING"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"33"
-		targetname:	"17"
-		label:	"'('"
+		targetname:	"34"
+		label:	"OR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"33"
 		targetname:	"49"
-		label:	"term"
-		color:	green
+		label:	"')'"
+		color:	blue
 		textcolor:	black
 	}
 	node: {
 		title:	"34"
-		label:	"state 34\n expr -> expr '*' . term"
+		label:	"state 34\n expr -> expr OR . expr2"
 	}
 	backedge: {
 		sourcename:	"34"
@@ -1309,247 +1169,366 @@ graph: {
 	edge: {
 		sourcename:	"34"
 		targetname:	"50"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"34"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"35"
-		label:	"state 35\n expr -> expr '<' . term"
+		label:	"state 35\n statement -> IF expr statement .\n statement -> IF expr statement . ELSE statement"
+	}
+	edge: {
+		sourcename:	"35"
+		targetname:	"51"
+		label:	"ELSE"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"36"
+		label:	"state 36\n expr2 -> expr2 AND . expr3"
 	}
 	backedge: {
-		sourcename:	"35"
+		sourcename:	"36"
 		targetname:	"13"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"35"
+		sourcename:	"36"
 		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"35"
+		sourcename:	"36"
 		targetname:	"15"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"35"
+		sourcename:	"36"
 		targetname:	"16"
 		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"35"
+		sourcename:	"36"
 		targetname:	"17"
 		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"35"
-		targetname:	"51"
-		label:	"term"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"36"
-		label:	"state 36\n statements -> statements . statement\n statement -> IF expr statements .\n statement -> IF expr statements . ELSE statements"
-	}
-	backedge: {
-		sourcename:	"36"
-		targetname:	"3"
-		label:	"PRINT"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"36"
-		targetname:	"4"
-		label:	"PRINTLN"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"36"
-		targetname:	"5"
-		label:	"IF"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"36"
 		targetname:	"52"
-		label:	"ELSE"
-		color:	blue
+		label:	"expr3"
+		color:	green
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"36"
-		targetname:	"6"
-		label:	"WHILE"
-		color:	blue
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"36"
-		targetname:	"7"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"36"
-		targetname:	"8"
-		label:	"'{'"
-		color:	blue
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"36"
 		targetname:	"23"
-		label:	"statement"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"36"
+		targetname:	"24"
+		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"37"
-		label:	"state 37\n statements -> statements . statement\n statement -> WHILE expr statements ."
+		label:	"state 37\n expr3 -> expr3 EQUALS . expr4"
 	}
 	backedge: {
 		sourcename:	"37"
-		targetname:	"3"
-		label:	"PRINT"
+		targetname:	"13"
+		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"37"
-		targetname:	"4"
-		label:	"PRINTLN"
+		targetname:	"14"
+		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"37"
-		targetname:	"5"
-		label:	"IF"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"37"
-		targetname:	"6"
-		label:	"WHILE"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"37"
-		targetname:	"7"
+		targetname:	"15"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"37"
-		targetname:	"8"
-		label:	"'{'"
+		targetname:	"16"
+		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"37"
+		targetname:	"17"
+		label:	"'('"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"37"
+		targetname:	"53"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"37"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"37"
 		targetname:	"23"
-		label:	"statement"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"37"
+		targetname:	"24"
+		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"38"
-		label:	"state 38\n statement -> ID '=' expr . ';'\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term"
+		label:	"state 38\n expr4 -> expr4 '<' . expr5"
 	}
 	backedge: {
 		sourcename:	"38"
-		targetname:	"29"
-		label:	"AND"
+		targetname:	"13"
+		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"38"
-		targetname:	"30"
-		label:	"OR"
+		targetname:	"14"
+		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"38"
-		targetname:	"31"
-		label:	"EQUALS"
+		targetname:	"15"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"38"
+		targetname:	"16"
+		label:	"STRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"38"
+		targetname:	"17"
+		label:	"'('"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"38"
-		targetname:	"53"
-		label:	"';'"
-		color:	blue
+		targetname:	"54"
+		label:	"expr5"
+		color:	green
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"38"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
 		textcolor:	black
 	}
 	backedge: {
 		sourcename:	"38"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"38"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"38"
-		targetname:	"35"
-		label:	"'<'"
-		color:	blue
+		targetname:	"24"
+		label:	"term"
+		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"39"
-		label:	"state 39\n statement -> '{' statements '}' ."
+		label:	"state 39\n expr5 -> expr5 '+' . expr6"
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"13"
+		label:	"FOR"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"14"
+		label:	"INTEGER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"15"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"16"
+		label:	"STRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"17"
+		label:	"'('"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"39"
+		targetname:	"55"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"39"
+		targetname:	"24"
+		label:	"term"
+		color:	green
+		textcolor:	black
 	}
 	node: {
 		title:	"40"
-		label:	"state 40\n statement -> PRINT '(' listexpr ')' . ';'"
+		label:	"state 40\n expr5 -> expr5 '-' . expr6"
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"13"
+		label:	"FOR"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"14"
+		label:	"INTEGER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"15"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"16"
+		label:	"STRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"17"
+		label:	"'('"
+		color:	blue
+		textcolor:	black
 	}
 	edge: {
 		sourcename:	"40"
-		targetname:	"54"
-		label:	"';'"
-		color:	blue
+		targetname:	"56"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"40"
+		targetname:	"24"
+		label:	"term"
+		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"41"
-		label:	"state 41\n listexpr -> listexpr ',' . expr"
+		label:	"state 41\n expr6 -> expr6 '*' . term"
 	}
 	backedge: {
 		sourcename:	"41"
@@ -1588,432 +1567,494 @@ graph: {
 	}
 	edge: {
 		sourcename:	"41"
-		targetname:	"55"
-		label:	"expr"
-		color:	green
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"41"
-		targetname:	"19"
+		targetname:	"57"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
 		title:	"42"
-		label:	"state 42\n statement -> PRINTLN '(' listexpr ')' . ';'"
+		label:	"state 42\n statement -> WHILE expr statement ."
+	}
+	node: {
+		title:	"43"
+		label:	"state 43\n statement -> ID '=' expr . ';'\n expr -> expr . OR expr2"
+	}
+	backedge: {
+		sourcename:	"43"
+		targetname:	"34"
+		label:	"OR"
+		color:	blue
+		textcolor:	black
 	}
 	edge: {
-		sourcename:	"42"
-		targetname:	"56"
+		sourcename:	"43"
+		targetname:	"58"
 		label:	"';'"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"43"
-		label:	"state 43\n term -> FOR ID IN . '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"43"
-		targetname:	"57"
-		label:	"'['"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
 		title:	"44"
-		label:	"state 44\n term -> '(' expr ')' ."
+		label:	"state 44\n statement -> '{' statements '}' ."
 	}
 	node: {
 		title:	"45"
-		label:	"state 45\n expr -> expr AND term ."
+		label:	"state 45\n statement -> PRINT '(' listexpr ')' . ';'"
+	}
+	edge: {
+		sourcename:	"45"
+		targetname:	"59"
+		label:	"';'"
+		color:	blue
+		textcolor:	black
 	}
 	node: {
 		title:	"46"
-		label:	"state 46\n expr -> expr OR term ."
-	}
-	node: {
-		title:	"47"
-		label:	"state 47\n expr -> expr EQUALS term ."
-	}
-	node: {
-		title:	"48"
-		label:	"state 48\n expr -> expr '+' term ."
-	}
-	node: {
-		title:	"49"
-		label:	"state 49\n expr -> expr '-' term ."
-	}
-	node: {
-		title:	"50"
-		label:	"state 50\n expr -> expr '*' term ."
-	}
-	node: {
-		title:	"51"
-		label:	"state 51\n expr -> expr '<' term ."
-	}
-	node: {
-		title:	"52"
-		label:	"state 52\n statement -> IF expr statements ELSE . statements"
+		label:	"state 46\n listexpr -> listexpr ',' . expr"
 	}
 	backedge: {
-		sourcename:	"52"
-		targetname:	"3"
-		label:	"PRINT"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"4"
-		label:	"PRINTLN"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"5"
-		label:	"IF"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"6"
-		label:	"WHILE"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"7"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"8"
-		label:	"'{'"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"52"
-		targetname:	"58"
-		label:	"statements"
-		color:	green
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"52"
-		targetname:	"10"
-		label:	"statement"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"53"
-		label:	"state 53\n statement -> ID '=' expr ';' ."
-	}
-	node: {
-		title:	"54"
-		label:	"state 54\n statement -> PRINT '(' listexpr ')' ';' ."
-	}
-	node: {
-		title:	"55"
-		label:	"state 55\n listexpr -> listexpr ',' expr .\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term"
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"29"
-		label:	"AND"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"30"
-		label:	"OR"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"31"
-		label:	"EQUALS"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"55"
-		targetname:	"35"
-		label:	"'<'"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"56"
-		label:	"state 56\n statement -> PRINTLN '(' listexpr ')' ';' ."
-	}
-	node: {
-		title:	"57"
-		label:	"state 57\n term -> FOR ID IN '[' . INTEGER ',' INTEGER ']' SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"57"
-		targetname:	"59"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"58"
-		label:	"state 58\n statements -> statements . statement\n statement -> IF expr statements ELSE statements ."
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"3"
-		label:	"PRINT"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"4"
-		label:	"PRINTLN"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"5"
-		label:	"IF"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"6"
-		label:	"WHILE"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"7"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"8"
-		label:	"'{'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"58"
-		targetname:	"23"
-		label:	"statement"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"59"
-		label:	"state 59\n term -> FOR ID IN '[' INTEGER . ',' INTEGER ']' SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"59"
-		targetname:	"60"
-		label:	"','"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"60"
-		label:	"state 60\n term -> FOR ID IN '[' INTEGER ',' . INTEGER ']' SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"60"
-		targetname:	"61"
-		label:	"INTEGER"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"61"
-		label:	"state 61\n term -> FOR ID IN '[' INTEGER ',' INTEGER . ']' SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"61"
-		targetname:	"62"
-		label:	"']'"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"62"
-		label:	"state 62\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' . SUM '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"62"
-		targetname:	"63"
-		label:	"SUM"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"63"
-		label:	"state 63\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM . '(' expr ')'"
-	}
-	edge: {
-		sourcename:	"63"
-		targetname:	"64"
-		label:	"'('"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"64"
-		label:	"state 64\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' . expr ')'"
-	}
-	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"13"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"14"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"15"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"16"
 		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"17"
 		label:	"'('"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"64"
-		targetname:	"65"
+		sourcename:	"46"
+		targetname:	"60"
 		label:	"expr"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"64"
+		sourcename:	"46"
 		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"46"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"46"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"46"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"46"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"46"
+		targetname:	"24"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"65"
-		label:	"state 65\n expr -> expr . '+' term\n expr -> expr . '-' term\n expr -> expr . '*' term\n expr -> expr . AND term\n expr -> expr . OR term\n expr -> expr . EQUALS term\n expr -> expr . '<' term\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr . ')'"
+		title:	"47"
+		label:	"state 47\n statement -> PRINTLN '(' listexpr ')' . ';'"
+	}
+	edge: {
+		sourcename:	"47"
+		targetname:	"61"
+		label:	"';'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"48"
+		label:	"state 48\n term -> FOR ID IN . '[' INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"48"
+		targetname:	"62"
+		label:	"'['"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"49"
+		label:	"state 49\n term -> '(' expr ')' ."
+	}
+	node: {
+		title:	"50"
+		label:	"state 50\n expr -> expr OR expr2 .\n expr2 -> expr2 . AND expr3"
 	}
 	backedge: {
-		sourcename:	"65"
-		targetname:	"29"
+		sourcename:	"50"
+		targetname:	"36"
 		label:	"AND"
 		color:	blue
 		textcolor:	black
 	}
+	node: {
+		title:	"51"
+		label:	"state 51\n statement -> IF expr statement ELSE . statement"
+	}
 	backedge: {
-		sourcename:	"65"
-		targetname:	"30"
-		label:	"OR"
+		sourcename:	"51"
+		targetname:	"3"
+		label:	"PRINT"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"65"
-		targetname:	"31"
-		label:	"EQUALS"
+		sourcename:	"51"
+		targetname:	"4"
+		label:	"PRINTLN"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"51"
+		targetname:	"5"
+		label:	"IF"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"51"
+		targetname:	"6"
+		label:	"WHILE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"51"
+		targetname:	"7"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"51"
+		targetname:	"8"
+		label:	"'{'"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"65"
-		targetname:	"66"
-		label:	"')'"
+		sourcename:	"51"
+		targetname:	"63"
+		label:	"statement"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"52"
+		label:	"state 52\n expr2 -> expr2 AND expr3 .\n expr3 -> expr3 . EQUALS expr4"
+	}
+	backedge: {
+		sourcename:	"52"
+		targetname:	"37"
+		label:	"EQUALS"
 		color:	blue
 		textcolor:	black
 	}
-	backedge: {
-		sourcename:	"65"
-		targetname:	"32"
-		label:	"'+'"
-		color:	blue
-		textcolor:	black
+	node: {
+		title:	"53"
+		label:	"state 53\n expr3 -> expr3 EQUALS expr4 .\n expr4 -> expr4 . '<' expr5"
 	}
 	backedge: {
-		sourcename:	"65"
-		targetname:	"33"
-		label:	"'-'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"65"
-		targetname:	"34"
-		label:	"'*'"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"65"
-		targetname:	"35"
+		sourcename:	"53"
+		targetname:	"38"
 		label:	"'<'"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
+		title:	"54"
+		label:	"state 54\n expr4 -> expr4 '<' expr5 .\n expr5 -> expr5 . '+' expr6\n expr5 -> expr5 . '-' expr6"
+	}
+	backedge: {
+		sourcename:	"54"
+		targetname:	"39"
+		label:	"'+'"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"54"
+		targetname:	"40"
+		label:	"'-'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"55"
+		label:	"state 55\n expr5 -> expr5 '+' expr6 .\n expr6 -> expr6 . '*' term"
+	}
+	backedge: {
+		sourcename:	"55"
+		targetname:	"41"
+		label:	"'*'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"56"
+		label:	"state 56\n expr5 -> expr5 '-' expr6 .\n expr6 -> expr6 . '*' term"
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"41"
+		label:	"'*'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"57"
+		label:	"state 57\n expr6 -> expr6 '*' term ."
+	}
+	node: {
+		title:	"58"
+		label:	"state 58\n statement -> ID '=' expr ';' ."
+	}
+	node: {
+		title:	"59"
+		label:	"state 59\n statement -> PRINT '(' listexpr ')' ';' ."
+	}
+	node: {
+		title:	"60"
+		label:	"state 60\n listexpr -> listexpr ',' expr .\n expr -> expr . OR expr2"
+	}
+	backedge: {
+		sourcename:	"60"
+		targetname:	"34"
+		label:	"OR"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"61"
+		label:	"state 61\n statement -> PRINTLN '(' listexpr ')' ';' ."
+	}
+	node: {
+		title:	"62"
+		label:	"state 62\n term -> FOR ID IN '[' . INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"62"
+		targetname:	"64"
+		label:	"INTEGER"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"63"
+		label:	"state 63\n statement -> IF expr statement ELSE statement ."
+	}
+	node: {
+		title:	"64"
+		label:	"state 64\n term -> FOR ID IN '[' INTEGER . ',' INTEGER ']' SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"64"
+		targetname:	"65"
+		label:	"','"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"65"
+		label:	"state 65\n term -> FOR ID IN '[' INTEGER ',' . INTEGER ']' SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"65"
+		targetname:	"66"
+		label:	"INTEGER"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
 		title:	"66"
-		label:	"state 66\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')' ."
+		label:	"state 66\n term -> FOR ID IN '[' INTEGER ',' INTEGER . ']' SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"66"
+		targetname:	"67"
+		label:	"']'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"67"
+		label:	"state 67\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' . SUM '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"67"
+		targetname:	"68"
+		label:	"SUM"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"68"
+		label:	"state 68\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM . '(' expr ')'"
+	}
+	edge: {
+		sourcename:	"68"
+		targetname:	"69"
+		label:	"'('"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"69"
+		label:	"state 69\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' . expr ')'"
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"13"
+		label:	"FOR"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"14"
+		label:	"INTEGER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"15"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"16"
+		label:	"STRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"17"
+		label:	"'('"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"69"
+		targetname:	"70"
+		label:	"expr"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"19"
+		label:	"expr2"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"20"
+		label:	"expr3"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"21"
+		label:	"expr4"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"22"
+		label:	"expr5"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"23"
+		label:	"expr6"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"69"
+		targetname:	"24"
+		label:	"term"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"70"
+		label:	"state 70\n expr -> expr . OR expr2\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr . ')'"
+	}
+	backedge: {
+		sourcename:	"70"
+		targetname:	"34"
+		label:	"OR"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"70"
+		targetname:	"71"
+		label:	"')'"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"71"
+		label:	"state 71\n term -> FOR ID IN '[' INTEGER ',' INTEGER ']' SUM '(' expr ')' ."
 	}
 
 

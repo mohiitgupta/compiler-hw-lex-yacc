@@ -360,8 +360,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 20
-#define YY_END_OF_BUFFER 21
+#define YY_NUM_RULES 21
+#define YY_END_OF_BUFFER 22
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -371,12 +371,12 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[57] =
     {   0,
-        0,    0,   21,   19,   18,   18,   19,   19,   13,   19,
-       10,   13,    9,    9,    9,    9,    9,    9,    9,   19,
-        0,   11,   14,    0,   17,   10,   12,    9,    9,    9,
-        9,    9,    6,    3,    9,   15,    0,    0,    0,   17,
-        9,    2,    9,    1,    9,    0,    0,   16,    9,    7,
-        9,    4,    8,    9,    5,    0
+        0,    0,   22,   20,   19,    9,   20,   20,   14,   20,
+       11,   14,   10,   10,   10,   10,   10,   10,   10,   20,
+        0,   12,   15,    0,   18,   11,   13,   10,   10,   10,
+       10,   10,    6,    3,   10,   16,    0,    0,    0,   18,
+       10,    2,   10,    1,   10,    0,    0,   17,   10,    7,
+       10,    4,    8,   10,    5,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -488,9 +488,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "hw3.l"
+#line 1 "hw5.l"
 /* hw3 */
-#line 3 "hw3.l"
+#line 3 "hw5.l"
     #include "y.tab.h"
     #include <stdlib.h>
     #include "hash.h"
@@ -498,7 +498,8 @@ char *yytext;
 
     struct symbol_node *symbols[100000];
     int length = 0; 
-#line 502 "lex.yy.c"
+    int line_numbers = 1;
+#line 503 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -680,10 +681,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 12 "hw3.l"
+#line 13 "hw5.l"
 
 
-#line 687 "lex.yy.c"
+#line 688 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -768,140 +769,158 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "hw3.l"
+#line 15 "hw5.l"
 {
     return FOR;
     }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "hw3.l"
+#line 18 "hw5.l"
 {
     return SUM;
     }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 20 "hw3.l"
+#line 21 "hw5.l"
 {
     return IN;
     }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "hw3.l"
+#line 24 "hw5.l"
 {
     return PRINT;
     }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 26 "hw3.l"
+#line 27 "hw5.l"
 {
     return PRINTLN;
     }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "hw3.l"
+#line 31 "hw5.l"
 {
         return IF;  
     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "hw3.l"
+#line 34 "hw5.l"
 {
         return ELSE;  
     }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 36 "hw3.l"
+#line 37 "hw5.l"
 {
         return WHILE;  
     }
 	YY_BREAK
 case 9:
+/* rule 9 can match eol */
 YY_RULE_SETUP
-#line 41 "hw3.l"
+#line 41 "hw5.l"
 {
-                //yylval.string = strdup(yytext);
-                yylval.symbol = lookup(yytext);
-                return ID;
-                }
+    line_numbers++;
+}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 47 "hw3.l"
+#line 46 "hw5.l"
+{
+                //yylval.string = strdup(yytext);
+                yylval.symbol = lookup(yytext);
+                if (yylval.symbol->line_update == NULL || strcmp(yylval.symbol->line_update, "yes") != 0)
+                {
+                    yylval.symbol->line = line_numbers;
+                    yylval.symbol->line_update = "yes";
+                }
+                
+                return ID;
+                }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 58 "hw5.l"
 {
                 yylval.number = atoi(yytext);
                 return INTEGER;
             }
 	YY_BREAK
-case 11:
-/* rule 11 can match eol */
+case 12:
+/* rule 12 can match eol */
 YY_RULE_SETUP
-#line 52 "hw3.l"
+#line 63 "hw5.l"
 {
-                yylval.string = strdup(yytext);
+                char * dummy = strdup(yytext);
+                int str_len = strlen(dummy);
+                memmove(&dummy[0], &dummy[1], str_len);
+                str_len--;
+                memmove(&dummy[str_len-1], &dummy[str_len], str_len);
+                yylval.string = dummy;
                 return STRING;
             }
 	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 56 "hw3.l"
-{ return EQUALS; 
-                }
-	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 58 "hw3.l"
-{ return *yytext; 
+#line 72 "hw5.l"
+{ return EQUALS; 
                 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 60 "hw3.l"
-{  return AND; 
+#line 74 "hw5.l"
+{ return *yytext; 
                 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 62 "hw3.l"
-{ return OR; 
+#line 76 "hw5.l"
+{  return AND; 
                 }
 	YY_BREAK
 case 16:
-/* rule 16 can match eol */
 YY_RULE_SETUP
-#line 65 "hw3.l"
-; /* skip comments */
+#line 78 "hw5.l"
+{ return OR; 
+                }
 	YY_BREAK
 case 17:
+/* rule 17 can match eol */
 YY_RULE_SETUP
-#line 66 "hw3.l"
-;    /* skip comments */
+#line 81 "hw5.l"
+; /* skip comments */
 	YY_BREAK
 case 18:
-/* rule 18 can match eol */
 YY_RULE_SETUP
-#line 67 "hw3.l"
-;       /* skip whitespace */
+#line 82 "hw5.l"
+;    /* skip comments */
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 69 "hw3.l"
+#line 83 "hw5.l"
+;       /* skip whitespace */
+	YY_BREAK
+case 20:
+YY_RULE_SETUP
+#line 85 "hw5.l"
 {
         return UNKNOWN;
     }
 	YY_BREAK
-case 20:
+case 21:
 YY_RULE_SETUP
-#line 73 "hw3.l"
+#line 89 "hw5.l"
 ECHO;
 	YY_BREAK
-#line 905 "lex.yy.c"
+#line 924 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1898,7 +1917,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 73 "hw3.l"
+#line 89 "hw5.l"
 
 
 

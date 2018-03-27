@@ -1,13 +1,15 @@
 #include<stdlib.h>
 extern struct symbol_node *symbols[100000];
 extern int length; 
+extern int line_numbers;
 typedef enum { false, true } bool;
 struct symbol_node
 {
   char * name;
-  int value;
-  char * initialize;
-  char * string_val;
+  void * value;
+  char * type;
+  int line;
+  char * line_update;
 };
 
 struct ast_node 
