@@ -51,9 +51,13 @@
      IF = 267,
      ELSE = 268,
      WHILE = 269,
-     INTEGER = 270,
-     ID = 271,
-     STRING = 272
+     INT = 270,
+     BOOL = 271,
+     STRING_TOKEN = 272,
+     INTEGER = 273,
+     ID = 274,
+     STRING = 275,
+     BOOLEAN = 276
    };
 #endif
 /* Tokens.  */
@@ -69,24 +73,29 @@
 #define IF 267
 #define ELSE 268
 #define WHILE 269
-#define INTEGER 270
-#define ID 271
-#define STRING 272
+#define INT 270
+#define BOOL 271
+#define STRING_TOKEN 272
+#define INTEGER 273
+#define ID 274
+#define STRING 275
+#define BOOLEAN 276
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 35 "hw5.y"
+#line 42 "hw5.y"
 {
         int number;
+        int boolean;
         struct ast_node * ast;
         struct symbol_node * symbol;
         char * string;
 }
 /* Line 1529 of yacc.c.  */
-#line 90 "y.tab.h"
+#line 99 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

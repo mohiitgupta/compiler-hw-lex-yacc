@@ -8,11 +8,13 @@
     struct symbol_node *symbols[100000];
     int length = 0; 
     int line_numbers = 1;
+    int block_level = 1;
 %}
 
 %%
 
 [f][o][r] {
+    //block_level += 1;
     return FOR;
     }
 [S][U][M] {
@@ -38,8 +40,45 @@ while {
         return WHILE;  
     }
 
+int {
+    return INT;
+}
+
+bool {
+    return BOOL;
+}
+
+string {
+    return STRING;
+}
+
+null {
+    char * dummy = "\0";
+    yylval.string = dummy;
+    return STRING;
+}
+
 [\n] {
     line_numbers++;
+}
+
+[{] {
+    block_level += 1;
+    return *yytext;
+}
+[}] {
+    block_level -= 1;
+    return *yytext;
+}
+
+true {
+    yylval.boolean = 1;
+    return BOOLEAN;
+}
+
+false {
+    yylval.boolean = 0;
+    return BOOLEAN;
 }
 
 
@@ -73,7 +112,7 @@ while {
             }
 [=][=]     { return EQUALS; 
                 }
-[-+()=<;,\[\]{}*]     { return *yytext; 
+[-+()=<;,\[\]*]     { return *yytext; 
                 }
 [&][&]        {  return AND; 
                 }
