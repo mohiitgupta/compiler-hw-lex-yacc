@@ -1,0 +1,5 @@
+what is the error shown for example:
+int c;
+c = a+b;
+
+clean up the function for typecheckviolation in case '+'

@@ -1912,7 +1912,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             // struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             // result->node_type = 'N';
             //printf("inside int declaration statement");
-            //printf("length of scope symbol table %d\n", present_scope->len_symbol_table);
+            // printf("length of scope symbol table %d\n", present_scope->len_symbol_table);
             struct ast_node * dummy = typecheck(ast_tree->left);
             char * value1 = get_symbol_name(dummy);
             // if (dummy->node_type == 'n') {
@@ -1920,7 +1920,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             // printf("value of variables %s \n", value1);
             char * variable = strtok(value1, " ");
             while (variable != NULL) {
-                printf("%s \n", variable);
+                // printf("%s ", variable);
                 int check = add_variable_to_present_scope(present_scope, variable, "number");
                 if (check == 0) {
                     printf("redeclaration error");
@@ -1928,21 +1928,76 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                 variable = strtok(NULL, " ");
             }
             // }
-            //printf("new length of scope symbol table %d\n", present_scope->len_symbol_table);
+            // printf("\nnew length of scope symbol table %d\n", present_scope->len_symbol_table);
             // result->value = add_value(dummy);
             // dummy = traverse(ast_tree->right);
             // result->value += add_value(dummy);
             // return (struct ast_node *) result;
             break;
         }
+        case 'C':
+        {
+            printf("inside compound statement\n");
+            present_scope = create_new_scope(present_scope);
+            typecheck(ast_tree->left);
+            present_scope = present_scope->parent;
+            break;
+
+        }
         case '+':
         {
+            int typeViolationCheckLeft = 1;
+            int typeViolationCheckRight = 1;
+            int undefined = 0;
             struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            result->value += add_value(dummy);
+            struct ast_node * dummy = typecheck(ast_tree->left);
+            if (dummy->node_type == 's') {
+                struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy;
+                struct symbol_node * left_node = lookup_variable_present_scope(present_scope, symbol_node->symbol->name);
+                if (left_node != NULL) {
+                    if (strcmp(left_node->type, "number") == 0) {
+                        typeViolationCheckLeft = 0;
+                    } else if (strcmp(left_node->type, "undefined") == 0) {
+                        undefined = 1;
+                    }
+                }
+                
+            } 
+            else if (dummy->node_type == 'N') {
+                typeViolationCheckLeft = 0;
+            } 
+            else if (dummy->node_type == 'U') {
+                undefined = 1;
+            }
+            //result->value = add_value(dummy);
+            struct ast_node * dummy2 = typecheck(ast_tree->right);
+            if (dummy->node_type == 's') {
+                struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy2;
+                struct symbol_node * right_node = lookup_variable_present_scope(present_scope, symbol_node->symbol->name);
+                if (right_node != NULL) {
+                    if (strcmp(right_node->type, "number") == 0) {
+                        typeViolationCheckRight = 0;
+                    } else if (strcmp(right_node->type, "undefined") == 0) {
+                        undefined = 1;
+                    }
+                }
+                
+            } 
+            else if (dummy->node_type == 'N') {
+                typeViolationCheckRight = 0;
+            }
+            else if (dummy->node_type == 'U') {
+                undefined = 1;
+            }
+
+            if (undefined == 1) {
+                result->node_type = 'U';
+            } else if (typeViolationCheckRight == 1 || typeViolationCheckLeft == 1) {
+                printf("type violation error\n");
+                result->node_type = 'U';
+            }
+            //result->value += add_value(dummy);
             return (struct ast_node *) result;
             break;
         }
@@ -2038,7 +2093,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         {
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
             struct symbol_node * sym_node = find(node->symbol->name);
-            struct ast_node * value_node = traverse(node->value);
+            struct ast_node * value_node = typecheck(node->value);
             if (value_node->node_type == 'N') 
             {
                 struct ast_number_node * result = (struct ast_number_node *) value_node;

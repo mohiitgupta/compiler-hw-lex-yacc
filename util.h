@@ -24,17 +24,45 @@ int add_value(struct ast_node * value_node) {
     return 0;
 }
 
-int add_variable_to_present_scope(struct scope_node *present_scope, char * symbol_name, char * type) {
-    for (int i=0; i < present_scope->len_symbol_table; i++) {
-        if (strcmp(present_scope->symbols[i]->name, symbol_name) == 0) {
+struct scope_node * create_new_scope(struct scope_node *scope) {
+    struct scope_node * new_scope = (struct scope_node *)malloc(sizeof(struct scope_node));
+    new_scope->parent = scope;
+    new_scope->len_symbol_table = 0;
+    return new_scope;
+}
+
+int add_variable_to_present_scope(struct scope_node *scope, char * symbol_name, char * type) {
+    for (int i=0; i < scope->len_symbol_table; i++) {
+        if (strcmp(scope->symbols[i]->name, symbol_name) == 0) {
             return 0;
         }
     }
     struct symbol_node * node = create_symbol(symbol_name);
     node->type = "number";
-    present_scope->symbols[present_scope->len_symbol_table++] = node;
+    scope->symbols[scope->len_symbol_table++] = node;
 
     return 1;
+}
+
+struct symbol_node * lookup_variable_present_scope(struct scope_node *scope, char * symbol_name) {
+    for (int i=0; i < scope->len_symbol_table; i++) {
+        if (strcmp(scope->symbols[i]->name, symbol_name) == 0) {
+            // if (strcmp(scope->symbols[i]->type, type) == 0) {
+            //     return scope->symbols[i];
+            // }
+            // return 0;
+            return scope->symbols[i];
+        }
+    }
+    //int check = -1;
+    struct symbol_node * node = NULL;
+    if (scope->parent != NULL) {
+        node = lookup_variable_present_scope(scope->parent, symbol_name);
+        if (node != NULL) {
+            add_variable_to_present_scope(scope, node->name, node->type);
+        }
+    }
+    return node;
 }
 
 char * get_symbol_name(struct ast_node * value_node) {
