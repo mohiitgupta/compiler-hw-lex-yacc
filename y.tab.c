@@ -1893,17 +1893,17 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         {
             struct ast_string_node * result = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
             result->node_type = 'n';
-            struct ast_node * dummy = traverse(ast_tree->left);
+            struct ast_node * dummy = typecheck(ast_tree->left);
             char * value1 = get_symbol_name(dummy);
             //printf("value 1 is %s\n", value1);
-            struct ast_node * dummy2 = traverse(ast_tree->right);
+            struct ast_node * dummy2 = typecheck(ast_tree->right);
             char * value2 = get_symbol_name(dummy2);
             //printf("value 2 is %s\n", value2);
             result->value = malloc(strlen(value1)+strlen(value2)+1);
             strcpy(result->value, value1);
             strcat(result->value, " ");
             strcat(result->value, value2);
-            // printf("value is %s", result->value);
+            // printf("value is %s\n", result->value);
             return (struct ast_node *) result;
             break;
         }
@@ -1911,15 +1911,24 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         {
             // struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
             // result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            if (dummy->node_type == 'n') {
-                struct ast_string_node * left = (struct ast_string_node *) dummy;
-                char * variable = strtok(left->value, " ");
-                while (variable != NULL) {
-                    printf("%s\n", variable);
-                    variable = strtok(NULL, " ");
+            //printf("inside int declaration statement");
+            //printf("length of scope symbol table %d\n", present_scope->len_symbol_table);
+            struct ast_node * dummy = typecheck(ast_tree->left);
+            char * value1 = get_symbol_name(dummy);
+            // if (dummy->node_type == 'n') {
+            // struct ast_string_node * left = (struct ast_string_node *) dummy;
+            // printf("value of variables %s \n", value1);
+            char * variable = strtok(value1, " ");
+            while (variable != NULL) {
+                printf("%s \n", variable);
+                int check = add_variable_to_present_scope(present_scope, variable, "number");
+                if (check == 0) {
+                    printf("redeclaration error");
                 }
+                variable = strtok(NULL, " ");
             }
+            // }
+            //printf("new length of scope symbol table %d\n", present_scope->len_symbol_table);
             // result->value = add_value(dummy);
             // dummy = traverse(ast_tree->right);
             // result->value += add_value(dummy);
@@ -2089,8 +2098,8 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             return ast_tree;
             break;
         case 'S':
-            traverse(ast_tree->left);
-            traverse(ast_tree->right);
+            typecheck(ast_tree->left);
+            typecheck(ast_tree->right);
             break;
         case 'P':
         {

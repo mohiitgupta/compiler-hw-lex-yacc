@@ -23,9 +23,23 @@ int add_value(struct ast_node * value_node) {
     }
     return 0;
 }
+
+int add_variable_to_present_scope(struct scope_node *present_scope, char * symbol_name, char * type) {
+    for (int i=0; i < present_scope->len_symbol_table; i++) {
+        if (strcmp(present_scope->symbols[i]->name, symbol_name) == 0) {
+            return 0;
+        }
+    }
+    struct symbol_node * node = create_symbol(symbol_name);
+    node->type = "number";
+    present_scope->symbols[present_scope->len_symbol_table++] = node;
+
+    return 1;
+}
+
 char * get_symbol_name(struct ast_node * value_node) {
     char *snum;
-    //printf("inside get value block \n");
+    // printf("inside get symbol name block node type is %c\n", value_node->node_type);
     if (value_node->node_type == 's') {
         //struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
         //struct symbol_node * result = left->symbol;
@@ -62,7 +76,7 @@ char * get_symbol_name(struct ast_node * value_node) {
 
         snum = (char *)left->value;
     } else {
-        printf("invalid type");
+        printf("invalid type\n");
     }
     // int len = strlen(snum);
     // snum[len]='\0';
