@@ -36,12 +36,18 @@ static struct symbol_node * lookup(char * name) {
     return symbols[length-1];
 }
 static struct symbol_node * find(char * name) {
+    int positions[200];
+    int count = 0;
     //fprintf(stderr, "hash test1");
     for (int i=0; i < length; i++) {
         if (strcmp(symbols[i]->name, name) == 0) {
-            return symbols[i];
+            positions[count++] = i;
+            //return symbols[i];
         }
     }
+    // for (int i=0; i < count; i++) {
+        
+    // }
     
     return NULL;
 }

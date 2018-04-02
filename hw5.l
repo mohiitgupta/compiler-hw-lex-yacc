@@ -9,6 +9,7 @@
     int length = 0; 
     int line_numbers = 1;
     int block_level = 1;
+    struct scope_node *present_scope;
 %}
 
 %%
@@ -63,11 +64,11 @@ null {
 }
 
 [{] {
-    block_level += 1;
+    //block_level += 1;
     return *yytext;
 }
 [}] {
-    block_level -= 1;
+    //block_level -= 1;
     return *yytext;
 }
 

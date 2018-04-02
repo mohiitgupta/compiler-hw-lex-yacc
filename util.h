@@ -23,7 +23,53 @@ int add_value(struct ast_node * value_node) {
     }
     return 0;
 }
+char * get_symbol_name(struct ast_node * value_node) {
+    char *snum;
+    //printf("inside get value block \n");
+    if (value_node->node_type == 's') {
+        //struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
+        //struct symbol_node * result = left->symbol;
+        //printf("inside symbole reference block in get value\n");
+        struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+        
+        //struct symbol_node * result = find(value_symbol_node->symbol->name);
+        // if (result->type == NULL) {
+        //     printf("Uninitialized variable in %d\n", result->line);
+        //     exit(0);
+        // }
+        // //printf("name of symbol is %s", result->name);
+        // if (strcmp(result->type, "number") == 0) {
+        //     snum = (char *)malloc(100);
+        //     int number_dummy = *(int *)result->value;
+        //     //printf("value of %s is %d\n", result->name, number_dummy);
+        //     snprintf(snum, 100, "%d", number_dummy);
+        //     //itoa(number_dummy,snum,10);
+        // } else if (strcmp(result->type, "string") == 0){
+        //     //snum = (char *) malloc(strlen(result->value)+1);
+        //     //strcpy(snum, result->value);
+        //     snum = (char *)result->value;
+        // } else {
+        //     printf("not initialized");
+        // }
+        //return snum;
+        snum = value_symbol_node->symbol->name;
+    } else if (value_node->node_type == 'n') {
+        struct ast_string_node * left = (struct ast_string_node *) value_node;
+        //fprintf(stderr, "size of string is %lu\n", strlen(left->value));
+        //snum = (char *)malloc(strlen(left->value)+1);
+        //strcpy(snum, left->value);
+        //return left->value;
 
+        snum = (char *)left->value;
+    } else {
+        printf("invalid type");
+    }
+    // int len = strlen(snum);
+    // snum[len]='\0';
+    //fflush(stdin);
+    //printf("value of snum is %s\n", snum);
+    return snum;
+}
 char * get_value(struct ast_node * value_node) {
     char *snum;
     //printf("inside get value block \n");
