@@ -81,10 +81,13 @@
      INT = 270,
      BOOL = 271,
      STRING_TOKEN = 272,
-     INTEGER = 273,
-     ID = 274,
-     STRING = 275,
-     BOOLEAN = 276
+     LESS_EQUALS = 273,
+     GREAT_EQUALS = 274,
+     NOT_EQUALS = 275,
+     INTEGER = 276,
+     ID = 277,
+     STRING = 278,
+     BOOLEAN = 279
    };
 #endif
 /* Tokens.  */
@@ -103,21 +106,25 @@
 #define INT 270
 #define BOOL 271
 #define STRING_TOKEN 272
-#define INTEGER 273
-#define ID 274
-#define STRING 275
-#define BOOLEAN 276
+#define LESS_EQUALS 273
+#define GREAT_EQUALS 274
+#define NOT_EQUALS 275
+#define INTEGER 276
+#define ID 277
+#define STRING 278
+#define BOOLEAN 279
 
 
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "hw5.y"
+#line 1 "hw6.y"
 
     #include <stdio.h>
     #include "hash.h"
     #include <stdlib.h>
     #include "util.h"
+    // #include "type_util.h"
     //#include <stdbool.h>
     int yylex(void);
     void yyerror(char *);
@@ -127,13 +134,15 @@
     struct ast_node * mk_ast_number_node (int value);
     struct ast_node * mk_ast_node (int node_type, struct ast_node * left, struct ast_node * right);
     struct ast_node * mk_ast_symbol_reference_node (struct symbol_node * symbol);
-    struct ast_node * mk_ast_assignment_node (struct symbol_node * symbol, struct ast_node * value);
+    struct ast_node * mk_ast_assignment_node (struct ast_node * symbol, struct ast_node * value);
     void print_tree(struct ast_node * node);
     struct ast_node * traverse(struct ast_node * node);
     int add_value(struct ast_node * value_node);
-    struct ast_node * mk_ast_for_sum_node (struct symbol_node * symbol, int left_value, int right_value, struct ast_node * expression);
+    struct ast_node * mk_ast_for_sum_node (struct ast_node * symbol, int left_value, int right_value, struct ast_node * expression);
     struct ast_node * mk_ast_boolean_node (int value);
     struct ast_node * typecheck(struct ast_node * ast_tree);
+
+    int typeError = 0;
 
 
 
@@ -158,7 +167,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 43 "hw5.y"
+#line 50 "hw6.y"
 {
         int number;
         int boolean;
@@ -167,7 +176,7 @@ typedef union YYSTYPE
         char * string;
 }
 /* Line 193 of yacc.c.  */
-#line 171 "y.tab.c"
+#line 180 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -180,7 +189,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 184 "y.tab.c"
+#line 193 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -393,22 +402,22 @@ union yyalloc
 #endif
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  36
+#define YYFINAL  23
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   102
+#define YYLAST   109
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  35
+#define YYNTOKENS  39
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  14
+#define YYNNTS  31
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  38
+#define YYNRULES  59
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  86
+#define YYNSTATES  111
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   276
+#define YYMAXUTOK   279
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -420,15 +429,15 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      24,    25,    32,    30,    28,    31,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,    23,
-      29,    22,     2,     2,     2,     2,     2,     2,     2,     2,
+      26,    27,    34,    32,    31,    33,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,    25,
+      35,    30,    36,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,    33,     2,    34,     2,     2,     2,     2,     2,     2,
+       2,    38,     2,    37,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    26,     2,    27,     2,     2,     2,     2,
+       2,     2,     2,    28,     2,    29,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -443,7 +452,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,    19,    20,    21
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24
 };
 
 #if YYDEBUG
@@ -452,37 +461,46 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     5,     8,    10,    15,    21,    27,    31,
-      35,    41,    45,    49,    53,    57,    61,    63,    65,    69,
-      71,    75,    77,    81,    83,    87,    89,    93,    95,    99,
-     103,   105,   109,   111,   124,   128,   130,   132,   134
+      35,    41,    45,    49,    53,    57,    59,    61,    63,    65,
+      67,    71,    73,    77,    79,    83,    85,    89,    91,    95,
+      99,   101,   105,   109,   113,   117,   119,   123,   127,   129,
+     133,   135,   137,   139,   141,   143,   145,   147,   149,   151,
+     153,   155,   157,   170,   174,   176,   178,   180,   182,   184
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      36,     0,    -1,    37,    -1,    37,    38,    -1,    38,    -1,
-      19,    22,    42,    23,    -1,     9,    24,    41,    25,    23,
-      -1,    10,    24,    41,    25,    23,    -1,    26,    37,    27,
-      -1,    12,    42,    38,    -1,    12,    42,    38,    13,    38,
-      -1,    14,    42,    38,    -1,    15,    39,    23,    -1,    16,
-      39,    23,    -1,    17,    39,    23,    -1,    39,    28,    40,
-      -1,    40,    -1,    19,    -1,    41,    28,    42,    -1,    42,
-      -1,    42,     4,    43,    -1,    43,    -1,    43,     3,    44,
-      -1,    44,    -1,    44,     5,    45,    -1,    45,    -1,    45,
-      29,    46,    -1,    46,    -1,    46,    30,    47,    -1,    46,
-      31,    47,    -1,    47,    -1,    47,    32,    48,    -1,    48,
-      -1,     6,    19,     7,    33,    18,    28,    18,    34,     8,
-      24,    42,    25,    -1,    24,    42,    25,    -1,    18,    -1,
-      20,    -1,    19,    -1,    21,    -1
+      40,     0,    -1,    41,    -1,    41,    42,    -1,    42,    -1,
+      69,    43,    50,    25,    -1,    44,    26,    49,    27,    25,
+      -1,    45,    26,    49,    27,    25,    -1,    28,    41,    29,
+      -1,    46,    50,    42,    -1,    46,    50,    42,    13,    42,
+      -1,    47,    50,    42,    -1,    15,    48,    25,    -1,    16,
+      48,    25,    -1,    17,    48,    25,    -1,    30,    -1,     9,
+      -1,    10,    -1,    12,    -1,    14,    -1,    48,    31,    69,
+      -1,    69,    -1,    49,    31,    50,    -1,    50,    -1,    50,
+      62,    51,    -1,    51,    -1,    51,    61,    52,    -1,    52,
+      -1,    52,    59,    53,    -1,    52,    65,    53,    -1,    53,
+      -1,    53,    60,    54,    -1,    53,    66,    54,    -1,    53,
+      64,    54,    -1,    53,    63,    54,    -1,    54,    -1,    54,
+      56,    55,    -1,    54,    57,    55,    -1,    55,    -1,    55,
+      58,    67,    -1,    67,    -1,    32,    -1,    33,    -1,    34,
+      -1,     5,    -1,    35,    -1,     3,    -1,     4,    -1,    18,
+      -1,    19,    -1,    20,    -1,    36,    -1,     6,    69,     7,
+      68,    21,    31,    21,    37,     8,    26,    50,    27,    -1,
+      26,    50,    27,    -1,    21,    -1,    23,    -1,    22,    -1,
+      24,    -1,    38,    -1,    22,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    61,    61,    65,    66,    68,    69,    70,    71,    72,
-      73,    74,    75,    76,    77,    81,    82,    85,    88,    89,
-      93,    94,    97,    98,   101,   102,   105,   106,   109,   110,
-     111,   114,   115,   119,   120,   121,   122,   123,   124
+       0,    71,    71,    75,    76,    78,    81,    82,    83,    84,
+      88,    89,    93,    94,    95,    99,   101,   103,   105,   107,
+     110,   111,   115,   116,   120,   123,   126,   129,   132,   134,
+     136,   139,   140,   141,   142,   143,   146,   147,   148,   151,
+     152,   156,   158,   160,   162,   164,   166,   168,   170,   172,
+     174,   176,   179,   181,   182,   183,   184,   185,   190,   192
 };
 #endif
 
@@ -493,11 +511,15 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "AND", "OR", "EQUALS", "FOR", "IN",
   "SUM", "PRINT", "PRINTLN", "UNKNOWN", "IF", "ELSE", "WHILE", "INT",
-  "BOOL", "STRING_TOKEN", "INTEGER", "ID", "STRING", "BOOLEAN", "'='",
-  "';'", "'('", "')'", "'{'", "'}'", "','", "'<'", "'+'", "'-'", "'*'",
-  "'['", "']'", "$accept", "program", "statements", "statement", "idlist",
-  "idexpr", "listexpr", "expr", "expr2", "expr3", "expr4", "expr5",
-  "expr6", "term", 0
+  "BOOL", "STRING_TOKEN", "LESS_EQUALS", "GREAT_EQUALS", "NOT_EQUALS",
+  "INTEGER", "ID", "STRING", "BOOLEAN", "';'", "'('", "')'", "'{'", "'}'",
+  "'='", "','", "'+'", "'-'", "'*'", "'<'", "'>'", "']'", "'['", "$accept",
+  "program", "statements", "statement", "eq_op", "print_op", "println_op",
+  "if_op", "while_op", "idlist", "listexpr", "expr", "expr2", "expr3",
+  "expr4", "expr5", "expr6", "plus_op", "minus_op", "multiply_op",
+  "equals_op", "less_than_op", "and_op", "or_op", "less_equals_op",
+  "great_equals_op", "not_equals_op", "great_than_op", "term",
+  "bracket_op", "idexpr", 0
 };
 #endif
 
@@ -508,27 +530,31 @@ static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,    61,    59,    40,    41,   123,   125,    44,    60,
-      43,    45,    42,    91,    93
+     275,   276,   277,   278,   279,    59,    40,    41,   123,   125,
+      61,    44,    43,    45,    42,    60,    62,    93,    91
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    35,    36,    37,    37,    38,    38,    38,    38,    38,
-      38,    38,    38,    38,    38,    39,    39,    40,    41,    41,
-      42,    42,    43,    43,    44,    44,    45,    45,    46,    46,
-      46,    47,    47,    48,    48,    48,    48,    48,    48
+       0,    39,    40,    41,    41,    42,    42,    42,    42,    42,
+      42,    42,    42,    42,    42,    43,    44,    45,    46,    47,
+      48,    48,    49,    49,    50,    50,    51,    51,    52,    52,
+      52,    53,    53,    53,    53,    53,    54,    54,    54,    55,
+      55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    67,    67,    67,    67,    67,    68,    69
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     2,     1,     4,     5,     5,     3,     3,
-       5,     3,     3,     3,     3,     3,     1,     1,     3,     1,
+       5,     3,     3,     3,     3,     1,     1,     1,     1,     1,
        3,     1,     3,     1,     3,     1,     3,     1,     3,     3,
-       1,     3,     1,    12,     3,     1,     1,     1,     1
+       1,     3,     3,     3,     3,     1,     3,     3,     1,     3,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,    12,     3,     1,     1,     1,     1,     1,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -536,45 +562,55 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     2,     4,     0,     0,     0,    35,    37,    36,    38,
-       0,     0,    21,    23,    25,    27,    30,    32,     0,    17,
-       0,    16,     0,     0,     0,     0,     1,     3,     0,    19,
-       0,     0,     0,     0,     9,     0,     0,     0,     0,     0,
-       0,    11,    12,     0,    13,    14,     0,     8,     0,     0,
-       0,     0,    34,    20,     0,    22,    24,    26,    28,    29,
-      31,    15,     5,     6,    18,     7,     0,    10,     0,     0,
-       0,     0,     0,     0,     0,    33
+       0,    16,    17,    18,    19,     0,     0,     0,    59,     0,
+       0,     2,     4,     0,     0,     0,     0,     0,     0,    21,
+       0,     0,     0,     1,     3,     0,     0,     0,    54,    56,
+      55,    57,     0,     0,    25,    27,    30,    35,    38,    40,
+       0,    15,     0,    12,     0,    13,    14,     8,     0,    23,
+       0,     0,     0,    47,     9,     0,    46,     0,    44,    50,
+       0,     0,    48,    49,    45,    51,     0,     0,     0,     0,
+      41,    42,     0,     0,    43,     0,    11,     0,    20,     0,
+       0,     0,     0,    53,     0,    24,    26,    28,    29,    31,
+      34,    33,    32,    36,    37,    39,     5,     6,    22,     7,
+      58,     0,    10,     0,     0,     0,     0,     0,     0,     0,
+      52
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,    10,    11,    12,    30,    31,    38,    39,    22,    23,
-      24,    25,    26,    27
+      -1,    10,    11,    12,    42,    13,    14,    15,    16,    18,
+      48,    49,    34,    35,    36,    37,    38,    72,    73,    75,
+      60,    66,    57,    55,    67,    68,    61,    69,    39,   101,
+      17
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -19
+#define YYPACT_NINF -18
 static const yytype_int8 yypact[] =
 {
-      52,    -2,    24,    39,    39,     1,     1,     1,    32,    52,
-      65,    52,   -19,    39,    39,    51,   -19,   -19,   -19,   -19,
-      39,    -1,    69,    68,    45,    11,    43,   -19,    -1,   -19,
-     -18,   -19,    10,    21,    39,    20,   -19,   -19,    -4,    72,
-      15,    70,     2,    39,    66,    39,    39,    39,    39,    39,
-      39,   -19,   -19,     1,   -19,   -19,     0,   -19,    58,    39,
-      59,    50,   -19,    69,    52,    68,    45,    11,    43,    43,
-     -19,   -19,   -19,   -19,    72,   -19,    67,   -19,    56,    71,
-      53,    78,    64,    39,     3,   -19
+      64,   -18,   -18,   -18,   -18,   -13,   -13,   -13,   -18,    64,
+      12,    64,   -18,    -7,     0,    46,    46,     5,   -17,   -18,
+      24,    25,    29,   -18,   -18,    46,    46,   -13,   -18,   -18,
+     -18,   -18,    46,     6,    37,    28,    18,    55,    13,   -18,
+       6,   -18,    46,   -18,   -13,   -18,   -18,   -18,    32,    62,
+      33,    70,     2,   -18,    58,    46,   -18,    46,   -18,   -18,
+      46,    46,   -18,   -18,   -18,   -18,    46,    46,    46,    46,
+     -18,   -18,    46,    46,   -18,    46,   -18,     7,   -18,    66,
+      46,    71,    59,   -18,    64,    37,    28,    18,    18,    55,
+      55,    55,    55,    13,    13,   -18,   -18,   -18,    62,   -18,
+     -18,    77,   -18,    68,    79,    65,    93,    78,    46,     3,
+     -18
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -19,   -19,    81,    -9,    44,    38,    79,    -3,    49,    54,
-      48,    55,     4,    46
+     -18,   -18,    94,    -9,   -18,   -18,   -18,   -18,   -18,    83,
+      80,   -15,    50,    51,     1,    16,    22,   -18,   -18,   -18,
+     -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,    34,   -18,
+      -2
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -584,47 +620,50 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      21,    28,    37,    43,    43,    52,    43,    43,     1,     2,
-      53,     3,    44,     4,     5,     6,     7,    42,     8,    51,
-      29,    58,    13,    72,    59,     9,    37,    62,    85,     1,
-       2,    56,     3,    54,     4,     5,     6,     7,    53,     8,
-      60,    48,    49,    59,    55,    15,     9,    57,    14,    53,
-      32,    33,    68,    69,    34,    77,    74,    16,    17,    18,
-      19,     1,     2,    20,     3,    36,     4,     5,     6,     7,
-      41,     8,    45,    46,    47,    50,    43,    61,     9,    64,
-      84,    73,    75,    76,    79,    78,    82,    81,    83,    80,
-      35,    71,    63,    40,    66,     0,    70,     0,     0,    65,
-       0,     0,    67
+      33,    40,    24,    19,    19,    19,    53,    53,    43,     8,
+      53,    53,    23,    24,    44,     1,     2,    52,     3,    25,
+       4,     5,     6,     7,    54,    51,    26,    77,     8,    83,
+     110,    76,    96,    58,     9,    41,    62,    63,     1,     2,
+      56,     3,    78,     4,     5,     6,     7,    74,    59,    45,
+      46,     8,    27,    64,    65,    44,    44,     9,    47,    79,
+      81,    87,    88,    80,    80,    98,    53,    28,    29,    30,
+      31,    84,    32,     1,     2,   102,     3,    82,     4,     5,
+       6,     7,    89,    90,    91,    92,     8,    70,    71,    20,
+      21,    97,     9,   109,    93,    94,    99,   100,   103,   104,
+     105,   107,   106,    22,   108,    85,    50,     0,    86,    95
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,    11,     4,     4,    23,     4,     4,     9,    10,
-      28,    12,    21,    14,    15,    16,    17,    20,    19,    28,
-      19,    25,    24,    23,    28,    26,    35,    25,    25,     9,
-      10,    34,    12,    23,    14,    15,    16,    17,    28,    19,
-      25,    30,    31,    28,    23,     6,    26,    27,    24,    28,
-       6,     7,    48,    49,    22,    64,    59,    18,    19,    20,
-      21,     9,    10,    24,    12,     0,    14,    15,    16,    17,
-      19,    19,     3,     5,    29,    32,     4,     7,    26,    13,
-      83,    23,    23,    33,    28,    18,     8,    34,    24,    18,
-       9,    53,    43,    14,    46,    -1,    50,    -1,    -1,    45,
-      -1,    -1,    47
+      15,    16,    11,     5,     6,     7,     4,     4,    25,    22,
+       4,     4,     0,    22,    31,     9,    10,    32,    12,    26,
+      14,    15,    16,    17,    33,    27,    26,    42,    22,    27,
+      27,    40,    25,     5,    28,    30,    18,    19,     9,    10,
+       3,    12,    44,    14,    15,    16,    17,    34,    20,    25,
+      25,    22,     6,    35,    36,    31,    31,    28,    29,    27,
+      27,    60,    61,    31,    31,    80,     4,    21,    22,    23,
+      24,    13,    26,     9,    10,    84,    12,     7,    14,    15,
+      16,    17,    66,    67,    68,    69,    22,    32,    33,     6,
+       7,    25,    28,   108,    72,    73,    25,    38,    21,    31,
+      21,     8,    37,     9,    26,    55,    26,    -1,    57,    75
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     9,    10,    12,    14,    15,    16,    17,    19,    26,
-      36,    37,    38,    24,    24,     6,    18,    19,    20,    21,
-      24,    42,    43,    44,    45,    46,    47,    48,    42,    19,
-      39,    40,    39,    39,    22,    37,     0,    38,    41,    42,
-      41,    19,    42,     4,    38,     3,     5,    29,    30,    31,
-      32,    38,    23,    28,    23,    23,    42,    27,    25,    28,
-      25,     7,    25,    43,    13,    44,    45,    46,    47,    47,
-      48,    40,    23,    23,    42,    23,    33,    38,    18,    28,
-      18,    34,     8,    24,    42,    25
+       0,     9,    10,    12,    14,    15,    16,    17,    22,    28,
+      40,    41,    42,    44,    45,    46,    47,    69,    48,    69,
+      48,    48,    41,     0,    42,    26,    26,     6,    21,    22,
+      23,    24,    26,    50,    51,    52,    53,    54,    55,    67,
+      50,    30,    43,    25,    31,    25,    25,    29,    49,    50,
+      49,    69,    50,     4,    42,    62,     3,    61,     5,    20,
+      59,    65,    18,    19,    35,    36,    60,    63,    64,    66,
+      32,    33,    56,    57,    34,    58,    42,    50,    69,    27,
+      31,    27,     7,    27,    13,    51,    52,    53,    53,    54,
+      54,    54,    54,    55,    55,    67,    25,    25,    50,    25,
+      38,    68,    42,    21,    31,    21,    37,     8,    26,    50,
+      27
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1439,193 +1478,315 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 61 "hw5.y"
+#line 71 "hw6.y"
     { print_tree((yyvsp[(1) - (1)].ast)); }
     break;
 
   case 3:
-#line 65 "hw5.y"
+#line 75 "hw6.y"
     { (yyval.ast) = mk_ast_node('S',(yyvsp[(1) - (2)].ast), (yyvsp[(2) - (2)].ast));}
     break;
 
   case 4:
-#line 66 "hw5.y"
+#line 76 "hw6.y"
     { /*printf("");*/(yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 5:
-#line 68 "hw5.y"
-    {/*printf("");*/(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].symbol), (yyvsp[(3) - (4)].ast)); }
+#line 78 "hw6.y"
+    {(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].ast), (yyvsp[(3) - (4)].ast));
+        (yyval.ast)->line_no=(yyvsp[(2) - (4)].ast)->line_no;
+         /*printf("line number for equals is %d\n", $$->line_no);*/}
     break;
 
   case 6:
-#line 69 "hw5.y"
-    {/*printf("");*/(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL); }
+#line 81 "hw6.y"
+    {/*printf("");*/(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL);(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no; }
     break;
 
   case 7:
-#line 70 "hw5.y"
-    {(yyval.ast) = mk_ast_node('P', (yyvsp[(3) - (5)].ast), NULL); }
+#line 82 "hw6.y"
+    {(yyval.ast) = mk_ast_node('P', (yyvsp[(3) - (5)].ast), NULL);(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no; }
     break;
 
   case 8:
-#line 71 "hw5.y"
+#line 83 "hw6.y"
     {/*printf("");*/(yyval.ast) = mk_ast_node('C', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 9:
-#line 72 "hw5.y"
-    {/*printf("");*/(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);}
+#line 84 "hw6.y"
+    {/*printf("");*/(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);
+        (yyval.ast)->line_no=(yyvsp[(1) - (3)].ast)->line_no;
+        // printf("line no of if is %d", $$->line_no);
+        /*$$->right=NULL;*/}
     break;
 
   case 10:
-#line 73 "hw5.y"
-    {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (5)].ast), (yyvsp[(3) - (5)].ast), (yyvsp[(5) - (5)].ast));}
+#line 88 "hw6.y"
+    {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (5)].ast), (yyvsp[(3) - (5)].ast), (yyvsp[(5) - (5)].ast));(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no;}
     break;
 
   case 11:
-#line 74 "hw5.y"
-    {(yyval.ast) = mk_ast_while_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast));}
+#line 89 "hw6.y"
+    {(yyval.ast) = mk_ast_while_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast));
+            (yyval.ast)->line_no=(yyvsp[(1) - (3)].ast)->line_no;
+            // printf("line no of while is %d", $$->line_no);
+        }
     break;
 
   case 12:
-#line 75 "hw5.y"
+#line 93 "hw6.y"
     {(yyval.ast) = mk_ast_node('i', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 13:
-#line 76 "hw5.y"
+#line 94 "hw6.y"
     {(yyval.ast) = mk_ast_node('b', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 14:
-#line 77 "hw5.y"
+#line 95 "hw6.y"
     {(yyval.ast) = mk_ast_node('c', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 15:
-#line 81 "hw5.y"
-    {(yyval.ast) = mk_ast_node('l', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
+#line 99 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 16:
-#line 82 "hw5.y"
-    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+#line 101 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 17:
-#line 85 "hw5.y"
-    {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol));}
+#line 103 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 18:
-#line 88 "hw5.y"
-    { (yyval.ast) = mk_ast_node ('L', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
+#line 105 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 19:
-#line 89 "hw5.y"
-    { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
+#line 107 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 20:
-#line 93 "hw5.y"
-    {(yyval.ast) = mk_ast_node('O', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 110 "hw6.y"
+    {(yyval.ast) = mk_ast_node('l', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 21:
-#line 94 "hw5.y"
-    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+#line 111 "hw6.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);/*printf("line is %d", $$->line_no);*/}
     break;
 
   case 22:
-#line 97 "hw5.y"
-    {(yyval.ast) = mk_ast_node('a', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 115 "hw6.y"
+    { (yyval.ast) = mk_ast_node ('L', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 23:
-#line 98 "hw5.y"
-    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+#line 116 "hw6.y"
+    { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 24:
-#line 101 "hw5.y"
-    {(yyval.ast) = mk_ast_node('E', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 120 "hw6.y"
+    {(yyval.ast) = mk_ast_node('O', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
+    (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no; 
+}
     break;
 
   case 25:
-#line 102 "hw5.y"
+#line 123 "hw6.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 26:
-#line 105 "hw5.y"
-    {(yyval.ast) = mk_ast_node('<', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 126 "hw6.y"
+    {(yyval.ast) = mk_ast_node('a', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
+    (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no; 
+}
     break;
 
   case 27:
-#line 106 "hw5.y"
+#line 129 "hw6.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 28:
-#line 109 "hw5.y"
-    {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 132 "hw6.y"
+    {(yyval.ast) = mk_ast_node('E', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
+    (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 29:
-#line 110 "hw5.y"
-    {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 134 "hw6.y"
+    {(yyval.ast) = mk_ast_node('w', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
+    (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 30:
-#line 111 "hw5.y"
+#line 136 "hw6.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 31:
-#line 114 "hw5.y"
-    {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); }
+#line 139 "hw6.y"
+    {(yyval.ast) = mk_ast_node('<', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 32:
-#line 115 "hw5.y"
-    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+#line 140 "hw6.y"
+    {(yyval.ast) = mk_ast_node('x', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 33:
-#line 119 "hw5.y"
-    {/*printf("");*/(yyval.ast) = mk_ast_for_sum_node((yyvsp[(2) - (12)].symbol), (yyvsp[(5) - (12)].number), (yyvsp[(7) - (12)].number), (yyvsp[(11) - (12)].ast));}
+#line 141 "hw6.y"
+    {(yyval.ast) = mk_ast_node('y', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 34:
-#line 120 "hw5.y"
-    {(yyval.ast) = (yyvsp[(2) - (3)].ast);}
+#line 142 "hw6.y"
+    {(yyval.ast) = mk_ast_node('z', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 35:
-#line 121 "hw5.y"
-    {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
+#line 143 "hw6.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 36:
-#line 122 "hw5.y"
-    {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
+#line 146 "hw6.y"
+    {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 37:
-#line 123 "hw5.y"
-    {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol)); }
+#line 147 "hw6.y"
+    {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 38:
-#line 124 "hw5.y"
+#line 148 "hw6.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
+  case 39:
+#line 151 "hw6.y"
+    {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
+    break;
+
+  case 40:
+#line 152 "hw6.y"
+    {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
+    break;
+
+  case 41:
+#line 156 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 42:
+#line 158 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 43:
+#line 160 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 44:
+#line 162 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 45:
+#line 164 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 46:
+#line 166 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 47:
+#line 168 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 48:
+#line 170 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 49:
+#line 172 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 50:
+#line 174 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 51:
+#line 176 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 52:
+#line 179 "hw6.y"
+    {/*printf("");*/(yyval.ast) = mk_ast_for_sum_node((yyvsp[(2) - (12)].ast), (yyvsp[(5) - (12)].number), (yyvsp[(7) - (12)].number), (yyvsp[(11) - (12)].ast));
+                                (yyval.ast)->line_no=(yyvsp[(4) - (12)].ast)->line_no;}
+    break;
+
+  case 53:
+#line 181 "hw6.y"
+    {(yyval.ast) = (yyvsp[(2) - (3)].ast);/*printf("line no of id is %d", $$->line_no);*/}
+    break;
+
+  case 54:
+#line 182 "hw6.y"
+    {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
+    break;
+
+  case 55:
+#line 183 "hw6.y"
+    {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
+    break;
+
+  case 56:
+#line 184 "hw6.y"
+    {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol));/*$$->line_no=yylineno;*//*printf("line no of id is %d", $$->line_no);*/}
+    break;
+
+  case 57:
+#line 185 "hw6.y"
     {(yyval.ast) = mk_ast_boolean_node((yyvsp[(1) - (1)].boolean));}
+    break;
+
+  case 58:
+#line 190 "hw6.y"
+    {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
+    break;
+
+  case 59:
+#line 192 "hw6.y"
+    {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol));
+        (yyval.ast)->line_no=yylineno;
+        /*printf("line no of id is %d", $$->line_no);*/}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1629 "y.tab.c"
+#line 1790 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1839,7 +2000,7 @@ yyreturn:
 }
 
 
-#line 128 "hw5.y"
+#line 196 "hw6.y"
 
 void yyerror(char *s) {
     fprintf(stderr, "Syntax Error\n");
@@ -1863,14 +2024,18 @@ void print_tree(struct ast_node * node) {
         printf("%s", symbols[i]->string_val);
         printf("\n");
     }*/
-    block_level = 1;
+    // block_level = 1;
     present_scope = (struct scope_node *)malloc(sizeof(struct scope_node));
     present_scope->parent = NULL;
     present_scope->scope_level = 1;
     present_scope->len_symbol_table = 0;
     typecheck(node);
-
-    traverse(node);
+    if (typeError == 0) {
+        present_scope->current_child_scope = 0;
+        // printf("traverse begin\n");
+        traverse(node);
+    }
+    //
 
     // for (int i=0; i < length; i++) {
     //     printf("%s ", symbols[i]->name);
@@ -1883,20 +2048,85 @@ void print_tree(struct ast_node * node) {
     //fprintf(stderr, "tree test");
 }
 
+void printErrorMessage(int line) {
+    typeError = 1;
+    printf("Type violation in %d\n", line);
+}
+
+void actIfViolation(struct ast_node * ast_tree, struct ast_node * result, int typeViolationCheckLeft, int typeViolationCheckRight) {
+    if (typeViolationCheckLeft == -1 || typeViolationCheckRight == -1) {
+        result->node_type = 'U';
+    } else if (typeViolationCheckLeft == 1 || typeViolationCheckRight == 1) {
+        result->node_type = 'U';
+        printErrorMessage(ast_tree->line_no);
+        // printf("Type violation error in line %d\n", ast_tree->line_no);
+    }
+}
+
+int getOperatorResultNodeType(int node_type) {
+    if (node_type == '+' || node_type == '-' || node_type == '*')
+        return 'N';
+    else if (node_type == '<' || node_type == 'E' || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
+        return 'B';
+    printf("undefined node type\n");
+    return 0;
+}
+
+char * getOperandType(int node_type) {
+    if (node_type == '+' || node_type == '-' || node_type == '*' || node_type == '<' || node_type == 'E'
+        || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
+        return "number";
+    printf("undefined node type\n");
+    return NULL;
+}
+
+void checkSymbolViolation(struct ast_node * dummy, struct scope_node *scope) {
+    if (dummy->node_type == 's') {
+        struct ast_symbol_reference_node * node = (struct ast_symbol_reference_node *) dummy;
+        struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, node->symbol->name);
+        if (sym_node == NULL) {
+            printErrorMessage(node->line_no);
+            // printf("type violation error in line %d\n", node->line_no);
+        }
+    }
+}
+
+
 struct ast_node * typecheck(struct ast_node * ast_tree) {
+    // printf("start ast tree %p\n", ast_tree);
+    
     if (ast_tree == NULL) {
+        // printf("null\n");
         return NULL;
     }
+    // printf("yylineno is %d\n", yylineno);
+    // printf("print node type %c line no %d\n", ast_tree->node_type, ast_tree->line_no);
     switch (ast_tree->node_type)
     {
         case 'l':
         {
+            // printf("inside l block\n");
             struct ast_string_node * result = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
             result->node_type = 'n';
-            struct ast_node * dummy = typecheck(ast_tree->left);
+            struct ast_node * left = ast_tree->left;
+            struct ast_node * dummy;
+            // printf("left node type %c\n", left->node_type);
+            if (left->node_type != 's') {
+                dummy = typecheck(ast_tree->left);
+            } else {
+                dummy = left;
+            }
             char * value1 = get_symbol_name(dummy);
             //printf("value 1 is %s\n", value1);
-            struct ast_node * dummy2 = typecheck(ast_tree->right);
+            // struct ast_node * dummy2 = typecheck(ast_tree->right);
+            struct ast_node * right = ast_tree->right;
+            // printf("right node type %c\n", right->node_type);
+            struct ast_node * dummy2;
+            if (right->node_type != 's') {
+                dummy2 = typecheck(ast_tree->right);
+            } else {
+                dummy2 = right;
+            }
             char * value2 = get_symbol_name(dummy2);
             //printf("value 2 is %s\n", value2);
             result->value = malloc(strlen(value1)+strlen(value2)+1);
@@ -1908,36 +2138,40 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             break;
         }
         case 'i':
+        case 'b':
+        case 'c':
         {
-            // struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            // result->node_type = 'N';
-            //printf("inside int declaration statement");
-            // printf("length of scope symbol table %d\n", present_scope->len_symbol_table);
-            struct ast_node * dummy = typecheck(ast_tree->left);
+            char * type;
+            if (ast_tree->node_type == 'i') type = "number";
+            else if (ast_tree->node_type == 'b') type = "boolean";
+            else type = "string";
+            // struct ast_node * dummy = typecheck(ast_tree->left);
+            struct ast_node * left = ast_tree->left;
+            struct ast_node * dummy;
+            if (left->node_type != 's') {
+                dummy = typecheck(ast_tree->left);
+            } else {
+                dummy = left;
+            }
             char * value1 = get_symbol_name(dummy);
-            // if (dummy->node_type == 'n') {
-            // struct ast_string_node * left = (struct ast_string_node *) dummy;
-            // printf("value of variables %s \n", value1);
             char * variable = strtok(value1, " ");
             while (variable != NULL) {
                 // printf("%s ", variable);
-                int check = add_variable_to_present_scope(present_scope, variable, "number");
+                int check = add_variable_to_present_scope(present_scope, variable, type);
                 if (check == 0) {
-                    printf("redeclaration error");
+                    printErrorMessage(ast_tree->line_no);
+                    // printf("redeclaration error in line %d\n", ast_tree->line_no);
+                } else {
+                    setDeclareValue(present_scope, variable); 
                 }
                 variable = strtok(NULL, " ");
             }
-            // }
-            // printf("\nnew length of scope symbol table %d\n", present_scope->len_symbol_table);
-            // result->value = add_value(dummy);
-            // dummy = traverse(ast_tree->right);
-            // result->value += add_value(dummy);
-            // return (struct ast_node *) result;
+            // printf("present scope length %d\n", present_scope->len_symbol_table);
             break;
         }
         case 'C':
         {
-            printf("inside compound statement\n");
+            // printf("inside compound statement\n");
             present_scope = create_new_scope(present_scope);
             typecheck(ast_tree->left);
             present_scope = present_scope->parent;
@@ -1945,202 +2179,178 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
 
         }
         case '+':
+        case '-':
+        case '*':
+        case '<':
+        case 'E':
+        case 'w':
+        case 'x':
+        case 'y':
+        case 'z':
         {
-            int typeViolationCheckLeft = 1;
-            int typeViolationCheckRight = 1;
-            int undefined = 0;
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
+            struct ast_node * result = (struct ast_node *) malloc (sizeof (struct ast_node));
+            result->node_type = getOperatorResultNodeType(ast_tree->node_type);
+            char * operand_type = getOperandType(ast_tree->node_type);
+
             struct ast_node * dummy = typecheck(ast_tree->left);
-            if (dummy->node_type == 's') {
-                struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy;
-                struct symbol_node * left_node = lookup_variable_present_scope(present_scope, symbol_node->symbol->name);
-                if (left_node != NULL) {
-                    if (strcmp(left_node->type, "number") == 0) {
-                        typeViolationCheckLeft = 0;
-                    } else if (strcmp(left_node->type, "undefined") == 0) {
-                        undefined = 1;
-                    }
-                }
-                
-            } 
-            else if (dummy->node_type == 'N') {
-                typeViolationCheckLeft = 0;
-            } 
-            else if (dummy->node_type == 'U') {
-                undefined = 1;
-            }
+            // printf("before type check\n");
+            int typeViolationCheckLeft = typeViolationCheck(present_scope, dummy, operand_type, 'N');
+            // if (dummy->node_type == 's' && typeViolationCheckLeft == -1) {
+            //     printf("type violation error in line %d\n", dummy->line_no);
+            // }
             //result->value = add_value(dummy);
             struct ast_node * dummy2 = typecheck(ast_tree->right);
-            if (dummy->node_type == 's') {
-                struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy2;
-                struct symbol_node * right_node = lookup_variable_present_scope(present_scope, symbol_node->symbol->name);
-                if (right_node != NULL) {
-                    if (strcmp(right_node->type, "number") == 0) {
-                        typeViolationCheckRight = 0;
-                    } else if (strcmp(right_node->type, "undefined") == 0) {
-                        undefined = 1;
-                    }
+            int typeViolationCheckRight = typeViolationCheck(present_scope, dummy2, operand_type, 'N');
+            // if (dummy2->node_type == 's' && typeViolationCheckLeft == -1) {
+            //     printf("type violation error in line %d\n", dummy->line_no);
+            // }
+            actIfViolation( ast_tree, (struct ast_node *) result, typeViolationCheckLeft, typeViolationCheckRight);
+            // printf("after type check\n");
+            return (struct ast_node *) result;
+            break;
+        }
+        case 'F':
+        {
+            struct ast_for_sum_node * for_node = (struct ast_for_sum_node *) ast_tree;
+            struct ast_node * result = (struct ast_node *) malloc (sizeof (struct ast_node));
+            result->node_type = 'N';
+            present_scope = create_new_scope(present_scope);
+
+
+            struct ast_node * symbol_node = for_node->symbol;
+            int range1 = for_node->left_value;
+            int range2 = for_node->right_value;
+            char * variable = get_symbol_name(symbol_node);
+            add_variable_to_present_scope(present_scope, variable, "number");
+
+
+            if (range1 > range2) {
+                printErrorMessage(for_node->line_no);
+                // printf("Type violation error in line %d\n", for_node->line_no);
+            }
+            struct ast_node * expression_node = typecheck(for_node->expression);
+            int typeViolation = typeViolationCheck(present_scope, expression_node, "number", 'N');
+            if (typeViolation != 0) {
+                result->node_type = 'U';
+                if (typeViolation == 1) {
+                    printErrorMessage(for_node->line_no);
+                    // printf("Type violation error in line %d\n", for_node->line_no);
                 }
-                
-            } 
-            else if (dummy->node_type == 'N') {
-                typeViolationCheckRight = 0;
-            }
-            else if (dummy->node_type == 'U') {
-                undefined = 1;
-            }
 
-            if (undefined == 1) {
-                result->node_type = 'U';
-            } else if (typeViolationCheckRight == 1 || typeViolationCheckLeft == 1) {
-                printf("type violation error\n");
-                result->node_type = 'U';
             }
-            //result->value += add_value(dummy);
-            return (struct ast_node *) result;
-            break;
-        }
-
-        case '-':
-        {
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            result->value -= add_value(dummy);
-            return (struct ast_node *) result;
-            break;
-        }
-
-        case '*':
-        {
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            result->value *= add_value(dummy);
-            return (struct ast_node *) result;
-            break;
-        }
-        case '<':
-        {
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            if (add_value(dummy) > result->value) {
-                result->value = 1;
-            } else {
-                result->value = 0;
-            }
-            return (struct ast_node *) result;
-            break;
-        }
-        case 'E':
-        {
-            //printf("equality block came\n");
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            if (add_value(dummy) == result->value) {
-                result->value = 1;
-            } else {
-                result->value = 0;
-            }
+            
+            // struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
+            // struct ast_number_node * condition = (struct ast_number_node *) traverse(while_node->condition);
+            // while(condition->value != 0) {
+            //     traverse(while_node->while_branch);
+            //     condition = (struct ast_number_node *) traverse(while_node->condition);
+            // }
+            //printf("while block came");
+            present_scope = present_scope->parent;
             return (struct ast_node *) result;
             break;
         }
         case 'a':
         {
-            //printf("and block came\n");
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            if (add_value(dummy) && result->value) {
-                result->value = 1;
-            } else {
-                result->value = 0;
-            }
+            struct ast_boolean_node * result = (struct ast_boolean_node *) malloc (sizeof (struct ast_boolean_node));
+            result->node_type = 'B';
+            struct ast_node * dummy = typecheck(ast_tree->left);
+            int typeViolationCheckLeft = typeViolationCheck(present_scope, dummy, "boolean", 'B');
+            //result->value = add_value(dummy);
+            struct ast_node * dummy2 = typecheck(ast_tree->right);
+            int typeViolationCheckRight = typeViolationCheck(present_scope, dummy2, "boolean", 'B');
+            actIfViolation( ast_tree, (struct ast_node *) result, typeViolationCheckLeft, typeViolationCheckRight);
             return (struct ast_node *) result;
+            break;
+        }
+        case 's':
+        {
+            int typeViolation = typeViolationCheck(present_scope, ast_tree, "", 's');
+            if (typeViolation == -1) {
+                printErrorMessage(ast_tree->line_no);
+                // printf("Type violation error in line %d\n", ast_tree->line_no);
+            }
             break;
         }
         case 'O':
         {
-            //printf("or block came\n");
-            struct ast_number_node * result = (struct ast_number_node *) malloc (sizeof (struct ast_number_node));
-            result->node_type = 'N';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            result->value = add_value(dummy);
-            dummy = traverse(ast_tree->right);
-            if (add_value(dummy) || result->value) {
-                result->value = 1;
+
+            struct ast_node * result = (struct ast_node *) malloc (sizeof (struct ast_node));
+            struct ast_node * dummy = typecheck(ast_tree->left);
+            int typeViolationCheckLeft = typeViolationCheck(present_scope, dummy, "boolean", 'B');
+            int typeViolationCheckRight = 0;
+            if (typeViolationCheckLeft == 0) {
+                struct ast_node * dummy2 = typecheck(ast_tree->right);
+                typeViolationCheckRight = typeViolationCheck(present_scope, dummy2, "boolean", 'B');
+                actIfViolation( ast_tree, (struct ast_node *) result, typeViolationCheckLeft, typeViolationCheckRight);
+                if (result->node_type != 'U') {
+                    result->node_type = 'B';
+                }
+            } else if (typeViolationCheckLeft == 1) {
+                typeViolationCheckLeft = typeViolationCheck(present_scope, dummy, "string", 'n');
+                struct ast_node * dummy2 = typecheck(ast_tree->right);
+                typeViolationCheckRight = typeViolationCheck(present_scope, dummy2, "string", 'n');
+                actIfViolation( ast_tree, (struct ast_node *) result, typeViolationCheckLeft, typeViolationCheckRight);
+                if (result->node_type != 'U') {
+                    result->node_type = 'n';
+                }
             } else {
-                result->value = 0;
+                struct ast_node * dummy2 = typecheck(ast_tree->right);
+                result->node_type = 'U';
             }
             return (struct ast_node *) result;
-            break;
+            break;        
         }
 
         case 'A':
         {
+            // printf("inside assignment\n");
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
-            struct symbol_node * sym_node = find(node->symbol->name);
+            //struct symbol_node * sym_node = find(node->symbol->name);
+            struct ast_symbol_reference_node * sym_ref_node = (struct ast_symbol_reference_node *) typecheck(node->symbol);
+            struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, sym_ref_node->symbol->name);
+            // if (value_node->node_type == 's') {
+            //     struct ast_symbol_reference_node * dum = (struct ast_symbol_reference_node *) value_node;
+            //     printf("inside assignment type of right hand side is %d\n", dum->line_no);
+            // }
+            // printf("inside assignment type of right hand side is %d\n", value_node->line_no);
+            // if (sym_node == NULL) {
+            //     printf("type violation error in line %d\n", sym_ref_node->line_no);
+            // } else {
+
+            // }
             struct ast_node * value_node = typecheck(node->value);
-            if (value_node->node_type == 'N') 
+            
+            if (value_node->node_type == 'U') 
             {
-                struct ast_number_node * result = (struct ast_number_node *) value_node;
-                int * number_dummy = (int*)malloc(sizeof(int));
-                *number_dummy = result->value;
+            } 
+            else if ( sym_node != NULL && (   ((value_node->node_type == 'N') && (strcmp(sym_node->type, "number")==0))
+                || ((value_node->node_type == 'n') && (strcmp(sym_node->type, "string")==0))
+                || ((value_node->node_type == 'B') && (strcmp(sym_node->type, "boolean")==0))
+                    )
+                )
+            {
 
-                sym_node->value = (void *) number_dummy;
-                sym_node->type = "number";
-                //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
-
-                //printf("");
-                //sym_node->initialize = "initialized";
-            } else if (value_node->node_type == 'n')
+            } 
+            else if (sym_node != NULL && value_node->node_type == 's')
             {
-                struct ast_string_node * result = (struct ast_string_node *) value_node;
-                //char * string_dummy = result->value;
-                sym_node->value = (char *) malloc(strlen(result->value)+1);
-                strcpy(sym_node->value, result->value);
-                //printf("value of string is %s, %s, %lu", result->value, sym_node->value, strlen(result->value));
-                //sym_node->value = (void *) string_dummy;
-                sym_node->type = "string";
-                //sym_node->initialize = "initialized";
-            } else if (value_node->node_type == 's')
-            {
-                struct ast_symbol_reference_node * result_sym_node = (struct ast_symbol_reference_node *) value_node;
-                struct symbol_node * result = result_sym_node->symbol;
-                if (result->type == NULL) {
-                    fprintf(stderr, "Uninitialized variable in %d\n", result->line);
-                    exit(0);
+                int typeViolationCheckLeft = typeViolationCheck(present_scope, value_node, sym_node->type, 0);
+                if (typeViolationCheckLeft == 1) {
+                    // sym_node->type = "undefined";
+                    printErrorMessage(ast_tree->line_no);
+                    // printf("type violation error in line %d\n", ast_tree->line_no);
+                } else if (typeViolationCheckLeft == -1) {
+                    printErrorMessage(value_node->line_no);
+                    // printf("type violation error in line %d\n", value_node->line_no);
+                    // sym_node->type = "undefined";
                 }
-                if (strcmp(result->type, "number") == 0) {
-                    int * number_dummy = malloc(sizeof(int));
-                    *number_dummy = *(int *)(result->value);
-
-                    sym_node->value = (void *) number_dummy;
-                    sym_node->type = "number";
-                } else if (strcmp(result->type, "string") == 0){
-                    sym_node->type = "string";
-                    sym_node->value = (char *) malloc(strlen(result->value)+1);
-                    strcpy(sym_node->value, result->value);
-                    //printf("value of string is %s, %s", result->value, sym_node->value);
-                } else {
-                    printf("not initialized");
-                }
-                //sym_node->value = result->value;
                 
             }
+            else if (sym_node != NULL && value_node->node_type != 'U') {
+                printErrorMessage(ast_tree->line_no);
+                // printf("type violation error in line %d\n", ast_tree->line_no);
+            }
+            //printf("end of assignment\n");
             return ast_tree;
             break;
         }
@@ -2158,97 +2368,73 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             break;
         case 'P':
         {
-            struct ast_node * value_node = traverse(ast_tree->left);
-            /*if (value_node->node_type == 'n')
-            {
-                struct ast_string_node * value_string_node = (struct ast_string_node *) value_node;
-                printf("%s\n", value_string_node->value);
-            } else if (value_node->node_type == 'N') {
-                struct ast_number_node * value_number_node = (struct ast_number_node *) value_node;
-                char *snum;
-                sprintf(snum, "%d", value_number_node->value);
-                printf("%s\n", snum);
-            } else if (value_node->node_type == 's') {
-                struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
-                char *snum;
-                struct symbol_node * result = value_symbol_node->symbol;
-                if (strcmp(result->type, "number") == 0) {
-                    snum = (char *)malloc(100);
-                    int number_dummy = *(int *)result->value;
-                    sprintf(snum, "%d", number_dummy);
-                } else if (strcmp(result->type, "string") == 0){
-                    snum = (char *) malloc(strlen(result->value)+1);
-                    strcpy(snum, result->value);
-                } else {
-                    printf("not initialized");
-                }
-                printf("%s\n", snum);
-            }*/
-            char * string_value = get_value(value_node);
-            //printf("string length is %lu", strlen(string_value));
-            if (strlen(string_value) != 0) {
-                fprintf(stderr, "%s \n", string_value); 
-            } else {
-                //fflush(stdin);
-                fprintf(stderr, "\n"); 
-            }
+            struct ast_node * value_node = typecheck(ast_tree->left);
+            // checkSymbolViolation(value_node, present_scope);
             break;
         }
             
         case 'p':
         {
-            struct ast_node * value_node = traverse(ast_tree->left);
-            char * string_value = get_value(value_node);
-            if (strlen(string_value) != 0) {
-                fprintf(stderr, "%s", string_value);
-            }
-            
-            //free(string_value);
+            // printf("inside p block\n");
+            struct ast_node * value_node = typecheck(ast_tree->left);
+            // checkSymbolViolation(value_node, present_scope);
             break;
         }
             
         case 'L':
         {  
-            //printf("inside L block\n");
+            // printf("inside L block\n");
             struct ast_string_node * result = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
             result->node_type = 'n';
-            struct ast_node * dummy = traverse(ast_tree->left);
-            char * value1 = get_value(dummy);
-            //printf("value 1 is %s\n", value1);
-            struct ast_node * dummy2 = traverse(ast_tree->right);
-            char * value2 = get_value(dummy2);
-            //printf("value 2 is %s\n", value2);
-            result->value = malloc(strlen(value1)+strlen(value2)+1);
-            strcpy(result->value, value1);
-            strcat(result->value, " ");
-            strcat(result->value, value2);
-            // printf("value is %s", result->value);
-            return (struct ast_node *) result;
+            struct ast_node * dummy = typecheck(ast_tree->left);
+            struct ast_node * dummy2 = typecheck(ast_tree->right);
             break;
         }
         case 'I':
         {
-            struct ast_if_node * if_node = (struct ast_if_node *) ast_tree;
-            struct ast_number_node * condition = (struct ast_number_node *) traverse(if_node->condition);
-            if (condition->value == 0) {
-                traverse(if_node->else_branch);
+            struct ast_node * if_node = ast_tree;
+            struct ast_node * condition = typecheck(if_node->condition);
+            int typeViolation = typeViolationCheck(present_scope, condition, "boolean", 'B');
+            // printf("before typeViolation check in if\n");
+            if (typeViolation == 1) {
+                printErrorMessage(ast_tree->line_no);
+                // printf("type violation error in line %d\n", ast_tree->line_no);
             } else {
-                traverse(if_node->if_branch);
+               
             }
+            // printf("after typeViolation in if\n");
+            typecheck(if_node->left);
+            // // printf("after if branch in if\n");
+            // if (if_node->right != NULL /*|| if_node->right != 0x2*/) {
+            //     // printf("inside else\n");
+                typecheck(if_node->right);
+            // }
+            
+            // printf("after else branch in if\n");
             //printf("if block came");
             break;
         }
         case 'W':
         {
+            // printf("line no of while %d\n", ast_tree->line_no);
             struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
-            struct ast_number_node * condition = (struct ast_number_node *) traverse(while_node->condition);
-            while(condition->value != 0) {
-                traverse(while_node->while_branch);
-                condition = (struct ast_number_node *) traverse(while_node->condition);
+            struct ast_node * condition = typecheck(while_node->condition);
+            int typeViolation = typeViolationCheck(present_scope, condition, "boolean", 'B');
+            if (typeViolation == 1) {
+                printErrorMessage(ast_tree->line_no);
+                // printf("type violation error in line %d\n", ast_tree->line_no);
+            } else {
+               
             }
+            // while(condition->value != 0) {
+            //     traverse(while_node->while_branch);
+            //     condition = (struct ast_number_node *) traverse(while_node->condition);
+            // }
+            typecheck(while_node->while_branch);
             //printf("while block came");
             break;
         }
+
             
     }
     return ast_tree;

@@ -54,10 +54,13 @@
      INT = 270,
      BOOL = 271,
      STRING_TOKEN = 272,
-     INTEGER = 273,
-     ID = 274,
-     STRING = 275,
-     BOOLEAN = 276
+     LESS_EQUALS = 273,
+     GREAT_EQUALS = 274,
+     NOT_EQUALS = 275,
+     INTEGER = 276,
+     ID = 277,
+     STRING = 278,
+     BOOLEAN = 279
    };
 #endif
 /* Tokens.  */
@@ -76,17 +79,20 @@
 #define INT 270
 #define BOOL 271
 #define STRING_TOKEN 272
-#define INTEGER 273
-#define ID 274
-#define STRING 275
-#define BOOLEAN 276
+#define LESS_EQUALS 273
+#define GREAT_EQUALS 274
+#define NOT_EQUALS 275
+#define INTEGER 276
+#define ID 277
+#define STRING 278
+#define BOOLEAN 279
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 43 "hw5.y"
+#line 50 "hw6.y"
 {
         int number;
         int boolean;
@@ -95,7 +101,7 @@ typedef union YYSTYPE
         char * string;
 }
 /* Line 1529 of yacc.c.  */
-#line 99 "y.tab.h"
+#line 105 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

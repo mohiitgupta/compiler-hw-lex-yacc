@@ -1,5 +1,217 @@
-what is the error shown for example:
+1.
 int c;
-c = a+b;
+c = a
++
+b;
 
-clean up the function for typecheckviolation in case '+'
+1.
+int j;
+j=1;
+while(j<10){
+    if(j<5){
+        j=j+2;
+        Println("if");
+        }
+    else while(j<10)
+        {
+        j=j+1;
+        Println("else");
+        }
+    Println("while");
+}
+
+2.
+int a;
+a=2;
+{
+    {
+        Print(a);
+        int a;
+    }
+    Print(a);   
+}
+
+2.
+int a;
+a=2;
+{
+    {
+        //Print(a);
+        int a;
+        Print(a);
+    }
+    Print(a);   
+}
+
+3.
+int a;
+a = "test";
+a =2;
+b = a;
+string b;
+b=a;
+
+4.
+int a;
+a = "Test" + 2;
+a = 4;
+
+b = a;
+
+5.
+int a;
+a=b+c;
+
+6.
+a=b;
+
+7.
+int a,b,c;
+bool a,b,c;
+
+8.
+int a,b,c;
+bool a,b,
+c;
+d=
+e;
+d
+=
+e;
+
+9.
+int a;
+c
+=
+a
+&&
+b
+;
+
+
+10.
+int a;
+while (a)
+{
+    a=2;
+    a = for i in [5,4] 
+SUM (a+2);
+}
+if (a)
+{
+    a=2;
+} else
+{
+    a
+    =
+    "Test";
+}
+
+10.
+int a;
+a=1;
+if (a<3) {
+    int a;
+    a=3;
+    Println("if value of a is ", a);
+} else {
+    a=5;
+    Println("else value of a ", a);
+}
+Println("value of a is ", a);
+
+10.
+int a,b,c;
+a=1;
+b = 4;
+while (b<5) {
+    int a;
+    //int b;
+    b = b+1;
+    a = for i in [6,5] 
+        SUM (i);
+
+    //a =c;
+
+
+
+    //Println("value of c while is ", c);
+    Println("value of a while is ", a);
+    Println("test");
+}
+Println("value of a is ", a);
+Println("value of b is ", b);
+
+
+Println("value of c is ", c);
+
+10.
+int a;
+a = 1;
+bool b;
+b = a < 3;
+Println(b);
+b = a <= 3;
+Println(b);
+b = a > 3;
+Println(b);
+b = a >= 3;
+Println(b);
+b = a != 3;
+Println(b);
+b = a == 3;
+Println(b);
+
+10.
+bool b;
+b = false && true;
+Println(b);
+b = false || true;
+Println(b);
+b = false || "test";
+b=false || 1;
+
+
+
+10.
+string a;
+a = null;
+Println(a, "test2");
+Println("test");
+
+10.
+int a;
+a=1;
+while (a<5) {a=a+1;}
+Println("value of a is ", a);
+
+
+11.
+
+int a;
+a = for i in [5,4] 
+SUM (a+2);
+
+11.
+int a;
+string i;
+a=2;
+a = for i in [3,5] 
+SUM (i);
+i="test";
+Println(a);
+Println(i);
+
+12.
+int a,b;
+//a=2;
+b=4;
+{
+    //int b;
+    Println("value of b is ", b+2);
+    b=2;
+    a=5;
+    Println(a, " Test ", b);
+}
+Println(a, "test2");
+Println(b, "test2");

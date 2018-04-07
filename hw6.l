@@ -11,7 +11,7 @@
     int block_level = 1;
     struct scope_node *present_scope;
 %}
-
+%option yylineno
 %%
 
 [f][o][r] {
@@ -50,7 +50,7 @@ bool {
 }
 
 string {
-    return STRING;
+    return STRING_TOKEN;
 }
 
 null {
@@ -113,7 +113,16 @@ false {
             }
 [=][=]     { return EQUALS; 
                 }
-[-+()=<;,\[\]*]     { return *yytext; 
+[<][=]      {
+            return LESS_EQUALS;
+}
+[>][=]      {
+            return GREAT_EQUALS;
+}
+[!][=]      {
+            return NOT_EQUALS;
+}
+[-+()=<;>,\[\]*]     { return *yytext; 
                 }
 [&][&]        {  return AND; 
                 }

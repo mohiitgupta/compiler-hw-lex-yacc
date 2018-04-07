@@ -22,5 +22,5 @@ if ((0<j) && (j==10)) { /* testing && and else if */
 Print( j);
 
 
-//scp -r HW5test.in input.in y.output y.vcg Makefile hw5.l lex.yy.c y.tab.c hash.h hw5.y struct_funcs.h y.tab.h gupta440@xinu01.cs.purdue.edu:~/hw5/
+//scp -r HW5test.in input.in y.output y.vcg Makefile hw6.l lex.yy.c y.tab.c hash.h hw6.y struct_funcs.h y.tab.h util.h gupta440@xinu01.cs.purdue.edu:~/hw6/
 

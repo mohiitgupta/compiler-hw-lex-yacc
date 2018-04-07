@@ -15,6 +15,7 @@ static struct symbol_node * create_symbol(char *name)
     newSymbol = (struct symbol_node *)malloc(sizeof(struct symbol_node));
     //fprintf(stderr, "hash %s", name);
     newSymbol->name = (char *)malloc(sizeof(name));
+    newSymbol->type = "undefined";
     strcpy(newSymbol->name, name);
     //newSymbol->initialize = "notInitialized";
     // newSymbol->value = NULL;
@@ -46,7 +47,7 @@ static struct symbol_node * find(char * name) {
         }
     }
     // for (int i=0; i < count; i++) {
-        
+
     // }
     
     return NULL;

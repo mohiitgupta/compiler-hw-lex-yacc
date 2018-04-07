@@ -1,0 +1,4 @@
+string a;
+a = null;
+Println(a);
+Println("test");
