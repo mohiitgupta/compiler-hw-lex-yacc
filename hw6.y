@@ -63,7 +63,7 @@
 %type <ast> statements statement expr listexpr term expr2 expr3 expr4 expr5 expr6 idlist idexpr eq_op plus_op
 %type <ast> minus_op multiply_op equals_op less_than_op and_op or_op
 %type <ast> print_op println_op if_op while_op less_equals_op great_equals_op great_than_op not_equals_op
-%type <ast> bracket_op
+%type <ast> bracket_op sum_op
 
 %%
 
@@ -176,8 +176,9 @@ great_than_op:
         '>'             {$$ = mk_ast_node(0, NULL, NULL);}
 
 term:
-    FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM '(' expr ')'  {/*printf("");*/$$ = mk_ast_for_sum_node($2, $5, $7, $11);
-                                $$->line_no=$4->line_no;}
+    FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr ')'  {/*printf("");*/$$ = mk_ast_for_sum_node($2, $5, $7, $11);
+                                $$->line_no=$4->line_no;
+                                $$->line_no_2=$9->line_no;}
     | '(' expr ')'    {$$ = $2;/*printf("line no of id is %d", $$->line_no);*/}
     | INTEGER       {$$ = mk_ast_number_node($1);}
     | STRING        {$$ = mk_ast_string_node($1);}
@@ -188,6 +189,10 @@ term:
 
 bracket_op:
         '['             {$$ = mk_ast_node(0, NULL, NULL);}
+
+sum_op:
+        SUM             {$$ = mk_ast_node(0, NULL, NULL);}
+
 idexpr:
         ID              {$$ = mk_ast_symbol_reference_node($1);
         $$->line_no=yylineno;
@@ -351,6 +356,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                 // printf("%s ", variable);
                 int check = add_variable_to_present_scope(present_scope, variable, type);
                 if (check == 0) {
+
                     printErrorMessage(ast_tree->line_no);
                     // printf("redeclaration error in line %d\n", ast_tree->line_no);
                 } else {
@@ -418,6 +424,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
 
             if (range1 > range2) {
                 printErrorMessage(for_node->line_no);
+                result->node_type = 'U';
                 // printf("Type violation error in line %d\n", for_node->line_no);
             }
             struct ast_node * expression_node = typecheck(for_node->expression);
@@ -425,7 +432,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             if (typeViolation != 0) {
                 result->node_type = 'U';
                 if (typeViolation == 1) {
-                    printErrorMessage(for_node->line_no);
+                    printErrorMessage(for_node->line_no_2);
                     // printf("Type violation error in line %d\n", for_node->line_no);
                 }
 
@@ -531,11 +538,12 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                     // sym_node->type = "undefined";
                     printErrorMessage(ast_tree->line_no);
                     // printf("type violation error in line %d\n", ast_tree->line_no);
-                } else if (typeViolationCheckLeft == -1) {
-                    printErrorMessage(value_node->line_no);
-                    // printf("type violation error in line %d\n", value_node->line_no);
-                    // sym_node->type = "undefined";
-                }
+                } 
+                // else if (typeViolationCheckLeft == -1) {
+                //     printErrorMessage(value_node->line_no);
+                //     // printf("type violation error in line %d\n", value_node->line_no);
+                //     // sym_node->type = "undefined";
+                // }
                 
             }
             else if (sym_node != NULL && value_node->node_type != 'U') {

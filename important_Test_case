@@ -1,0 +1,4 @@
+int x, y;
+x = for i in [1,5] SUM(for i in [1,5] SUM(i));
+y = for i in [1,5] SUM(i * for i in [1,5] SUM(i));
+Println(x, y);

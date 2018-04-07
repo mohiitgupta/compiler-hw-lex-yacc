@@ -37,6 +37,7 @@ struct ast_node
 {
   int node_type;
   int line_no;
+  int line_no_2;
   struct ast_node * condition;
   struct ast_node * left;
   struct ast_node * right;
@@ -96,6 +97,7 @@ struct ast_for_sum_node // for "if/else" statements
 {
   int node_type;
   int line_no;
+  int line_no_2;
   struct ast_node * symbol;
   int left_value;
   int right_value;

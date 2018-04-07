@@ -1080,7 +1080,7 @@ graph: {
 	}
 	node: {
 		title:	"27"
-		label:	"state 27\n term -> FOR . idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 27\n term -> FOR . idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr ')'"
 	}
 	backedge: {
 		sourcename:	"27"
@@ -1806,7 +1806,7 @@ graph: {
 	}
 	node: {
 		title:	"51"
-		label:	"state 51\n term -> FOR idexpr . IN bracket_op INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 51\n term -> FOR idexpr . IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"51"
@@ -2805,7 +2805,7 @@ graph: {
 	}
 	node: {
 		title:	"82"
-		label:	"state 82\n term -> FOR idexpr IN . bracket_op INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 82\n term -> FOR idexpr IN . bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"82"
@@ -3308,7 +3308,7 @@ graph: {
 	}
 	node: {
 		title:	"101"
-		label:	"state 101\n term -> FOR idexpr IN bracket_op . INTEGER ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 101\n term -> FOR idexpr IN bracket_op . INTEGER ',' INTEGER ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"101"
@@ -3323,7 +3323,7 @@ graph: {
 	}
 	node: {
 		title:	"103"
-		label:	"state 103\n term -> FOR idexpr IN bracket_op INTEGER . ',' INTEGER ']' SUM '(' expr ')'"
+		label:	"state 103\n term -> FOR idexpr IN bracket_op INTEGER . ',' INTEGER ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"103"
@@ -3334,7 +3334,7 @@ graph: {
 	}
 	node: {
 		title:	"104"
-		label:	"state 104\n term -> FOR idexpr IN bracket_op INTEGER ',' . INTEGER ']' SUM '(' expr ')'"
+		label:	"state 104\n term -> FOR idexpr IN bracket_op INTEGER ',' . INTEGER ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"104"
@@ -3345,7 +3345,7 @@ graph: {
 	}
 	node: {
 		title:	"105"
-		label:	"state 105\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER . ']' SUM '(' expr ')'"
+		label:	"state 105\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER . ']' sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"105"
@@ -3356,7 +3356,7 @@ graph: {
 	}
 	node: {
 		title:	"106"
-		label:	"state 106\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' . SUM '(' expr ')'"
+		label:	"state 106\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' . sum_op '(' expr ')'"
 	}
 	edge: {
 		sourcename:	"106"
@@ -3365,140 +3365,151 @@ graph: {
 		color:	blue
 		textcolor:	black
 	}
+	edge: {
+		sourcename:	"106"
+		targetname:	"108"
+		label:	"sum_op"
+		color:	green
+		textcolor:	black
+	}
 	node: {
 		title:	"107"
-		label:	"state 107\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM . '(' expr ')'"
+		label:	"state 107\n sum_op -> SUM ."
+	}
+	node: {
+		title:	"108"
+		label:	"state 108\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op . '(' expr ')'"
 	}
 	edge: {
-		sourcename:	"107"
-		targetname:	"108"
+		sourcename:	"108"
+		targetname:	"109"
 		label:	"'('"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"108"
-		label:	"state 108\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM '(' . expr ')'"
+		title:	"109"
+		label:	"state 109\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' . expr ')'"
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"27"
 		label:	"FOR"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"28"
 		label:	"INTEGER"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"29"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"30"
 		label:	"STRING"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"31"
 		label:	"BOOLEAN"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"32"
 		label:	"'('"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"108"
-		targetname:	"109"
+		sourcename:	"109"
+		targetname:	"110"
 		label:	"expr"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"34"
 		label:	"expr2"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"35"
 		label:	"expr3"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"36"
 		label:	"expr4"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"37"
 		label:	"expr5"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"38"
 		label:	"expr6"
 		color:	green
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"108"
+		sourcename:	"109"
 		targetname:	"39"
 		label:	"term"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"109"
-		label:	"state 109\n expr -> expr . or_op expr2\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM '(' expr . ')'"
+		title:	"110"
+		label:	"state 110\n expr -> expr . or_op expr2\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr . ')'"
 	}
 	backedge: {
-		sourcename:	"109"
+		sourcename:	"110"
 		targetname:	"53"
 		label:	"OR"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"109"
-		targetname:	"110"
+		sourcename:	"110"
+		targetname:	"111"
 		label:	"')'"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"109"
+		sourcename:	"110"
 		targetname:	"55"
 		label:	"or_op"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"110"
-		label:	"state 110\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' SUM '(' expr ')' ."
+		title:	"111"
+		label:	"state 111\n term -> FOR idexpr IN bracket_op INTEGER ',' INTEGER ']' sum_op '(' expr ')' ."
 	}
 
 

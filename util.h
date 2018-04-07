@@ -760,6 +760,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             // result->node_type = 'N';
             // present_scope = create_new_scope(present_scope);
             int childIndex = present_scope->current_child_scope;
+            // printf("child scopes index %d\n", childIndex);
             present_scope = present_scope->child_scopes[childIndex];
             present_scope->current_child_scope = 0;
 
@@ -779,13 +780,14 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
                 *number_dummy = i;
                 sym_node->value = (void *) number_dummy;
                 value += add_value(traverse(for_node->expression));
+                // printf("value is %d\n", value);
             }
 
             // add_variable_to_present_scope(present_scope, variable, "number");
             result->value = value;
 
             present_scope = present_scope->parent;
-            present_scope->current_child_scope = childIndex+1;
+            present_scope->current_child_scope = childIndex;
             return (struct ast_node *) result;
             break;
         }
