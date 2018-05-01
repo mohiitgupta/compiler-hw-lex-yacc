@@ -4,6 +4,37 @@ c = a
 +
 b;
 
+
+1.
+int a;
+a=5;
+{
+    while(a<10) {
+    Println(a);
+    a = a +1;
+    }
+
+    if (false) {
+        Println("test");
+        {
+            int a;
+            Println(a);
+            Println("Test2");
+            a=7;
+        }
+    } else {
+        Println("test4");
+        {
+            int a;
+            Println(a);
+            a=8;
+        }
+    }
+    Println("test3");
+    Println(a);
+}
+Println(a);
+
 1.
 int j;
 j=1;
@@ -48,7 +79,7 @@ int a;
 a = "test";
 a =2;
 b = a;
-string b;
+int b;
 b=a;
 
 4.
@@ -168,8 +199,11 @@ b = false && true;
 Println(b);
 b = false || true;
 Println(b);
-b = false || "test";
-b=false || 1;
+string s;
+s ="test"||null||"test1";
+Println(s);
+//b = false || "test";
+//b=false || 1;
 
 
 

@@ -1,4 +1,4 @@
- int isWhile = 0;
+ // int isWhile = 0;
 
 struct scope_node * create_new_scope(struct scope_node *scope) {
     struct scope_node * new_scope = (struct scope_node *)malloc(sizeof(struct scope_node));
@@ -149,6 +149,15 @@ void setValuesNonDeclaredVariables(struct scope_node *scope) {
     for (int i=0; i < scope->len_symbol_table; i++) {
         // if (strcmp(scope->symbols[i]->name, symbol_name) == 0) {
             struct symbol_node * variable = scope->symbols[i];
+            for (int j=0; j < scope->len_child_scopes; j++) {
+                struct scope_node * child_scope = scope->child_scopes[j];
+                for (int k=0; k < child_scope->len_symbol_table; k++) {
+                    struct symbol_node * child_variable = child_scope->symbols[k];
+                    if ((strcmp(child_variable->name, variable->name) == 0) && (child_variable->declare == NULL)) {
+                        child_variable->value = variable->value;
+                    }
+                }
+            }
             if (variable->declare != NULL) {
                 //do nothing
             }
@@ -358,10 +367,10 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
 
             setValuesNonDeclaredVariables(present_scope);
             present_scope = present_scope->parent;
-            if (isWhile == 0) {
+            // if (isWhile == 0) {
                 childIndex += 1;
                 
-            }
+            // }
             present_scope->current_child_scope = childIndex;
             // printf("child index at end is %d", childIndex);
             
@@ -488,7 +497,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
         {
             //printf("equality block came\n");
             struct ast_boolean_node * result = (struct ast_boolean_node *) malloc (sizeof (struct ast_boolean_node));
-            result->node_type = 'N';
+            result->node_type = 'B';
             struct ast_node * dummy = traverse(ast_tree->left);
             result->value = add_value(dummy);
             dummy = traverse(ast_tree->right);
@@ -497,6 +506,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             } else {
                 result->value = 0;
             }
+            //printf("result value is %d",result->value);
             return (struct ast_node *) result;
             break;
         }
@@ -727,10 +737,28 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
         case 'I':
         {
             struct ast_node * if_node = (struct ast_node *) ast_tree;
-            struct ast_boolean_node * condition = (struct ast_boolean_node *) traverse(if_node->condition);
-            if (condition->value == 0) {
+            int condition_value = 0;
+            // struct ast_boolean_node * condition = (struct ast_boolean_node *) traverse(if_node->condition);
+            // if (condition->node_type == 's') {
+            //     struct ast_symbol_reference_node * result_sym_node = (struct ast_symbol_reference_node *) condition;
+            //     struct symbol_node * result = find_variable_scope(result_sym_node->symbol->name);
+
+            //     if (result->value == NULL) {
+            //         fprintf(stderr, "Uninitialized variable in %d\n", result_sym_node->line_no);
+            //         exit(0);
+            //     }
+            //     condition_value = (int) result->value;
+            //     // }
+            // } else {
+            //     condition_value = condition->value;
+            // }
+            condition_value = add_value(traverse(if_node->condition));
+            if (condition_value == 0) {
+                present_scope->current_child_scope++;
+                // printf("if test3 conditon value is %d\n",condition_value);
                 traverse(if_node->right);
             } else {
+                // printf("if test2 conditon value is %d\n",condition_value);
                 traverse(if_node->left);
             }
             //printf("if block came");
@@ -738,16 +766,25 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
         }
         case 'W':
         {
-            isWhile = 1;
-            struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
-            struct ast_boolean_node * condition = (struct ast_boolean_node *) traverse(while_node->condition);
-            while(condition->value != 0) {
-                traverse(while_node->while_branch);
-                condition = (struct ast_boolean_node *) traverse(while_node->condition);
+            // isWhile = 1;
+            struct ast_node * while_node = ast_tree;
+            // struct ast_boolean_node * condition = (struct ast_boolean_node *) traverse(while_node->condition);
+            int condition_value = add_value(traverse(while_node->condition));
+            int initial_track = 1;
+            while(condition_value != 0) {
+                if (initial_track == 0) {
+                    int childIndex = present_scope->current_child_scope;
+                    present_scope->current_child_scope = childIndex-1;
+                }
+                traverse(while_node->left);
+                condition_value = add_value(traverse(while_node->condition));
+                //printf("condition value is %d\n", condition_value);
+                // condition = (struct ast_boolean_node *) traverse(while_node->condition);
+                initial_track = 0;
             }
-            isWhile = 0;
-            int childIndex = present_scope->current_child_scope;
-            present_scope->current_child_scope = childIndex+1;
+            // isWhile = 0;
+            // int childIndex = present_scope->current_child_scope;
+            // present_scope->current_child_scope = childIndex+1;
             //printf("while block came");
             break;
         }
@@ -760,6 +797,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             // result->node_type = 'N';
             // present_scope = create_new_scope(present_scope);
             int childIndex = present_scope->current_child_scope;
+            //printf("child index is %d\n", childIndex);
             // printf("child scopes index %d\n", childIndex);
             present_scope = present_scope->child_scopes[childIndex];
             present_scope->current_child_scope = 0;
@@ -769,6 +807,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             int range1 = for_node->left_value;
             int range2 = for_node->right_value;
             char * variable_name = get_symbol_name(symbol_node);
+            //printf("variable name is %s \n", variable_name);
             struct symbol_node * sym_node = find_variable_scope(variable_name);
 
             int * number_dummy = (int*)malloc(sizeof(int));
@@ -787,7 +826,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             result->value = value;
 
             present_scope = present_scope->parent;
-            present_scope->current_child_scope = childIndex;
+            present_scope->current_child_scope = childIndex+1;
             return (struct ast_node *) result;
             break;
         }

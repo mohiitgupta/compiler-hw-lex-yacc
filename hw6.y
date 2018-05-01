@@ -3,6 +3,7 @@
     #include "hash.h"
     #include <stdlib.h>
     #include "util.h"
+    #include "live_analysis_util.h"
     // #include "type_util.h"
     //#include <stdbool.h>
     int yylex(void);
@@ -20,6 +21,7 @@
     struct ast_node * mk_ast_for_sum_node (struct ast_node * symbol, int left_value, int right_value, struct ast_node * expression);
     struct ast_node * mk_ast_boolean_node (int value);
     struct ast_node * typecheck(struct ast_node * ast_tree);
+    // int getOperatorResultNodeType(int node_type);
 
     int typeError = 0;
 
@@ -44,6 +46,7 @@
 %token LESS_EQUALS
 %token GREAT_EQUALS
 %token NOT_EQUALS
+%token INPUT
 
 
 %union 
@@ -63,7 +66,7 @@
 %type <ast> statements statement expr listexpr term expr2 expr3 expr4 expr5 expr6 idlist idexpr eq_op plus_op
 %type <ast> minus_op multiply_op equals_op less_than_op and_op or_op
 %type <ast> print_op println_op if_op while_op less_equals_op great_equals_op great_than_op not_equals_op
-%type <ast> bracket_op sum_op
+%type <ast> bracket_op sum_op inputlist
 
 %%
 
@@ -80,6 +83,7 @@ statement:
          /*printf("line number for equals is %d\n", $$->line_no);*/}
         | print_op '(' listexpr ')' ';'        {/*printf("");*/$$ = mk_ast_node('p', $3, NULL);$$->line_no=$1->line_no; }
         | println_op '(' listexpr ')' ';'      {$$ = mk_ast_node('P', $3, NULL);$$->line_no=$1->line_no; }
+        | INPUT '(' inputlist ')' ';'          {$$ = mk_ast_node('Q', $3, NULL); }
         | '{' statements '}'                {/*printf("");*/$$ = mk_ast_node('C', $2, NULL);}
         | if_op expr statement                {/*printf("");*/$$ = mk_ast_if_node($2, $3, NULL);
         $$->line_no=$1->line_no;
@@ -105,6 +109,11 @@ if_op:
         IF             {$$ = mk_ast_node(0, NULL, NULL);}
 while_op:
         WHILE             {$$ = mk_ast_node(0, NULL, NULL);}
+
+inputlist:
+        inputlist ',' idexpr    {$$ = mk_ast_node('q', $1, $3);}
+        | idexpr        {$$ = $1;}
+        ;
 
 idlist:
         idlist ',' idexpr           {$$ = mk_ast_node('l', $1, $3);}
@@ -224,15 +233,18 @@ void print_tree(struct ast_node * node) {
     // block_level = 1;
     present_scope = (struct scope_node *)malloc(sizeof(struct scope_node));
     present_scope->parent = NULL;
-    present_scope->scope_level = 1;
+    // present_scope->scope_level = 1;
+    present_scope->len_child_scopes = 0;
     present_scope->len_symbol_table = 0;
+    // printf("length child scopes present scope is %d\n", present_scope->len_child_scopes);
     typecheck(node);
     if (typeError == 0) {
         present_scope->current_child_scope = 0;
         // printf("traverse begin\n");
-        traverse(node);
+        // traverse(node);
+        find_def_use(node);
     }
-    //
+    
 
     // for (int i=0; i < length; i++) {
     //     printf("%s ", symbols[i]->name);
@@ -260,14 +272,7 @@ void actIfViolation(struct ast_node * ast_tree, struct ast_node * result, int ty
     }
 }
 
-int getOperatorResultNodeType(int node_type) {
-    if (node_type == '+' || node_type == '-' || node_type == '*')
-        return 'N';
-    else if (node_type == '<' || node_type == 'E' || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
-        return 'B';
-    printf("undefined node type\n");
-    return 0;
-}
+
 
 char * getOperandType(int node_type) {
     if (node_type == '+' || node_type == '-' || node_type == '*' || node_type == '<' || node_type == 'E'
@@ -300,6 +305,37 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
     // printf("print node type %c line no %d\n", ast_tree->node_type, ast_tree->line_no);
     switch (ast_tree->node_type)
     {
+        case 'Q':
+        {
+            struct ast_node * left = ast_tree->left;
+            if (left->node_type != 's') {
+                typecheck(ast_tree->left);
+            } else {
+                int typeViolation = typeViolationCheck(present_scope, left, "", 's');
+                if (typeViolation == -1) {
+                    printErrorMessage(ast_tree->line_no);
+                    // printf("Type violation error in line %d\n", ast_tree->line_no);
+                }
+            }
+            break;
+        }
+        case 'q':
+        {
+            // printf("inside input list\n");
+            struct ast_node * left = ast_tree->left;
+            if (left->node_type != 's') {
+                typecheck(ast_tree->left);
+            } else {
+                int typeViolation = typeViolationCheck(present_scope, ast_tree, "", 's');
+                if (typeViolation == -1) {
+                    printErrorMessage(ast_tree->line_no);
+                    // printf("Type violation error in line %d\n", ast_tree->line_no);
+                }
+            }
+            // printf("%p", ast_tree->right);
+            typecheck(ast_tree->right);
+            break;
+        }
         case 'l':
         {
             // printf("inside l block\n");
@@ -325,6 +361,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                 dummy2 = right;
             }
             char * value2 = get_symbol_name(dummy2);
+            // printf("%s\n", value2);
             //printf("value 2 is %s\n", value2);
             result->value = malloc(strlen(value1)+strlen(value2)+1);
             strcpy(result->value, value1);
@@ -421,8 +458,9 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             char * variable = get_symbol_name(symbol_node);
             add_variable_to_present_scope(present_scope, variable, "number");
 
-
+            printf("ranges are %d %d\n", range1, range2);
             if (range1 > range2) {
+
                 printErrorMessage(for_node->line_no);
                 result->node_type = 'U';
                 // printf("Type violation error in line %d\n", for_node->line_no);
@@ -617,7 +655,8 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         case 'W':
         {
             // printf("line no of while %d\n", ast_tree->line_no);
-            struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
+            // struct ast_while_node * while_node = (struct ast_while_node *) ast_tree;
+            struct ast_node * while_node = ast_tree;
             struct ast_node * condition = typecheck(while_node->condition);
             int typeViolation = typeViolationCheck(present_scope, condition, "boolean", 'B');
             if (typeViolation == 1) {
@@ -630,7 +669,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             //     traverse(while_node->while_branch);
             //     condition = (struct ast_number_node *) traverse(while_node->condition);
             // }
-            typecheck(while_node->while_branch);
+            typecheck(while_node->left);
             //printf("while block came");
             break;
         }

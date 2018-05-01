@@ -1,0 +1,67 @@
+int a;
+bool b;
+a = 0;
+b = true;
+while (a < 10) {
+//Println(b);
+    if (b) {
+        Println("Test");
+        b = false;
+        int a;
+        a = 5;
+        Println("Test1 ", a);
+    } else {
+        b = true;
+        Println("test2 ", a);
+        a = a + 1;
+    }
+    Println("a is ", a);
+    a=a+1;
+//Println(b);
+}
+
+
+int i;
+i = 0;
+
+while (i < 5) {
+    int j, k;
+    j = 1;
+    k = 0;
+    Println("first test ", i);
+    while (j <= 5) {
+    Println(j);
+    Println(i);
+        //k = k + i + j;
+        j = j + 1;
+    }
+    //Println(k, for j in [1, 5] SUM (i + j));
+    Println("i is ", i);
+    i = i + 1;
+    Println("second i is ", i);
+}
+
+
+int k;
+k=0;
+int j;
+j=0;
+int loop;
+loop=0;
+while (j<10 && loop < 9)
+{
+    loop=loop+1;
+    int k;
+    k=5;
+    Println("while first j value ", j);
+    {
+        Println("inside if ",k);
+        Println("inside if ",j);
+        k=k+1;
+
+    }
+    j=j+1;
+    Println("while j value ",j);
+}
+Println(k);
+Println(j);

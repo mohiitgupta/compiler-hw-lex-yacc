@@ -31,6 +31,10 @@
     return PRINTLN;
     }
 
+Input {
+    return INPUT;
+}
+
 if  {
         return IF;  
     }

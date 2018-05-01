@@ -37,10 +37,26 @@ struct ast_node
 {
   int node_type;
   int line_no;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
   int line_no_2;
+
+
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
+  
+
   struct ast_node * condition;
   struct ast_node * left;
   struct ast_node * right;
+
 };
 
 struct ast_symbol_reference_node // for symbol references
@@ -59,18 +75,45 @@ struct ast_symbol_reference_node // for symbol references
 //   int line_no;
 // };
 
-struct ast_while_node // for "while" statements
-{
-  int node_type;
-  int line_no;
-  struct ast_node * condition;
-  struct ast_node * while_branch;
-};
+// struct ast_while_node // for "while" statements
+// {
+//   int node_type;
+//   int line_no;
+//   int def_length;
+//   int use_length;
+//   int live_in_length;
+//   int live_out_length;
+//   int line_no_2;
+
+
+//   char * def[100];
+  
+//   char * use[100];
+  
+//   char * live_in[100];
+  
+//   char * live_out[100];
+//   struct ast_node * condition;
+//   struct ast_node * while_branch;
+// };
 
 struct ast_assignment_node // for assignment expressions
 {
   int node_type;
   int line_no;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
+  
+
   struct ast_node * symbol;
   struct ast_node * value;
 };
@@ -79,11 +122,39 @@ struct ast_number_node // for constant floating-point numbers
   int node_type;
   int line_no;
   int value;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
+  int line_no_2;
+
+
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
 };
 struct ast_string_node // for constant floating-point numbers
 {
   int node_type;
   int line_no;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
+  int line_no_2;
+
+
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
   char * value;
 };
 struct ast_boolean_node // for constant floating-point numbers
@@ -91,6 +162,20 @@ struct ast_boolean_node // for constant floating-point numbers
   int node_type;
    int line_no;
   int value;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
+  int line_no_2;
+
+
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
 };
 
 struct ast_for_sum_node // for "if/else" statements
@@ -98,6 +183,23 @@ struct ast_for_sum_node // for "if/else" statements
   int node_type;
   int line_no;
   int line_no_2;
+
+  int value;
+  int def_length;
+  int use_length;
+  int live_in_length;
+  int live_out_length;
+
+
+  char * def[100];
+  
+  char * use[100];
+  
+  char * live_in[100];
+  
+  char * live_out[100];
+
+
   struct ast_node * symbol;
   int left_value;
   int right_value;
@@ -125,6 +227,9 @@ static struct ast_node * mk_ast_node (int node_type, struct ast_node * left, str
   ast_node->left = left;
   ast_node->right = right;
   ast_node->line_no = yylineno;
+  ast_node->def_length = 0;
+  ast_node->use_length = 0;
+
   //printf("block level is %d", line_no);
   return ast_node;
 }
@@ -155,13 +260,16 @@ static struct ast_node * mk_ast_if_node (struct ast_node * condition, struct ast
 
 static struct ast_node * mk_ast_while_node (struct ast_node * condition, struct ast_node * while_branch)
 {
-  struct ast_while_node * ast_node = (struct ast_while_node *) malloc (sizeof (struct ast_while_node));
+  // struct ast_while_node * ast_node = (struct ast_while_node *) malloc (sizeof (struct ast_while_node));
+  struct ast_node * ast_node = malloc (sizeof (struct ast_node));
 
   ast_node->node_type = 'W';
   ast_node->condition = condition;
-  ast_node->while_branch = while_branch;
+  // ast_node->while_branch = while_branch;
+  ast_node->left = while_branch;
+  ast_node->right = NULL;
   ast_node->line_no = yylineno;
-  return (struct ast_node *) ast_node;
+  return ast_node;
 }
 
 static struct ast_node * mk_ast_assignment_node (struct ast_node * symbol, struct ast_node * value)

@@ -57,10 +57,11 @@
      LESS_EQUALS = 273,
      GREAT_EQUALS = 274,
      NOT_EQUALS = 275,
-     INTEGER = 276,
-     ID = 277,
-     STRING = 278,
-     BOOLEAN = 279
+     INPUT = 276,
+     INTEGER = 277,
+     ID = 278,
+     STRING = 279,
+     BOOLEAN = 280
    };
 #endif
 /* Tokens.  */
@@ -82,17 +83,18 @@
 #define LESS_EQUALS 273
 #define GREAT_EQUALS 274
 #define NOT_EQUALS 275
-#define INTEGER 276
-#define ID 277
-#define STRING 278
-#define BOOLEAN 279
+#define INPUT 276
+#define INTEGER 277
+#define ID 278
+#define STRING 279
+#define BOOLEAN 280
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 50 "hw6.y"
+#line 53 "hw6.y"
 {
         int number;
         int boolean;
@@ -101,7 +103,7 @@ typedef union YYSTYPE
         char * string;
 }
 /* Line 1529 of yacc.c.  */
-#line 105 "y.tab.h"
+#line 107 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -1,0 +1,4 @@
+test 8 - printing 0 instead of false and 1 instead of true in some cases
+test10, test11, test12,test14, test15 - while scoping issue
+test33 - while scoping issue
+

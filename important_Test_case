@@ -2,3 +2,97 @@ int x, y;
 x = for i in [1,5] SUM(for i in [1,5] SUM(i));
 y = for i in [1,5] SUM(i * for i in [1,5] SUM(i));
 Println(x, y);
+
+int x;
+x = for i in [1,5] SUM (for j in [1,5] SUM(i+j));
+Println(x);
+
+
+int i, x;
+i = 1000
++ 
+"test";
+y
+=
+"test";
+x = for i in [1,5] SUM (for j in [1,5] SUM(i+j));
+Println(i, x);
+
+int a;
+a = 42;
+while(a<160) 
+
+  //if(true) 
+  {
+    int i, x;
+    //int x;
+    //i = 1000;
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i));
+    Println(/*i,*/ x);
+    //Println(a); // use `a` here
+    a = a+55; 
+    
+    //Println(a);
+  }
+
+  Println("Test");
+  //int a;
+  if (true) {
+        int a;
+        a = 67;
+    }
+  Println(a);
+  //string a;
+
+Println(a);
+
+int a;
+a=5;
+while (a <10)
+{
+    {
+    {
+    //a=6;
+    a = a +1;
+    Println(a);
+    }
+    Println(a);
+    }
+    //int a;
+    Println(a);
+
+}
+Println(a);
+
+int a;
+a=5;
+{
+    a=4;
+    Println(a);
+}
+Println(a);
+{
+    a=3;
+    Println(a);
+}
+Println(a);
+
+
+int a;
+a=5;
+{
+    int a;
+    a=7;
+    Println(a);
+    {
+        a=6;
+        Println(a);
+    }
+    Println(a,
+    
+    null1
+    );
+}
+Println(a);
+
+
