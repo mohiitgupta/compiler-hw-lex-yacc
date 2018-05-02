@@ -2068,8 +2068,8 @@ void print_tree(struct ast_node * node) {
     if (typeError == 0) {
         present_scope->current_child_scope = 0;
         // printf("traverse begin\n");
-        // traverse(node);
-        find_def_use(node);
+        traverse(node);
+        // find_def_use(node);
     }
     
 
@@ -2111,7 +2111,8 @@ char * getOperandType(int node_type) {
 
 void checkSymbolViolation(struct ast_node * dummy, struct scope_node *scope) {
     if (dummy->node_type == 's') {
-        struct ast_symbol_reference_node * node = (struct ast_symbol_reference_node *) dummy;
+        // struct ast_symbol_reference_node * node = (struct ast_symbol_reference_node *) dummy;
+        struct ast_node * node = dummy;
         struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, node->symbol->name);
         if (sym_node == NULL) {
             printErrorMessage(node->line_no);
@@ -2135,6 +2136,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         case 'Q':
         {
             struct ast_node * left = ast_tree->left;
+            struct symbol_node * sym_node;
             if (left->node_type != 's') {
                 typecheck(ast_tree->left);
             } else {
@@ -2143,6 +2145,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                     printErrorMessage(ast_tree->line_no);
                     // printf("Type violation error in line %d\n", ast_tree->line_no);
                 }
+                sym_node = lookup_variable_present_scope(present_scope, left->symbol->name);
             }
             break;
         }
@@ -2150,6 +2153,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
         {
             // printf("inside input list\n");
             struct ast_node * left = ast_tree->left;
+            struct symbol_node * sym_node;
             if (left->node_type != 's') {
                 typecheck(ast_tree->left);
             } else {
@@ -2158,9 +2162,11 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
                     printErrorMessage(ast_tree->line_no);
                     // printf("Type violation error in line %d\n", ast_tree->line_no);
                 }
+                sym_node = lookup_variable_present_scope(present_scope, left->symbol->name);
             }
             // printf("%p", ast_tree->right);
             typecheck(ast_tree->right);
+            sym_node = lookup_variable_present_scope(present_scope, ast_tree->right->symbol->name);
             break;
         }
         case 'l':
@@ -2285,7 +2291,7 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             char * variable = get_symbol_name(symbol_node);
             add_variable_to_present_scope(present_scope, variable, "number");
 
-            printf("ranges are %d %d\n", range1, range2);
+            // printf("ranges are %d %d\n", range1, range2);
             if (range1 > range2) {
 
                 printErrorMessage(for_node->line_no);
@@ -2371,7 +2377,8 @@ struct ast_node * typecheck(struct ast_node * ast_tree) {
             // printf("inside assignment\n");
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
             //struct symbol_node * sym_node = find(node->symbol->name);
-            struct ast_symbol_reference_node * sym_ref_node = (struct ast_symbol_reference_node *) typecheck(node->symbol);
+            // struct ast_symbol_reference_node * sym_ref_node = (struct ast_symbol_reference_node *) typecheck(node->symbol);
+            struct ast_node * sym_ref_node = typecheck(node->symbol);
             struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, sym_ref_node->symbol->name);
             // if (value_node->node_type == 's') {
             //     struct ast_symbol_reference_node * dum = (struct ast_symbol_reference_node *) value_node;

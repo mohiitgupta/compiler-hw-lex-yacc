@@ -42,6 +42,7 @@ struct ast_node
   int live_in_length;
   int live_out_length;
   int line_no_2;
+  int len_non_declared_symbols;
 
 
   char * def[100];
@@ -56,15 +57,19 @@ struct ast_node
   struct ast_node * condition;
   struct ast_node * left;
   struct ast_node * right;
-
-};
-
-struct ast_symbol_reference_node // for symbol references
-{
-  int node_type;
-  int line_no;
   struct symbol_node * symbol;
+  struct ast_node * parent_node;
+  struct symbol_node * non_declared_symbols[10000];
+  
+
 };
+
+// struct ast_symbol_reference_node // for symbol references
+// {
+//   int node_type;
+//   int line_no;
+//   struct symbol_node * symbol;
+// };
 
 // struct ast_if_node // for "if/else" statements
 // {
@@ -116,6 +121,7 @@ struct ast_assignment_node // for assignment expressions
 
   struct ast_node * symbol;
   struct ast_node * value;
+  struct ast_node * parent_node;
 };
 struct ast_number_node // for constant floating-point numbers
 {
@@ -229,6 +235,8 @@ static struct ast_node * mk_ast_node (int node_type, struct ast_node * left, str
   ast_node->line_no = yylineno;
   ast_node->def_length = 0;
   ast_node->use_length = 0;
+  ast_node->parent_node = NULL;
+  ast_node->len_non_declared_symbols = 0;
 
   //printf("block level is %d", line_no);
   return ast_node;
@@ -236,7 +244,9 @@ static struct ast_node * mk_ast_node (int node_type, struct ast_node * left, str
 
 static struct ast_node * mk_ast_symbol_reference_node (struct symbol_node * symbol)
 {
-  struct ast_symbol_reference_node * ast_node = (struct ast_symbol_reference_node *) malloc (sizeof (struct ast_symbol_reference_node));
+  // struct ast_symbol_reference_node * ast_node = (struct ast_symbol_reference_node *) malloc (sizeof (struct ast_symbol_reference_node));
+  struct ast_node * ast_node = (struct ast_node *) malloc (sizeof (struct ast_node));
+
   ast_node->node_type = 's';
   ast_node->symbol = symbol;
   ast_node->line_no = yylineno;
@@ -247,7 +257,7 @@ static struct ast_node * mk_ast_symbol_reference_node (struct symbol_node * symb
 static struct ast_node * mk_ast_if_node (struct ast_node * condition, struct ast_node * if_branch, struct ast_node * else_branch)
 {
   // struct ast_if_node * ast_node = (struct ast_if_node *) malloc (sizeof (struct ast_if_node));
-  struct ast_node * ast_node = malloc (sizeof (struct ast_node));
+  struct ast_node * ast_node = (struct ast_node *) malloc (sizeof (struct ast_node));
   ast_node->node_type = 'I';
   ast_node->condition = condition;
   ast_node->left = if_branch;
@@ -255,13 +265,28 @@ static struct ast_node * mk_ast_if_node (struct ast_node * condition, struct ast
   // printf("else pointer for if %p\n", NULL);
   // ast_node->line_no = line_no;
   ast_node->line_no = yylineno;
+
+  if (if_branch->node_type == 'A') {
+    struct ast_assignment_node * left_node = (struct ast_assignment_node *)if_branch;
+    left_node->parent_node = ast_node;
+  } else {
+    if_branch->parent_node = ast_node;
+  }
+  if (else_branch != NULL) {
+    if (else_branch->node_type == 'A') {
+      struct ast_assignment_node * left_node = (struct ast_assignment_node *)else_branch;
+      left_node->parent_node = ast_node;
+    } else {
+      else_branch->parent_node = ast_node;
+    }
+  }
   return ast_node;
 }
 
 static struct ast_node * mk_ast_while_node (struct ast_node * condition, struct ast_node * while_branch)
 {
   // struct ast_while_node * ast_node = (struct ast_while_node *) malloc (sizeof (struct ast_while_node));
-  struct ast_node * ast_node = malloc (sizeof (struct ast_node));
+  struct ast_node * ast_node = (struct ast_node *) malloc (sizeof (struct ast_node));
 
   ast_node->node_type = 'W';
   ast_node->condition = condition;
@@ -269,6 +294,13 @@ static struct ast_node * mk_ast_while_node (struct ast_node * condition, struct 
   ast_node->left = while_branch;
   ast_node->right = NULL;
   ast_node->line_no = yylineno;
+
+  if (while_branch->node_type == 'A') {
+    struct ast_assignment_node * left_node = (struct ast_assignment_node *)while_branch;
+    left_node->parent_node = ast_node;
+  } else {
+    while_branch->parent_node = ast_node;
+  }
   return ast_node;
 }
 
@@ -281,6 +313,7 @@ static struct ast_node * mk_ast_assignment_node (struct ast_node * symbol, struc
   ast_node->symbol = symbol;
   ast_node->value = value;
   ast_node->line_no = yylineno;
+  ast_node->parent_node = NULL;
   return (struct ast_node *) ast_node;
 }
 static struct ast_node * mk_ast_number_node (int value)

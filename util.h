@@ -107,7 +107,8 @@ struct symbol_node * lookup_value_variable_present_scope(struct scope_node *scop
 int typeViolationCheck(struct scope_node *scope, struct ast_node * dummy, char * valid_type, int correct_type) {
     int typeViolationCode = 1;
     if (dummy->node_type == 's') {
-        struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy;
+        // struct ast_symbol_reference_node * symbol_node = (struct ast_symbol_reference_node *) dummy;
+        struct ast_node * symbol_node = dummy;
         struct symbol_node * left_node = lookup_variable_present_scope(scope, symbol_node->symbol->name);
         if (left_node != NULL) {
             if (strcmp(left_node->type, valid_type) == 0) {
@@ -130,17 +131,23 @@ int typeViolationCheck(struct scope_node *scope, struct ast_node * dummy, char *
 
 
 void setVariableParentScope(struct scope_node *scope, struct symbol_node * symbol) {
+    // printf("inside setVariableParentScope\n");
     for (int i=0; i < scope->len_symbol_table; i++) {
+        // printf("variable in scope is %s", scope->symbols[i]->name);
         if (strcmp(scope->symbols[i]->name, symbol->name) == 0) {
+            // printf("check satisfied\n");
+            // if (symbol->value == NULL) {
+            //     printf("not good null value\n");
+            // }
             // if (strcmp(scope->symbols[i]->type, type) == 0) {
             //     return scope->symbols[i];
             // }
             // return 0;
             struct symbol_node * variable = scope->symbols[i];
             variable->value = symbol->value;
-            if (variable->declare == NULL) {
-                setVariableParentScope(scope->parent, variable);
-            }
+            // if (variable->declare == NULL) {
+            //     setVariableParentScope(scope->parent, variable);
+            // }
             // return scope->symbols[i];
         }
     }
@@ -149,15 +156,15 @@ void setValuesNonDeclaredVariables(struct scope_node *scope) {
     for (int i=0; i < scope->len_symbol_table; i++) {
         // if (strcmp(scope->symbols[i]->name, symbol_name) == 0) {
             struct symbol_node * variable = scope->symbols[i];
-            for (int j=0; j < scope->len_child_scopes; j++) {
-                struct scope_node * child_scope = scope->child_scopes[j];
-                for (int k=0; k < child_scope->len_symbol_table; k++) {
-                    struct symbol_node * child_variable = child_scope->symbols[k];
-                    if ((strcmp(child_variable->name, variable->name) == 0) && (child_variable->declare == NULL)) {
-                        child_variable->value = variable->value;
-                    }
-                }
-            }
+            // for (int j=0; j < scope->len_child_scopes; j++) {
+            //     struct scope_node * child_scope = scope->child_scopes[j];
+            //     for (int k=0; k < child_scope->len_symbol_table; k++) {
+            //         struct symbol_node * child_variable = child_scope->symbols[k];
+            //         if ((strcmp(child_variable->name, variable->name) == 0) && (child_variable->declare == NULL)) {
+            //             child_variable->value = variable->value;
+            //         }
+            //     }
+            // }
             if (variable->declare != NULL) {
                 //do nothing
             }
@@ -178,9 +185,30 @@ void setValuesNonDeclaredVariables(struct scope_node *scope) {
     }
 }
 
+void setNonDeclaredSymbolsIfNode(struct scope_node *scope, struct ast_node * node) {
+    for (int i=0; i < scope->len_symbol_table; i++) {
+            struct symbol_node * variable = scope->symbols[i];
+           
+            if (variable->declare != NULL) {
+                //do nothing
+            }
+            else if (variable->value != NULL) {
+                
+                node->non_declared_symbols[node->len_non_declared_symbols++] = variable;
+            }
+            // if (strcmp(scope->symbols[i]->type, type) == 0) {
+            //     return scope->symbols[i];
+            // }
+            // return 0;
+            // return scope->symbols[i];
+        // }
+    }
+}
+
 int add_value(struct ast_node * value_node) {
     if (value_node->node_type == 's') {
-        struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
+        // struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
+        struct ast_node * left = value_node;
         struct symbol_node * result = lookup_value_variable_present_scope(present_scope, left->symbol->name);
         /*if (strcmp(result->initialize, "initialized") == 0) {
             return result->value;
@@ -188,8 +216,9 @@ int add_value(struct ast_node * value_node) {
             printf("not initialized\n");
         }*/
         if (result->value == NULL) {
-            printf("Uninitialized variable in %d\n", left->line_no);
-            exit(0);
+            printf("%s in %d may be uninitialized\n", left->symbol->name, left->line_no);
+            return 0;
+            // exit(0);
         }
         int value = 0;
         if (strcmp(result->type, "number") == 0) {
@@ -220,7 +249,8 @@ char * get_symbol_name(struct ast_node * value_node) {
         //struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
         //struct symbol_node * result = left->symbol;
         //printf("inside symbole reference block in get value\n");
-        struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+        // struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+        struct ast_node * value_symbol_node = value_node;
         
         //struct symbol_node * result = find(value_symbol_node->symbol->name);
         // if (result->type == NULL) {
@@ -267,36 +297,42 @@ char * get_value(struct ast_node * value_node) {
         //struct ast_symbol_reference_node * left = (struct ast_symbol_reference_node *) value_node;
         //struct symbol_node * result = left->symbol;
         //printf("inside symbole reference block in get value\n");
-        struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
-        
+        // struct ast_symbol_reference_node * value_symbol_node = (struct ast_symbol_reference_node *) value_node;
+        struct ast_node * value_symbol_node = value_node;
+        // printf("inside1\n");
         struct symbol_node * result = lookup_value_variable_present_scope(present_scope, value_symbol_node->symbol->name);
+        // printf("inside2\n");
         if (result->value == NULL) {
-            printf("Uninitialized variable in %d\n", value_symbol_node->line_no);
-            exit(0);
+            // printf("inside3\n");
+            printf("%s in %d may be uninitialized\n", value_symbol_node->symbol->name, value_symbol_node->line_no);
+            snum = "";
+            // exit(0);
+        } else {
+                if (strcmp(result->type, "number") == 0) {
+                snum = (char *)malloc(100);
+                int number_dummy = *(int *)result->value;
+                //printf("value of %s is %d\n", result->name, number_dummy);
+                snprintf(snum, 100, "%d", number_dummy);
+                //itoa(number_dummy,snum,10);
+            } else if (strcmp(result->type, "string") == 0){
+                //snum = (char *) malloc(strlen(result->value)+1);
+                //strcpy(snum, result->value);
+                snum = (char *)result->value;
+            } else if (strcmp(result->type, "boolean") == 0) {
+                snum = (char *)malloc(100);
+                int number_dummy = *(int *)result->value;
+                //printf("value of %s is %d\n", result->name, number_dummy);
+                if (number_dummy == 0) {
+                    snum = "false";
+                } else if (number_dummy == 1) {
+                    snum = "true";
+                }
+                // snprintf(snum, 100, "%d", number_dummy);
+                //itoa(number_dummy,snum,10);
+            }
         }
         //printf("name of symbol is %s", result->name);
-        if (strcmp(result->type, "number") == 0) {
-            snum = (char *)malloc(100);
-            int number_dummy = *(int *)result->value;
-            //printf("value of %s is %d\n", result->name, number_dummy);
-            snprintf(snum, 100, "%d", number_dummy);
-            //itoa(number_dummy,snum,10);
-        } else if (strcmp(result->type, "string") == 0){
-            //snum = (char *) malloc(strlen(result->value)+1);
-            //strcpy(snum, result->value);
-            snum = (char *)result->value;
-        } else if (strcmp(result->type, "boolean") == 0) {
-            snum = (char *)malloc(100);
-            int number_dummy = *(int *)result->value;
-            //printf("value of %s is %d\n", result->name, number_dummy);
-            if (number_dummy == 0) {
-                snum = "false";
-            } else if (number_dummy == 1) {
-                snum = "true";
-            }
-            // snprintf(snum, 100, "%d", number_dummy);
-            //itoa(number_dummy,snum,10);
-        }
+        
         //return snum;
     } else if (value_node->node_type == 'N') {
         struct ast_number_node * left = (struct ast_number_node *) value_node;
@@ -333,6 +369,29 @@ char * get_value(struct ast_node * value_node) {
     return snum;
 }
 
+void put_dummy_value(struct symbol_node * sym_node) {
+    // printf("inside put dummy value with sym type %s\n", sym_node->type);
+    if (strcmp(sym_node->type, "number")==0) {
+        int * number_dummy = malloc(sizeof(int));
+        *number_dummy = 10;
+
+        sym_node->value = (void *) number_dummy;
+        // sym_node->type = "number";
+    } else if (strcmp(sym_node->type, "string") == 0){
+        // sym_node->type = "string";
+        char * dummy_value = "test";
+        // sym_node->value = (char *) malloc(strlen(result->value)+1);
+        // strcpy(sym_node->value, result->value);
+        sym_node->value = (char *) dummy_value;
+        //printf("value of string is %s, %s", result->value, sym_node->value);
+    } else if (strcmp(sym_node->type, "boolean")==0) {
+        int * number_dummy = malloc(sizeof(int));
+        *number_dummy = 10;
+
+        sym_node->value = (void *) number_dummy;
+        // sym_node->type = "number";
+    } 
+}
 
 struct ast_node * traverse(struct ast_node * ast_tree) {
     
@@ -354,6 +413,111 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
     }
     switch (ast_tree->node_type)
     {
+        case 'Q':
+        {
+            struct ast_node * left = ast_tree->left;
+            struct ast_node * dummy;
+            if (left->node_type != 's') {
+                dummy = traverse(ast_tree->left);
+            } else {
+                dummy = left;
+                // struct symbol_node * sym_node = find_variable_scope(left->symbol->name);
+                // if (ast_tree->parent_node != NULL) {
+                //     int parent_node_type = ast_tree->parent_node->node_type;
+                //     if (parent_node_type == 'I') {
+                //         ast_tree->non_declared_symbols[ast_tree->len_non_declared_symbols++] = sym_node;
+                //     }
+                //     // if (parent_node_type == 'I' || parent_node_type == 'W' )
+                //         // printf("parent node type is %c\n", ast_tree->parent_node->node_type);
+                // } else {
+                //     put_dummy_value(sym_node);
+                // }
+                
+            }
+            char * value1 = get_symbol_name(dummy);
+            char * variable = strtok(value1, " ");
+            while (variable != NULL) {
+                struct symbol_node * sym_node = find_variable_scope(variable);
+                if (ast_tree->parent_node != NULL) {
+                    int parent_node_type = ast_tree->parent_node->node_type;
+                    if (parent_node_type == 'I') {
+                        ast_tree->non_declared_symbols[ast_tree->len_non_declared_symbols++] = sym_node;
+                    }
+                    // if (parent_node_type == 'I' || parent_node_type == 'W' )
+                        // printf("parent node type is %c\n", ast_tree->parent_node->node_type);
+                } else {
+                    put_dummy_value(sym_node);
+                }
+
+                variable = strtok(NULL, " ");
+            }
+            // printf("non declared input variables are\n");
+            // for (int i=0; i < ast_tree->len_non_declared_symbols; i++) {
+            //     printf("%s and %s\n", ast_tree->non_declared_symbols[i]->name, ast_tree->non_declared_symbols[i]->type);
+            // }
+            break;
+        }
+        case 'q':
+        {
+            // printf("inside input list\n");
+            // struct ast_node * left = ast_tree->left;
+            // struct ast_node * right = ast_tree->right;
+            // if (left->node_type != 's') {
+            //     traverse(ast_tree->left);
+            // } else {
+            //     // printf("inside else of q\n");
+
+            //     struct symbol_node * sym_node = find_variable_scope(left->symbol->name);
+            //     if (ast_tree->parent_node != NULL) {
+            //         int parent_node_type = ast_tree->parent_node->node_type;
+            //         // if (parent_node_type == 'I' || parent_node_type == 'W' )
+            //             // printf("parent node type is %c\n", ast_tree->parent_node->node_type);
+            //     } else {
+            //         put_dummy_value(sym_node);
+            //     }
+            // }
+            // // printf("%p", ast_tree->right);
+            // struct symbol_node * right_sym_node = find_variable_scope(right->symbol->name);
+            //     if (ast_tree->parent_node != NULL) {
+            //         int parent_node_type = ast_tree->parent_node->node_type;
+            //         // if (parent_node_type == 'I' || parent_node_type == 'W' )
+            //             // printf("parent node type is %c\n", ast_tree->parent_node->node_type);
+            //     } else {
+            //         put_dummy_value(right_sym_node);
+            //     }
+
+            struct ast_string_node * result = (struct ast_string_node *) malloc (sizeof (struct ast_string_node));
+            result->node_type = 'n';
+            struct ast_node * left = ast_tree->left;
+            struct ast_node * dummy;
+            // printf("left node type %c\n", left->node_type);
+            if (left->node_type != 's') {
+                dummy = traverse(ast_tree->left);
+            } else {
+                dummy = left;
+            }
+            char * value1 = get_symbol_name(dummy);
+            //printf("value 1 is %s\n", value1);
+            // struct ast_node * dummy2 = typecheck(ast_tree->right);
+            struct ast_node * right = ast_tree->right;
+            // printf("right node type %c\n", right->node_type);
+            struct ast_node * dummy2;
+            if (right->node_type != 's') {
+                dummy2 = traverse(ast_tree->right);
+            } else {
+                dummy2 = right;
+            }
+            char * value2 = get_symbol_name(dummy2);
+            // printf("%s\n", value2);
+            //printf("value 2 is %s\n", value2);
+            result->value = malloc(strlen(value1)+strlen(value2)+1);
+            strcpy(result->value, value1);
+            strcat(result->value, " ");
+            strcat(result->value, value2);
+            // printf("value is %s\n", result->value);
+            return (struct ast_node *) result;
+            break;
+        }
         case 'C':
         {
             // printf("inside compound statement\n");
@@ -364,8 +528,18 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             present_scope->current_child_scope = 0;
             // printf("before traverse compound statement\n");
             traverse(ast_tree->left);
-
-            setValuesNonDeclaredVariables(present_scope);
+            if (ast_tree->parent_node != NULL) {
+                int parent_node_type = ast_tree->parent_node->node_type;
+                if (parent_node_type == 'I') {
+                    setNonDeclaredSymbolsIfNode(present_scope, ast_tree);
+                }
+                
+                // if (parent_node_type == 'I' || parent_node_type == 'W' )
+                // printf("parent node type is %c\n", ast_tree->parent_node->node_type);
+            } else {
+                setValuesNonDeclaredVariables(present_scope);
+            }
+            
             present_scope = present_scope->parent;
             // if (isWhile == 0) {
                 childIndex += 1;
@@ -374,7 +548,10 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             present_scope->current_child_scope = childIndex;
             // printf("child index at end is %d", childIndex);
             
-            
+            // printf("non declared input variables are\n");
+            // for (int i=0; i < ast_tree->len_non_declared_symbols; i++) {
+            //     printf("%s and %s\n", ast_tree->non_declared_symbols[i]->name, ast_tree->non_declared_symbols[i]->type);
+            // }
             // printf("outside compound statement\n");
             break;
 
@@ -532,10 +709,12 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             // struct ast_boolean_node * result = (struct ast_boolean_node *) malloc (sizeof (struct ast_boolean_node));
             // result->node_type = 'B';
             struct ast_node * dummy = traverse(ast_tree->left);
-            struct ast_symbol_reference_node * value_symbol_node;
+            // struct ast_symbol_reference_node * value_symbol_node;
+            struct ast_node * value_symbol_node;
             struct symbol_node * dum_ref;
             if (dummy->node_type == 's') {
-                value_symbol_node = (struct ast_symbol_reference_node *) dummy;
+                // value_symbol_node = (struct ast_symbol_reference_node *) dummy;
+                value_symbol_node = dummy;
                 dum_ref = lookup_value_variable_present_scope(present_scope, value_symbol_node->symbol->name);
             }
 
@@ -583,72 +762,117 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
         case 'A':
         {
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
-            struct ast_symbol_reference_node * ref_node = (struct ast_symbol_reference_node *) node->symbol;
+            // struct ast_symbol_reference_node * ref_node = (struct ast_symbol_reference_node *) node->symbol;
+            struct ast_node * ref_node = node->symbol;
             struct symbol_node * dummy = (struct symbol_node *) ref_node->symbol;
             struct symbol_node * sym_node = find_variable_scope(dummy->name);
+            dummy->type = sym_node->type;
+
+            // printf("type of sym node %s while assignment is %s\n", sym_node->name, sym_node->type);
+            // printf("type of dummy node %s while assignment is %s\n", dummy->name, dummy->type);
             struct ast_node * value_node = traverse(node->value);
-            if (value_node->node_type == 'N') 
-            {
-                struct ast_number_node * result = (struct ast_number_node *) value_node;
-                int * number_dummy = (int*)malloc(sizeof(int));
-                *number_dummy = result->value;
-                // printf("value of result is %d\n", result->value);
-
-                sym_node->value = (void *) number_dummy;
-                // sym_node->type = "number";
-                //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
-
-                //printf("");
-                //sym_node->initialize = "initialized";
-            } else if (value_node->node_type == 'B') 
-            {
-                struct ast_boolean_node * result = (struct ast_boolean_node *) value_node;
-                int * number_dummy = (int*)malloc(sizeof(int));
-                *number_dummy = result->value;
-
-                sym_node->value = (void *) number_dummy;
-                // sym_node->type = "boolean";
-                //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
-
-                //printf("");
-                //sym_node->initialize = "initialized";
-            }
-             else if (value_node->node_type == 'n')
-            {
-                struct ast_string_node * result = (struct ast_string_node *) value_node;
-                //char * string_dummy = result->value;
-                sym_node->value = (char *) malloc(strlen(result->value)+1);
-                strcpy(sym_node->value, result->value);
-                //printf("value of string is %s, %s, %lu", result->value, sym_node->value, strlen(result->value));
-                //sym_node->value = (void *) string_dummy;
-                // sym_node->type = "string";
-                //sym_node->initialize = "initialized";
-            } else if (value_node->node_type == 's')
-            {
-                struct ast_symbol_reference_node * result_sym_node = (struct ast_symbol_reference_node *) value_node;
-                struct symbol_node * result = find_variable_scope(result_sym_node->symbol->name);
-
-                if (result->value == NULL) {
-                    fprintf(stderr, "Uninitialized variable in %d\n", result_sym_node->line_no);
-                    exit(0);
+            // printf("inside assignment1\n");
+            if (node->parent_node != NULL) {
+                // printf("inside assignment2\n");
+                int parent_node_type = node->parent_node->node_type;
+                if (parent_node_type == 'I' || parent_node_type == 'W' ) {
+                    // sym_node->value = NULL;
+                    // printf("parent node type is %c and sym name is %s\n", parent_node_type, sym_node->name);
                 }
-                if (strcmp(result->type, "number") == 0) {
-                    int * number_dummy = malloc(sizeof(int));
-                    *number_dummy = *(int *)(result->value);
+                if (value_node->node_type == 's') {
+                    struct ast_node * result_sym_node = value_node;
+                    struct symbol_node * result = find_variable_scope(result_sym_node->symbol->name);
+
+                    if (result->value == NULL) {
+                        fprintf(stderr, "%s in %d may be uninitialized\n", result_sym_node->symbol->name, result_sym_node->line_no);
+                    }
+                }
+                
+
+            } else {
+                if (value_node->node_type == 'N') 
+                {
+                    struct ast_number_node * result = (struct ast_number_node *) value_node;
+                    int * number_dummy = (int*)malloc(sizeof(int));
+                    // *number_dummy = result->value;
+                    *number_dummy = 10;
+                    // printf("value of result is %d\n", result->value);
 
                     sym_node->value = (void *) number_dummy;
-                    sym_node->type = "number";
-                } else if (strcmp(result->type, "string") == 0){
-                    sym_node->type = "string";
-                    sym_node->value = (char *) malloc(strlen(result->value)+1);
-                    strcpy(sym_node->value, result->value);
-                    //printf("value of string is %s, %s", result->value, sym_node->value);
-                } else {
-                    printf("not initialized");
+                    // sym_node->type = "number";
+                    //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
+
+                    //printf("");
+                    //sym_node->initialize = "initialized";
+                } else if (value_node->node_type == 'B') 
+                {
+                    struct ast_boolean_node * result = (struct ast_boolean_node *) value_node;
+                    int * number_dummy = (int*)malloc(sizeof(int));
+                    // *number_dummy = result->value;
+                     *number_dummy = 10;
+
+                    sym_node->value = (void *) number_dummy;
+                    // sym_node->type = "boolean";
+                    //printf("value stored in assignment is %d\n", *(int *)sym_node->value);
+
+                    //printf("");
+                    //sym_node->initialize = "initialized";
                 }
-                //sym_node->value = result->value;
-                
+                 else if (value_node->node_type == 'n')
+                {
+                    struct ast_string_node * result = (struct ast_string_node *) value_node;
+                    //char * string_dummy = result->value;
+                    char * dummy_value = "test";
+                    // sym_node->value = (char *) malloc(strlen(result->value)+1);
+                    // strcpy(sym_node->value, result->value);
+                    sym_node->value = (char *) dummy_value;
+                    //printf("value of string is %s, %s, %lu", result->value, sym_node->value, strlen(result->value));
+                    //sym_node->value = (void *) string_dummy;
+                    // sym_node->type = "string";
+                    //sym_node->initialize = "initialized";
+                } else if (value_node->node_type == 's')
+                {
+                    // struct ast_symbol_reference_node * result_sym_node = (struct ast_symbol_reference_node *) value_node;
+                    struct ast_node * result_sym_node = value_node;
+                    struct symbol_node * result = find_variable_scope(result_sym_node->symbol->name);
+                    // printf("for value node %s\n",result->name);
+                    if (result->value == NULL) {
+                        fprintf(stderr, "%s in %d may be uninitialized\n", result_sym_node->symbol->name, result_sym_node->line_no);
+                        // printf("type of symbol node is %s\n", sym_node->type);
+                        put_dummy_value(sym_node);
+
+                        // exit(0);
+                    } else {
+
+
+                        if (strcmp(result->type, "number") == 0) {
+                            int * number_dummy = malloc(sizeof(int));
+                            *number_dummy = *(int *)(result->value);
+
+                            sym_node->value = (void *) number_dummy;
+                            sym_node->type = "number";
+                        } else if (strcmp(result->type, "string") == 0){
+                            sym_node->type = "string";
+                            sym_node->value = (char *) malloc(strlen(result->value)+1);
+                            strcpy(sym_node->value, result->value);
+                            //printf("value of string is %s, %s", result->value, sym_node->value);
+                        } else if (strcmp(result->type, "boolean") == 0){
+                            sym_node->type = "boolean";
+                            int * number_dummy = malloc(sizeof(int));
+                            *number_dummy = *(int *)(result->value);
+
+                            sym_node->value = (void *) number_dummy;
+                            //printf("value of string is %s, %s", result->value, sym_node->value);
+                        } else {
+                            printf("not initialized\n");
+                        }
+                    //sym_node->value = result->value;
+                    }
+                    
+                }
             }
+            
+
             return ast_tree;
             break;
         }
@@ -694,12 +918,12 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             }*/
             char * string_value = get_value(value_node);
             // printf("string value is %s", string_value);
-            if (strlen(string_value) != 0) {
-                fprintf(stderr, "%s \n", string_value); 
-            } else {
-                //fflush(stdin);
-                fprintf(stderr, "\n"); 
-            }
+            // if (strlen(string_value) != 0) {
+            //     fprintf(stderr, "%s \n", string_value); 
+            // } else {
+            //     //fflush(stdin);
+            //     fprintf(stderr, "\n"); 
+            // }
             break;
         }
             
@@ -707,9 +931,9 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
         {
             struct ast_node * value_node = traverse(ast_tree->left);
             char * string_value = get_value(value_node);
-            if (strlen(string_value) != 0) {
-                fprintf(stderr, "%s", string_value);
-            }
+            // if (strlen(string_value) != 0) {
+            //     fprintf(stderr, "%s", string_value);
+            // }
             
             //free(string_value);
             break;
@@ -753,14 +977,79 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             //     condition_value = condition->value;
             // }
             condition_value = add_value(traverse(if_node->condition));
-            if (condition_value == 0) {
-                present_scope->current_child_scope++;
+            // if (condition_value == 0) {
+                // present_scope->current_child_scope++;
                 // printf("if test3 conditon value is %d\n",condition_value);
-                traverse(if_node->right);
-            } else {
-                // printf("if test2 conditon value is %d\n",condition_value);
                 traverse(if_node->left);
+                traverse(if_node->right);
+                struct ast_node * left = if_node->left;
+                struct ast_node * right = if_node->right;
+            // printf("before start inside if\n");
+            if (left->node_type == 'C' || left->node_type == 'Q' || left->node_type == 'A') {
+                if (right != NULL && (right->node_type == 'C' || right->node_type == 'Q' || right->node_type == 'A')) {
+                    if (left->node_type != 'A') {
+                        for (int i=0; i < left->len_non_declared_symbols; i++) {
+                            if (right->node_type != 'A') {
+                                for (int j=0; j < right->len_non_declared_symbols; j++) {
+                                    if (strcmp(left->non_declared_symbols[i]->name, right->non_declared_symbols[j]->name) == 0) {
+                                        put_dummy_value(left->non_declared_symbols[i]);
+                                        setVariableParentScope(present_scope, left->non_declared_symbols[i]);
+                                    }
+                                }
+                            }
+                            else {
+
+                                struct ast_assignment_node * dummy = (struct ast_assignment_node *) right;
+                                struct ast_node * ref_node = dummy->symbol;
+                                struct symbol_node * dummy_symbol = (struct symbol_node *) ref_node->symbol;
+                                if (strcmp(left->non_declared_symbols[i]->name, dummy_symbol->name) == 0) {
+                                    put_dummy_value(left->non_declared_symbols[i]);
+                                    setVariableParentScope(present_scope, left->non_declared_symbols[i]);
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        // printf("inside else start left node type is %c\n", left->node_type);
+                        struct ast_assignment_node * dummy = (struct ast_assignment_node *) left;
+                        // printf("inside else start dummy node type is %c\n", dummy->node_type);
+                        struct ast_node * ref_node = dummy->symbol;
+                        struct symbol_node * dummy_symbol = (struct symbol_node *) ref_node->symbol;
+                        // printf("before comparison start dummy left symbol name %s\n", dummy_symbol->name);
+                        if (right->node_type != 'A') {
+                            for (int j=0; j < right->len_non_declared_symbols; j++) {
+                                // printf("inside check\n");
+                                // printf("%s %s\n",dummy_symbol->name, right->non_declared_symbols[j]->name);
+                                if (strcmp(dummy_symbol->name, right->non_declared_symbols[j]->name) == 0) {
+                                    // printf("inside check 2\n");
+                                    put_dummy_value(dummy_symbol);
+                                    if (dummy_symbol->value == NULL) {
+                                        // printf("not good value null type is %s\n", dummy_symbol->type);
+                                    }
+                                    setVariableParentScope(present_scope, dummy_symbol);
+                                }
+                            }
+                        }
+                        else {
+                            // printf("inside else2 start\n");
+                            struct ast_assignment_node * dummy2 = (struct ast_assignment_node *) right;
+                            struct ast_node * ref_node = dummy2->symbol;
+                            struct symbol_node * dummy2_symbol = (struct symbol_node *) ref_node->symbol;
+                            // printf("before comparison start %s\n", dummy2_symbol->name);
+                            if (strcmp(dummy_symbol->name, dummy2_symbol->name) == 0) {
+                                // printf("inside comparison start\n");
+                                put_dummy_value(dummy_symbol);
+                                setVariableParentScope(present_scope, dummy_symbol);
+                            }
+                        }
+                    }
+                }
             }
+            // printf("end start inside if\n");
+            // } else {
+                // printf("if test2 conditon value is %d\n",condition_value);
+                // traverse(if_node->left);
+            // }
             //printf("if block came");
             break;
         }
@@ -770,18 +1059,18 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             struct ast_node * while_node = ast_tree;
             // struct ast_boolean_node * condition = (struct ast_boolean_node *) traverse(while_node->condition);
             int condition_value = add_value(traverse(while_node->condition));
-            int initial_track = 1;
-            while(condition_value != 0) {
-                if (initial_track == 0) {
-                    int childIndex = present_scope->current_child_scope;
-                    present_scope->current_child_scope = childIndex-1;
-                }
+            // int initial_track = 1;
+            // while(condition_value != 0) {
+                // if (initial_track == 0) {
+                    // int childIndex = present_scope->current_child_scope;
+                    // present_scope->current_child_scope = childIndex-1;
+                // }
                 traverse(while_node->left);
-                condition_value = add_value(traverse(while_node->condition));
+                // condition_value = add_value(traverse(while_node->condition));
                 //printf("condition value is %d\n", condition_value);
                 // condition = (struct ast_boolean_node *) traverse(while_node->condition);
-                initial_track = 0;
-            }
+                // initial_track = 0;
+            // }
             // isWhile = 0;
             // int childIndex = present_scope->current_child_scope;
             // present_scope->current_child_scope = childIndex+1;
@@ -815,12 +1104,13 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
             sym_node->value = (void *) number_dummy;
             int value = 0;
 
-            for (int i=range1; i <= range2; i++) {
-                *number_dummy = i;
-                sym_node->value = (void *) number_dummy;
-                value += add_value(traverse(for_node->expression));
+            // for (int i=range1; i <= range2; i++) {
+                // *number_dummy = i;
+                // sym_node->value = (void *) number_dummy;
+                // value += add_value(traverse(for_node->expression));
+            traverse(for_node->expression);
                 // printf("value is %d\n", value);
-            }
+            // }
 
             // add_variable_to_present_scope(present_scope, variable, "number");
             result->value = value;

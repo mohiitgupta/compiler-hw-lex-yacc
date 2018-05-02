@@ -14,7 +14,8 @@ void update_use_set(struct ast_node * parent, struct ast_node * child) {
             parent->use[parent->use_length++] = child->use[i];
         }
     } else {
-        struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        // struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        struct ast_node * dummy_reference = child;
         parent->use[parent->use_length++] = dummy_reference->symbol->name;
     }
     // for (int i=0; i < parent->use_length; i++) {
@@ -27,7 +28,8 @@ void update_def_set(struct ast_node * parent, struct ast_node * child) {
             parent->def[parent->def_length++] = child->def[i];
         }
     } else {
-        struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        // struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        struct ast_node * dummy_reference = child;
         parent->def[parent->def_length++] = dummy_reference->symbol->name;
     }
     // for (int i=0; i < parent->use_length; i++) {
@@ -41,7 +43,8 @@ void update_assignment_use_set(struct ast_assignment_node * parent, struct ast_n
             parent->use[parent->use_length++] = child->use[i];
         }
     } else {
-        struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        // struct ast_symbol_reference_node * dummy_reference = (struct ast_symbol_reference_node *) child;
+        struct ast_node * dummy_reference = child;
         parent->use[parent->use_length++] = dummy_reference->symbol->name;
     }
     // for (int i=0; i < parent->use_length; i++) {
@@ -142,7 +145,8 @@ struct ast_node * find_def_use(struct ast_node * ast_tree) {
             // printf("inside assignment\n");
             struct ast_assignment_node * node = (struct ast_assignment_node *) ast_tree;
             //struct symbol_node * sym_node = find(node->symbol->name);
-            struct ast_symbol_reference_node * sym_ref_node = (struct ast_symbol_reference_node *) find_def_use(node->symbol);
+            // struct ast_symbol_reference_node * sym_ref_node = (struct ast_symbol_reference_node *) find_def_use(node->symbol);
+            struct ast_node * sym_ref_node = find_def_use(node->symbol);
             struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, sym_ref_node->symbol->name);
             struct ast_node * value_node = find_def_use(node->value);
             update_assignment_def_set(node, sym_ref_node->symbol->name);

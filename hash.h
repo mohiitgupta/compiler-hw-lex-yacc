@@ -18,7 +18,7 @@ static struct symbol_node * create_symbol(char *name)
     newSymbol->type = "undefined";
     strcpy(newSymbol->name, name);
     //newSymbol->initialize = "notInitialized";
-    // newSymbol->value = NULL;
+    newSymbol->value = NULL;
     //newSymbol->next = NULL;
     //fprintf(stderr, "hash test4");
     return newSymbol;

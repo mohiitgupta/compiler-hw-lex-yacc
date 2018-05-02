@@ -148,16 +148,16 @@ void setVariableParentScope(struct scope_node *scope, struct symbol_node * symbo
 void setValuesNonDeclaredVariables(struct scope_node *scope) {
     for (int i=0; i < scope->len_symbol_table; i++) {
         // if (strcmp(scope->symbols[i]->name, symbol_name) == 0) {
-            struct symbol_node * variable = scope->symbols[i];
-            for (int j=0; j < scope->len_child_scopes; j++) {
-                struct scope_node * child_scope = scope->child_scopes[j];
-                for (int k=0; k < child_scope->len_symbol_table; k++) {
-                    struct symbol_node * child_variable = child_scope->symbols[k];
-                    if ((strcmp(child_variable->name, variable->name) == 0) && (child_variable->declare == NULL)) {
-                        child_variable->value = variable->value;
-                    }
-                }
-            }
+            // struct symbol_node * variable = scope->symbols[i];
+            // for (int j=0; j < scope->len_child_scopes; j++) {
+            //     struct scope_node * child_scope = scope->child_scopes[j];
+            //     for (int k=0; k < child_scope->len_symbol_table; k++) {
+            //         struct symbol_node * child_variable = child_scope->symbols[k];
+            //         if ((strcmp(child_variable->name, variable->name) == 0) && (child_variable->declare == NULL)) {
+            //             child_variable->value = variable->value;
+            //         }
+            //     }
+            // }
             if (variable->declare != NULL) {
                 //do nothing
             }

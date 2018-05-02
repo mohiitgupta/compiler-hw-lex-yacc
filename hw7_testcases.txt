@@ -1,0 +1,144 @@
+int a, b, c;
+a = 1;
+if (a == 1)
+    b = 1;
+else
+    c = 1;
+Println(b);
+
+int a, b, c;
+a = 1;
+if (a == 1)
+    b = 1;
+else
+    b = 1;
+Println(b);
+
+int a, b, c;
+a = 1;
+if (a == 1)
+    b = 1;
+else
+    Input(b);
+Println(b);
+
+int a, b, c;
+a = 1;
+if (a == 1)
+{
+    b = 1;
+}
+else
+{
+    Input(b);
+}
+Println(b);
+
+int a, b, c;
+a = 1;
+if (a == 1)
+{
+    b = 1;
+}
+else
+{
+    int b;
+    Input(b);
+}
+Println(b);
+
+int a, b, c;
+a = 1;
+if (a == 1)
+    Input(b);
+else
+    c = 1;
+Println(b);
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + 
+    c;
+Println(b);
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + 
+    c;
+
+while (a==1) {
+    Println(b);
+}
+
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + 
+    c;
+if (a == 1)
+{
+    b = 1;
+}
+else
+{
+    int b;
+    Input(b);
+}
+while (a==1) {
+    Println(b);
+}
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + 
+    c;
+if (a == 1)
+{
+    b = 1;
+}
+else
+{
+    //int b;
+    Input(b);
+}
+while (a==1) {
+    Println(b);
+    if (b==2)
+        Println(b+c);
+}
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + c;
+{
+    c = 1;
+}
+if (a==1)
+{
+    //int b;
+    Input(b);
+}
+while (a==1) {
+    Println(b);
+    if (b==2)
+        Println(b+c);
+}
+
+int a, b, c, e;
+a = for b in [1,5] SUM (e+b) + c;
+{
+    c = 1;
+}
+if (a==1)
+{
+    //int b;
+    Input(b);
+}
+while (a==1) {
+    Println(b);
+    if (b==2)
+        Println(b+c);
+    a = for b in [1,5] SUM (for b in [1,5] 
+        SUM (for b in [1,5] 
+            SUM (e+b))) 
+                + c;
+    Println(b);
+}
+
+
+

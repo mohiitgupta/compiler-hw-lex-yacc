@@ -27,7 +27,11 @@ while(a<160)
     int i, x;
     //int x;
     //i = 1000;
-    x = for i in [1,5] SUM (for j in [1,5] SUM(i));
+    //x = for i in [1,5] SUM (for j in [1,5] SUM(i));
+    x= 
+    for j in 
+    [11,5]
+     SUM(j);
     Println(/*i,*/ x);
     //Println(a); // use `a` here
     a = a+55; 
