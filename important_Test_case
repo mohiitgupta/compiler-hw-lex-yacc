@@ -21,16 +21,16 @@ Println(i, x);
 int a;
 a = 42;
 while(a<160) 
-
-  //if(true) 
+    a=4;
+  if(true) 
   {
     int i, x;
     //int x;
     //i = 1000;
-    //x = for i in [1,5] SUM (for j in [1,5] SUM(i));
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
     x= 
     for j in 
-    [11,5]
+    [1,5]
      SUM(j);
     Println(/*i,*/ x);
     //Println(a); // use `a` here

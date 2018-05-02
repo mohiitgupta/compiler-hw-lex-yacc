@@ -1,5 +1,5 @@
 int j,i;
-j=0;
+//j=0;
 if (j==0) /* testing IF*/  
 while (j<10) /* testing a loop */
      { /* testing compound */
@@ -15,14 +15,19 @@ if ((0<j) && (j==10)) { /* testing && and else if */
    j=0;
    i=5;
 	if (j==0) /* nesting IF */
-		while (j<i+1) 
+		//while (j<i+1) 
          	{ /* Nesting while */
 		    if j<3 Println(j); else Println(0-j);
 			j=j+1;
 		}
-}
+    else
+      j=1;
+} else
+  //Input(j);
+Println(j);
+Println(j, for b in [1,5] SUM (for b in [1,5] SUM (j+b)) + j);
 Println( "gjgjhgkjhkhkjhlkhkjlhkjhjkhlgjfff khkjhkhkljhkjhkjhklhjhgjhg gjgjhgkgjhgkgjkgjhkgjhgjhgjkhgjhkgfhjgffdgfdgddsfdsfdsfhshsggfdjfjhfhfkjgjhgjhkgjkhg gkjgjhgjgkjgjk");
 
 
-//scp -r HW5test.in input.in y.output y.vcg Makefile hw6.l lex.yy.c y.tab.c hash.h hw6.y struct_funcs.h y.tab.h util.h gupta440@xinu01.cs.purdue.edu:~/hw6/
+//scp -r HW5test.in input.in y.output y.vcg Makefile hw7.l lex.yy.c y.tab.c hash.h hw7.y live_analysis_util.h struct_funcs.h y.tab.h util.h gupta440@xinu01.cs.purdue.edu:~/hw7/
 

@@ -94,7 +94,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 53 "hw6.y"
+#line 53 "hw7.y"
 {
         int number;
         int boolean;

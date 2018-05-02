@@ -140,5 +140,23 @@ while (a==1) {
     Println(b);
 }
 
+int a, b, c, e;
+a = for b in [1,5] SUM (e) + c;
+{
+    c = 1;
+}
+b=e+b+1+c;
+e=e-e;
+Println(e);
+
+int a,b,c;
+bool d,e;
+string f;
+a= d||e;
+b=a;
+f=a+b;
+f=a||b;
+Print(f);
+
 
 

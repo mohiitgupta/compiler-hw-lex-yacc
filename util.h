@@ -282,7 +282,7 @@ char * get_symbol_name(struct ast_node * value_node) {
 
         snum = (char *)left->value;
     } else {
-        printf("invalid type\n");
+        //printf("invalid type\n");
     }
     // int len = strlen(snum);
     // snum[len]='\0';
@@ -864,7 +864,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
                             sym_node->value = (void *) number_dummy;
                             //printf("value of string is %s, %s", result->value, sym_node->value);
                         } else {
-                            printf("not initialized\n");
+                            //printf("not initialized\n");
                         }
                     //sym_node->value = result->value;
                     }
@@ -1108,7 +1108,7 @@ struct ast_node * traverse(struct ast_node * ast_tree) {
                 // *number_dummy = i;
                 // sym_node->value = (void *) number_dummy;
                 // value += add_value(traverse(for_node->expression));
-            traverse(for_node->expression);
+            value = add_value(traverse(for_node->expression));
                 // printf("value is %d\n", value);
             // }
 

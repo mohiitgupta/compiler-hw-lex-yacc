@@ -531,9 +531,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "hw6.l"
+#line 1 "hw7.l"
 /* hw3 */
-#line 3 "hw6.l"
+#line 3 "hw7.l"
     #include "y.tab.h"
     #include <stdlib.h>
     #include "hash.h"
@@ -726,7 +726,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 15 "hw6.l"
+#line 15 "hw7.l"
 
 
 #line 733 "lex.yy.c"
@@ -824,7 +824,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "hw6.l"
+#line 17 "hw7.l"
 {
     //block_level += 1;
     return FOR;
@@ -832,84 +832,84 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "hw6.l"
+#line 21 "hw7.l"
 {
     return SUM;
     }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 24 "hw6.l"
+#line 24 "hw7.l"
 {
     return IN;
     }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "hw6.l"
+#line 27 "hw7.l"
 {
     return PRINT;
     }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 30 "hw6.l"
+#line 30 "hw7.l"
 {
     return PRINTLN;
     }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 34 "hw6.l"
+#line 34 "hw7.l"
 {
     return INPUT;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 38 "hw6.l"
+#line 38 "hw7.l"
 {
         return IF;  
     }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 41 "hw6.l"
+#line 41 "hw7.l"
 {
         return ELSE;  
     }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 44 "hw6.l"
+#line 44 "hw7.l"
 {
         return WHILE;  
     }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 48 "hw6.l"
+#line 48 "hw7.l"
 {
     return INT;
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "hw6.l"
+#line 52 "hw7.l"
 {
     return BOOL;
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 56 "hw6.l"
+#line 56 "hw7.l"
 {
     return STRING_TOKEN;
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 60 "hw6.l"
+#line 60 "hw7.l"
 {
     char * dummy = "\0";
     yylval.string = dummy;
@@ -919,14 +919,14 @@ YY_RULE_SETUP
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 66 "hw6.l"
+#line 66 "hw7.l"
 {
     line_numbers++;
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 70 "hw6.l"
+#line 70 "hw7.l"
 {
     //block_level += 1;
     return *yytext;
@@ -934,7 +934,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 74 "hw6.l"
+#line 74 "hw7.l"
 {
     //block_level -= 1;
     return *yytext;
@@ -942,7 +942,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 79 "hw6.l"
+#line 79 "hw7.l"
 {
     yylval.boolean = 1;
     return BOOLEAN;
@@ -950,7 +950,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 84 "hw6.l"
+#line 84 "hw7.l"
 {
     yylval.boolean = 0;
     return BOOLEAN;
@@ -958,7 +958,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 90 "hw6.l"
+#line 90 "hw7.l"
 {
                 //yylval.string = strdup(yytext);
                 yylval.symbol = lookup(yytext);
@@ -973,7 +973,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 102 "hw6.l"
+#line 102 "hw7.l"
 {
                 yylval.number = atoi(yytext);
                 return INTEGER;
@@ -982,7 +982,7 @@ YY_RULE_SETUP
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 107 "hw6.l"
+#line 107 "hw7.l"
 {
                 char * dummy = strdup(yytext);
                 int str_len = strlen(dummy);
@@ -997,75 +997,75 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 118 "hw6.l"
+#line 118 "hw7.l"
 { return EQUALS; 
                 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 120 "hw6.l"
+#line 120 "hw7.l"
 {
             return LESS_EQUALS;
 }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 123 "hw6.l"
+#line 123 "hw7.l"
 {
             return GREAT_EQUALS;
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 126 "hw6.l"
+#line 126 "hw7.l"
 {
             return NOT_EQUALS;
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 129 "hw6.l"
+#line 129 "hw7.l"
 { return *yytext; 
                 }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 131 "hw6.l"
+#line 131 "hw7.l"
 {  return AND; 
                 }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 133 "hw6.l"
+#line 133 "hw7.l"
 { return OR; 
                 }
 	YY_BREAK
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 136 "hw6.l"
+#line 136 "hw7.l"
 ; /* skip comments */
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 137 "hw6.l"
+#line 137 "hw7.l"
 ;    /* skip comments */
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 138 "hw6.l"
+#line 138 "hw7.l"
 ;       /* skip whitespace */
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 140 "hw6.l"
+#line 140 "hw7.l"
 {
         return UNKNOWN;
     }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 144 "hw6.l"
+#line 144 "hw7.l"
 ECHO;
 	YY_BREAK
 #line 1072 "lex.yy.c"
@@ -2077,7 +2077,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 144 "hw6.l"
+#line 144 "hw7.l"
 
 
 

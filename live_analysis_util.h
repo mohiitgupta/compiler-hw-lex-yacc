@@ -3,13 +3,13 @@ int getOperatorResultNodeType(int node_type) {
         return 'N';
     else if (node_type == '<' || node_type == 'E' || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
         return 'B';
-    printf("undefined node type\n");
+    //printf("undefined node type\n");
     return 0;
 }
 
 void update_use_set(struct ast_node * parent, struct ast_node * child) {
     if (child->node_type != 's') {
-        printf("child use length is %d\n", child->use_length);
+        //printf("child use length is %d\n", child->use_length);
         for (int i=0; i < child->use_length; i++) {
             parent->use[parent->use_length++] = child->use[i];
         }
@@ -72,10 +72,10 @@ void update_assignment_def_set(struct ast_assignment_node * assignment_parent, c
 }
 
 void printUseSetDebug(struct ast_node * node) {
-    printf("use set for node %c is given below:\n", node->node_type);
-    for (int i=0; i < node->use_length; i++) {
-        printf("%s\n",node->use[i]);
-    }
+    // printf("use set for node %c is given below:\n", node->node_type);
+    // for (int i=0; i < node->use_length; i++) {
+    //     printf("%s\n",node->use[i]);
+    // }
 }
 
 
@@ -150,17 +150,17 @@ struct ast_node * find_def_use(struct ast_node * ast_tree) {
             struct symbol_node * sym_node = lookup_variable_present_scope(present_scope, sym_ref_node->symbol->name);
             struct ast_node * value_node = find_def_use(node->value);
             update_assignment_def_set(node, sym_ref_node->symbol->name);
-            printf("length of def set of node is %d\n", node->def_length);
-            printf("def set for node %c is given below:\n", node->node_type);
-            for (int i=0; i < node->def_length; i++) {
-                printf("%s\n",node->def[i]);
-            }
+            // printf("length of def set of node is %d\n", node->def_length);
+            // printf("def set for node %c is given below:\n", node->node_type);
+            // for (int i=0; i < node->def_length; i++) {
+            //     printf("%s\n",node->def[i]);
+            // }
 
             update_assignment_use_set(node, value_node);
-            printf("use set for node %c is given below:\n", node->node_type);
-            for (int i=0; i < node->use_length; i++) {
-                printf("%s\n",node->use[i]);
-            }
+            // printf("use set for node %c is given below:\n", node->node_type);
+            // for (int i=0; i < node->use_length; i++) {
+            //     printf("%s\n",node->use[i]);
+            // }
             break;
             
         }
@@ -188,10 +188,10 @@ struct ast_node * find_def_use(struct ast_node * ast_tree) {
             }
             // printf("%p", ast_tree->right);
             update_def_set(ast_tree, ast_tree->right);
-            printf("def set for node %c is given below:\n", ast_tree->node_type);
-            for (int i=0; i < ast_tree->def_length; i++) {
-                printf("%s\n",ast_tree->def[i]);
-            }
+            // printf("def set for node %c is given below:\n", ast_tree->node_type);
+            // for (int i=0; i < ast_tree->def_length; i++) {
+            //     printf("%s\n",ast_tree->def[i]);
+            // }
             break;
         }
         case 'L':
@@ -264,10 +264,10 @@ struct ast_node * find_def_use(struct ast_node * ast_tree) {
             find_def_use(for_node->expression);
             printUseSetDebug(ast_tree);
 
-            printf("def set for node %c is given below:\n", ast_tree->node_type);
-            for (int i=0; i < ast_tree->def_length; i++) {
-                printf("%s\n",ast_tree->def[i]);
-            }
+            // printf("def set for node %c is given below:\n", ast_tree->node_type);
+            // for (int i=0; i < ast_tree->def_length; i++) {
+            //     printf("%s\n",ast_tree->def[i]);
+            // }
             break;
         }
         // case 'l':

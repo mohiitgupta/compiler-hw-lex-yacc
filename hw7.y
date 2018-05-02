@@ -278,7 +278,7 @@ char * getOperandType(int node_type) {
     if (node_type == '+' || node_type == '-' || node_type == '*' || node_type == '<' || node_type == 'E'
         || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
         return "number";
-    printf("undefined node type\n");
+    //printf("undefined node type\n");
     return NULL;
 }
 

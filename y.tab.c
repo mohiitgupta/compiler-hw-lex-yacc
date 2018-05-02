@@ -120,7 +120,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "hw6.y"
+#line 1 "hw7.y"
 
     #include <stdio.h>
     #include "hash.h"
@@ -171,7 +171,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 53 "hw6.y"
+#line 53 "hw7.y"
 {
         int number;
         int boolean;
@@ -1490,49 +1490,49 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 74 "hw6.y"
+#line 74 "hw7.y"
     { print_tree((yyvsp[(1) - (1)].ast)); }
     break;
 
   case 3:
-#line 78 "hw6.y"
+#line 78 "hw7.y"
     { (yyval.ast) = mk_ast_node('S',(yyvsp[(1) - (2)].ast), (yyvsp[(2) - (2)].ast));}
     break;
 
   case 4:
-#line 79 "hw6.y"
+#line 79 "hw7.y"
     { /*printf("");*/(yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 5:
-#line 81 "hw6.y"
+#line 81 "hw7.y"
     {(yyval.ast)= mk_ast_assignment_node((yyvsp[(1) - (4)].ast), (yyvsp[(3) - (4)].ast));
         (yyval.ast)->line_no=(yyvsp[(2) - (4)].ast)->line_no;
          /*printf("line number for equals is %d\n", $$->line_no);*/}
     break;
 
   case 6:
-#line 84 "hw6.y"
+#line 84 "hw7.y"
     {/*printf("");*/(yyval.ast) = mk_ast_node('p', (yyvsp[(3) - (5)].ast), NULL);(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no; }
     break;
 
   case 7:
-#line 85 "hw6.y"
+#line 85 "hw7.y"
     {(yyval.ast) = mk_ast_node('P', (yyvsp[(3) - (5)].ast), NULL);(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no; }
     break;
 
   case 8:
-#line 86 "hw6.y"
+#line 86 "hw7.y"
     {(yyval.ast) = mk_ast_node('Q', (yyvsp[(3) - (5)].ast), NULL); }
     break;
 
   case 9:
-#line 87 "hw6.y"
+#line 87 "hw7.y"
     {/*printf("");*/(yyval.ast) = mk_ast_node('C', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 10:
-#line 88 "hw6.y"
+#line 88 "hw7.y"
     {/*printf("");*/(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast), NULL);
         (yyval.ast)->line_no=(yyvsp[(1) - (3)].ast)->line_no;
         // printf("line no of if is %d", $$->line_no);
@@ -1540,12 +1540,12 @@ yyreduce:
     break;
 
   case 11:
-#line 92 "hw6.y"
+#line 92 "hw7.y"
     {(yyval.ast) = mk_ast_if_node((yyvsp[(2) - (5)].ast), (yyvsp[(3) - (5)].ast), (yyvsp[(5) - (5)].ast));(yyval.ast)->line_no=(yyvsp[(1) - (5)].ast)->line_no;}
     break;
 
   case 12:
-#line 93 "hw6.y"
+#line 93 "hw7.y"
     {(yyval.ast) = mk_ast_while_node((yyvsp[(2) - (3)].ast), (yyvsp[(3) - (3)].ast));
             (yyval.ast)->line_no=(yyvsp[(1) - (3)].ast)->line_no;
             // printf("line no of while is %d", $$->line_no);
@@ -1553,265 +1553,265 @@ yyreduce:
     break;
 
   case 13:
-#line 97 "hw6.y"
+#line 97 "hw7.y"
     {(yyval.ast) = mk_ast_node('i', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 14:
-#line 98 "hw6.y"
+#line 98 "hw7.y"
     {(yyval.ast) = mk_ast_node('b', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 15:
-#line 99 "hw6.y"
+#line 99 "hw7.y"
     {(yyval.ast) = mk_ast_node('c', (yyvsp[(2) - (3)].ast), NULL);}
     break;
 
   case 16:
-#line 103 "hw6.y"
+#line 103 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 17:
-#line 105 "hw6.y"
+#line 105 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 18:
-#line 107 "hw6.y"
+#line 107 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 19:
-#line 109 "hw6.y"
+#line 109 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 20:
-#line 111 "hw6.y"
+#line 111 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 21:
-#line 114 "hw6.y"
+#line 114 "hw7.y"
     {(yyval.ast) = mk_ast_node('q', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 22:
-#line 115 "hw6.y"
+#line 115 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 23:
-#line 119 "hw6.y"
+#line 119 "hw7.y"
     {(yyval.ast) = mk_ast_node('l', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 24:
-#line 120 "hw6.y"
+#line 120 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);/*printf("line is %d", $$->line_no);*/}
     break;
 
   case 25:
-#line 124 "hw6.y"
+#line 124 "hw7.y"
     { (yyval.ast) = mk_ast_node ('L', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast));}
     break;
 
   case 26:
-#line 125 "hw6.y"
+#line 125 "hw7.y"
     { (yyval.ast) = (yyvsp[(1) - (1)].ast); }
     break;
 
   case 27:
-#line 129 "hw6.y"
+#line 129 "hw7.y"
     {(yyval.ast) = mk_ast_node('O', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
     (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no; 
 }
     break;
 
   case 28:
-#line 132 "hw6.y"
+#line 132 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 29:
-#line 135 "hw6.y"
+#line 135 "hw7.y"
     {(yyval.ast) = mk_ast_node('a', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
     (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no; 
 }
     break;
 
   case 30:
-#line 138 "hw6.y"
+#line 138 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 31:
-#line 141 "hw6.y"
+#line 141 "hw7.y"
     {(yyval.ast) = mk_ast_node('E', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
     (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 32:
-#line 143 "hw6.y"
+#line 143 "hw7.y"
     {(yyval.ast) = mk_ast_node('w', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); 
     (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 33:
-#line 145 "hw6.y"
+#line 145 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 34:
-#line 148 "hw6.y"
+#line 148 "hw7.y"
     {(yyval.ast) = mk_ast_node('<', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 35:
-#line 149 "hw6.y"
+#line 149 "hw7.y"
     {(yyval.ast) = mk_ast_node('x', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 36:
-#line 150 "hw6.y"
+#line 150 "hw7.y"
     {(yyval.ast) = mk_ast_node('y', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 37:
-#line 151 "hw6.y"
+#line 151 "hw7.y"
     {(yyval.ast) = mk_ast_node('z', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 38:
-#line 152 "hw6.y"
+#line 152 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 39:
-#line 155 "hw6.y"
+#line 155 "hw7.y"
     {(yyval.ast) = mk_ast_node('+', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 40:
-#line 156 "hw6.y"
+#line 156 "hw7.y"
     {(yyval.ast) = mk_ast_node('-', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 41:
-#line 157 "hw6.y"
+#line 157 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 42:
-#line 160 "hw6.y"
+#line 160 "hw7.y"
     {(yyval.ast) = mk_ast_node('*', (yyvsp[(1) - (3)].ast), (yyvsp[(3) - (3)].ast)); (yyval.ast)->line_no=(yyvsp[(2) - (3)].ast)->line_no;}
     break;
 
   case 43:
-#line 161 "hw6.y"
+#line 161 "hw7.y"
     {(yyval.ast) = (yyvsp[(1) - (1)].ast);}
     break;
 
   case 44:
-#line 165 "hw6.y"
+#line 165 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 45:
-#line 167 "hw6.y"
+#line 167 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 46:
-#line 169 "hw6.y"
+#line 169 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 47:
-#line 171 "hw6.y"
+#line 171 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 48:
-#line 173 "hw6.y"
+#line 173 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 49:
-#line 175 "hw6.y"
+#line 175 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 50:
-#line 177 "hw6.y"
+#line 177 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 51:
-#line 179 "hw6.y"
+#line 179 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 52:
-#line 181 "hw6.y"
+#line 181 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 53:
-#line 183 "hw6.y"
+#line 183 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 54:
-#line 185 "hw6.y"
+#line 185 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 55:
-#line 188 "hw6.y"
+#line 188 "hw7.y"
     {/*printf("");*/(yyval.ast) = mk_ast_for_sum_node((yyvsp[(2) - (12)].ast), (yyvsp[(5) - (12)].number), (yyvsp[(7) - (12)].number), (yyvsp[(11) - (12)].ast));
                                 (yyval.ast)->line_no=(yyvsp[(4) - (12)].ast)->line_no;
                                 (yyval.ast)->line_no_2=(yyvsp[(9) - (12)].ast)->line_no;}
     break;
 
   case 56:
-#line 191 "hw6.y"
+#line 191 "hw7.y"
     {(yyval.ast) = (yyvsp[(2) - (3)].ast);/*printf("line no of id is %d", $$->line_no);*/}
     break;
 
   case 57:
-#line 192 "hw6.y"
+#line 192 "hw7.y"
     {(yyval.ast) = mk_ast_number_node((yyvsp[(1) - (1)].number));}
     break;
 
   case 58:
-#line 193 "hw6.y"
+#line 193 "hw7.y"
     {(yyval.ast) = mk_ast_string_node((yyvsp[(1) - (1)].string));}
     break;
 
   case 59:
-#line 194 "hw6.y"
+#line 194 "hw7.y"
     {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol));/*$$->line_no=yylineno;*//*printf("line no of id is %d", $$->line_no);*/}
     break;
 
   case 60:
-#line 195 "hw6.y"
+#line 195 "hw7.y"
     {(yyval.ast) = mk_ast_boolean_node((yyvsp[(1) - (1)].boolean));}
     break;
 
   case 61:
-#line 200 "hw6.y"
+#line 200 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 62:
-#line 203 "hw6.y"
+#line 203 "hw7.y"
     {(yyval.ast) = mk_ast_node(0, NULL, NULL);}
     break;
 
   case 63:
-#line 206 "hw6.y"
+#line 206 "hw7.y"
     {(yyval.ast) = mk_ast_symbol_reference_node((yyvsp[(1) - (1)].symbol));
         (yyval.ast)->line_no=yylineno;
         /*printf("line no of id is %d", $$->line_no);*/}
@@ -2033,7 +2033,7 @@ yyreturn:
 }
 
 
-#line 210 "hw6.y"
+#line 210 "hw7.y"
 
 void yyerror(char *s) {
     fprintf(stderr, "Syntax Error\n");
@@ -2105,7 +2105,7 @@ char * getOperandType(int node_type) {
     if (node_type == '+' || node_type == '-' || node_type == '*' || node_type == '<' || node_type == 'E'
         || node_type == 'w' || node_type == 'x' || node_type == 'y' || node_type == 'z')
         return "number";
-    printf("undefined node type\n");
+    //printf("undefined node type\n");
     return NULL;
 }
 
