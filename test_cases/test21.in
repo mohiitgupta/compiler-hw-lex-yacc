@@ -1,0 +1,2 @@
+int i, j, k, a;
+a = (for i in [1, 2] SUM ((for j in [1, 2] SUM (i * j * k)) * j)) * i;

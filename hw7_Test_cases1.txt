@@ -1,0 +1,338 @@
+int a,b,c;
+Println(a,b+c+1+4);
+if (b==4) {
+    Print(a,a+c);
+    Input(a);
+} else {
+    a=3;
+}
+if (a==3) Print(c+3+4);
+
+int a,b,c;
+if (a==3) Print(c+3+4);
+if (a==3) Print(c+3+4);
+if (a==3) Print(c+3+4);
+
+int a,x;
+a=1+2;
+x= 
+    for j in 
+    [1,5]
+     SUM(j+1);
+int a;
+{
+    {
+        string a;
+        a="test";
+    }
+    a="test";
+}
+
+
+int a, b, c;
+a = 1;
+if (a == 1 && b==3){
+    /*{
+        Println(b);
+    }*/
+    //int b;
+    Println(b);
+    b = 1;
+    Println(b);
+    {
+        Println(b);
+    }
+}
+else{
+    c = 1;
+    b=3;
+}
+Println(b);
+
+
+int a,b,c,d;
+Input(a);
+c=b+b;
+a=b;
+a=for b in [1,5] SUM(b+a+d);
+c=b;
+
+
+int a, b, c;
+while(true) {
+    if(false) {
+        Input(a, b, c);
+        Println(a);
+    }
+    else {
+        Input(a, b);
+        Println(a, b, c);
+    }
+}
+Println(a, b, c);
+
+int a,b,c;
+if (true) {
+    Input(a,b,c);
+    Println(a);
+}
+Println(a);
+
+int a, b, c;
+a = 1;
+{
+    Input(c);
+}
+Println(c);
+
+if(false) {
+    int a, b;
+    Input(a, b, c);
+}
+Println(c);
+
+
+int a, b, c;
+a = 1;
+//b=1;
+Print(b);
+if (a == 1)
+    c = 1;
+
+else{
+    c = 1;
+}
+
+Print(c);
+Println(b);
+while (true)
+    c=2;
+Print(c);
+{   
+    {
+
+        c=3;
+    }
+}
+Println(c);
+Print(b);
+Input(b);
+Print(b);
+
+
+int a, b, c;
+a = 1;
+//b=1;
+Print(b);
+if (a == 1)
+    b = c;
+b=c;
+if (c==1)
+    Input(c);
+b=c;
+
+
+int a;
+if (a==1)
+a=2+a;
+else
+a=3;
+Println(a);
+
+
+int a,b,c;
+if (a == 1)
+    b = 1;
+else
+    c = 1;
+
+int a,b,c;
+if (a == 1)
+    b = 1;
+else
+{
+    c = 1;
+}
+
+int a,b,c;
+if (a == 1)
+{
+    b = 1;
+}
+else
+{
+    c = 1;
+}
+
+int a,b,c;
+if (a == 1)
+{
+    b = 1;
+}
+else
+    c = 1;
+
+int a,b,c;
+bool d,e,f;
+string g,h,i;
+g=h||i;
+d=e||f;
+Input(e);
+d=e||f;
+int x;
+if (f){
+    //int x;
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+    //Input(x);
+} else
+{
+    x=4;
+}
+Println(x);
+
+int a,b,c;
+bool d,e,f;
+string g,h,i;
+g=h||i;
+d=e||f;
+Input(e);
+d=e||f;
+int x;
+{
+    //int x;
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+    //Input(x);
+} 
+Println(x);
+
+int a,b,c;
+bool d,e,f;
+string g,h,i;
+//g=h||i;
+//d=e||f;
+Input(e);
+//d=e||f;
+int x;
+if (f) {
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+} else {
+    x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+}
+while (f){
+    //int x;
+    x = for i in [1,5] SUM (for j in [1,5] SUM(for j in [1,5] SUM(i+x)));
+    Println(x);
+    //Input(x);
+} 
+Println(x);
+
+int a,b,c;
+bool d,e,f;
+string g,h,i;
+g=h||i;
+d=e||f;
+Input(e);
+d=e||f;
+int x;
+{
+    if (f) {
+        x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+    } else {
+        x = for i in [1,5] SUM (for j in [1,5] SUM(i+x));
+    }
+}
+while (f){
+    //int x;
+    x = for i in [1,5] SUM (for j in [1,5] SUM(for j in [1,5] SUM(i+x)));
+    Println(x);
+    //Input(x);
+} 
+Println(x);
+
+int a;
+bool b;
+a = 0;
+//b = true;
+while (a < 10) {
+    if (b) {
+        //b = false;
+        int a;
+        a = 5;
+        Println(a);
+    }
+    else {
+        b = true;
+        Println(a);
+        a = a + 1;
+    }
+    Println(b);
+}
+
+int i;
+//i = 0;
+
+while (i < 5) {
+    int j, k;
+    j = 1;
+    k = 0;
+    while (j <= 5) {
+        k = k + i + j;
+        j = j + 1;
+    }
+    Println(k, for i in [1, 5] SUM (i + j));
+
+    i = i + 1;
+}
+
+
+
+bool b;
+int i;
+
+//b = true;
+i = 0;
+
+while (b) {
+    {
+        bool c;
+        //c = i < 5;
+        Input(c,b);
+        {
+            bool b;
+            //b = i >= 5;
+            Println(b);
+        }
+        b = c;
+    }
+    i = i + 1;
+}
+Println(i);
+
+int a, b, c;
+a = 1;
+//b=1;
+Print(b);
+if (a == 1)
+    c = 1;
+
+else{
+    c = 1;
+}
+
+Print(c);
+
+int a, b, c;
+a = 1;
+//b=1;
+Print(b);
+if (a == 1)
+    c = 1;
+
+else
+    c = 1;
+
+
+Print(c);
+
+
+traverse fails if non-declared variable defined in both if and else branch

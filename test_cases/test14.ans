@@ -1,0 +1,4 @@
+a0 in 3 may be uninitialized
+a2 in 12 may be uninitialized
+a3 in 12 may be uninitialized
+a4 in 12 may be uninitialized

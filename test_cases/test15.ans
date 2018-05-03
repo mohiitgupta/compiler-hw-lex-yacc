@@ -1,0 +1,2 @@
+x in 3 may be uninitialized
+x in 7 may be uninitialized

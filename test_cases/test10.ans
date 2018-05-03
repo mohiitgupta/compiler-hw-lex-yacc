@@ -1,0 +1,7 @@
+b in 3 may be uninitialized
+a in 4 may be uninitialized
+a in 4 may be uninitialized
+b in 5 may be uninitialized
+b in 6 may be uninitialized
+a in 6 may be uninitialized
+b in 6 may be uninitialized

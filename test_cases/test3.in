@@ -1,0 +1,5 @@
+int a, b, c;
+bool d, e, f;
+string g, h, i;
+
+Input(a, e, i, c, d, h, g, b, f);

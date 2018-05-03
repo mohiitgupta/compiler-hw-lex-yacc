@@ -1,0 +1,3 @@
+k in 2 may be uninitialized
+j in 2 may be uninitialized
+i in 2 may be uninitialized

@@ -4,18 +4,18 @@ if (j==0) /* testing IF*/
 while (j<10) /* testing a loop */
      { /* testing compound */
         Println(j, j+1, j*2+(2-1));
-         j=j+1;
+         j=i+j;
      }
 else j=1;
 
 
 if ((0<j) && (j==10)) { /* testing && and else if */  
    Println(j, j-1, j*j+(j-j)-j);
-   j=j-1;
-   j=0;
+   //j=j-1;
+   //j=0;
    i=5;
 	if (j==0) /* nesting IF */
-		//while (j<i+1) 
+		while (j<i+1) 
          	{ /* Nesting while */
 		    if j<3 Println(j); else Println(0-j);
 			j=j+1;
@@ -23,9 +23,9 @@ if ((0<j) && (j==10)) { /* testing && and else if */
     else
       j=1;
 } else
-  //Input(j);
+  Input(j);
 Println(j);
-Println(j, for b in [1,5] SUM (for b in [1,5] SUM (j+b)) + j);
+Println(j, for b in [1,5] SUM (for b in [1,5] SUM (j)) + j);
 Println( "gjgjhgkjhkhkjhlkhkjlhkjhjkhlgjfff khkjhkhkljhkjhkjhklhjhgjhg gjgjhgkgjhgkgjkgjhkgjhgjhgjkhgjhkgfhjgffdgfdgddsfdsfdsfhshsggfdjfjhfhfkjgjhgjhkgjkhg gkjgjhgjgkjgjk");
 
 

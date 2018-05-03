@@ -1,0 +1,10 @@
+a in 4 may be uninitialized
+b in 4 may be uninitialized
+a in 8 may be uninitialized
+b in 8 may be uninitialized
+a in 12 may be uninitialized
+b in 12 may be uninitialized
+a in 16 may be uninitialized
+b in 16 may be uninitialized
+a in 18 may be uninitialized
+b in 26 may be uninitialized

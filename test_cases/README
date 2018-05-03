@@ -1,0 +1,31 @@
+test for parsing (5pts, 1 each)
+ 1. simple input statement parsing.
+ 2. multiple input statement parsing.
+ 3. input statement for more than 1 variable.
+ 4. error: constant values in input statement.
+ 5. error: expression values in input statement.
+
+test for type error (5pts, 2.5 each)
+ 6. input before define.
+ 7. input with scope.
+
+test for lvin analysis (75 pts, 5 each)
+ 8. very simple error.
+ 9. above error is blocked by input / assignment.
+10. multiple instance in same statement.
+11. avoid propagation.
+12. order of reporting in expression.
+
+13. test for scoping
+14. test for if branching
+15. test for if branching
+16. ignore if const condition
+17. test for nested if statements
+
+18. test for while statements
+19. test for while and if statements
+20. test for iterator in SUM
+21. test for iterator in nested SUM
+22. test for nested scoping
+
+a in 2 may be uninitialized

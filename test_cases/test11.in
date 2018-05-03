@@ -1,0 +1,12 @@
+int a;
+int b;
+b = a;
+a = b;
+
+int x, y, w, v, z;
+x = 5;
+y = x + z;
+w = x + y;
+z = w + z;
+v = y + z;
+

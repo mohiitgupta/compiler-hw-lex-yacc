@@ -1,0 +1,7 @@
+int x1;
+
+if (true) {
+	x1 = 0;
+}
+
+Println(x1);

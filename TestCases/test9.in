@@ -1,9 +1,11 @@
 int a, b;
-a = 5;
-b = 10;
+//a = 5;
+//b = 10;
+Input(b);
 {
 	int a;
-	a = 6;
+	//a = 6;
+    Input(a);
 	Println(a + b);
 }
 Println(a + b);

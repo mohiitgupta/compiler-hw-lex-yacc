@@ -1,0 +1,6 @@
+int a;
+int b;
+Print(b);
+Print(a, a);
+Print(b);
+Print(b, a, b);

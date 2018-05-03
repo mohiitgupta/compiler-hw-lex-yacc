@@ -1,0 +1,9 @@
+int a1, a2, a3, a4, a5, a6, a7, a8;
+Input(a1, a2, a3, a4);
+Print(a1, a2, a3, a4, a5, a6, a7, a8);
+{
+	int a1, a2, a5, a6;
+	Input(a1, a3, a5, a7);
+	Print(a1, a2, a3, a4, a5, a6, a7, a8);
+}
+Print(a1, a2, a3, a4, a5, a6, a7, a8);

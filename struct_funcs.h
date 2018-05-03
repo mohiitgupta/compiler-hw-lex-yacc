@@ -37,11 +37,11 @@ struct ast_node
 {
   int node_type;
   int line_no;
+  int line_no_2;
   int def_length;
   int use_length;
   int live_in_length;
   int live_out_length;
-  int line_no_2;
   int len_non_declared_symbols;
 
 
@@ -127,12 +127,12 @@ struct ast_number_node // for constant floating-point numbers
 {
   int node_type;
   int line_no;
+  int line_no_2;
   int value;
   int def_length;
   int use_length;
   int live_in_length;
   int live_out_length;
-  int line_no_2;
 
 
   char * def[100];
@@ -147,11 +147,11 @@ struct ast_string_node // for constant floating-point numbers
 {
   int node_type;
   int line_no;
+  int line_no_2;
   int def_length;
   int use_length;
   int live_in_length;
   int live_out_length;
-  int line_no_2;
 
 
   char * def[100];
@@ -167,12 +167,13 @@ struct ast_boolean_node // for constant floating-point numbers
 {
   int node_type;
    int line_no;
+   int line_no_2;
+
   int value;
   int def_length;
   int use_length;
   int live_in_length;
   int live_out_length;
-  int line_no_2;
 
 
   char * def[100];

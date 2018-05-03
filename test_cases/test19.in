@@ -1,0 +1,15 @@
+int a1, a2, a3, a4, a5, a6, a7, a8;
+
+while (true) {
+	Input(a1, a2, a3, a4);
+	if (true) {
+		Input(a1, a2, a5, a6);
+		Print(a1, a2, a3, a4, a5, a6, a7, a8);
+	}
+	else {
+		Input(a1, a3, a5, a7);
+		Print(a1, a2, a3, a4, a5, a6, a7, a8);
+	}
+	Print(a1, a2, a3, a4, a5, a6, a7, a8);
+}
+Print(a1, a2, a3, a4, a5, a6, a7, a8);

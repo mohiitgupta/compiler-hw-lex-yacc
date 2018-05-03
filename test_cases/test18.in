@@ -1,0 +1,9 @@
+int x;
+int i;
+i = 5;
+while (i < 10) {
+	x = i;
+	i = i + 1;
+}
+Print(x);
+

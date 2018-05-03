@@ -141,7 +141,28 @@ while (a==1) {
 }
 
 int a, b, c, e;
-a = for b in [1,5] SUM (e) + c;
+a = for b in [1,5] SUM (e||b) + c;
+{
+    c = 1;
+}
+b=e+b+1+c;
+e=e-e;
+Println(e);
+
+int a, b, c, e;
+a = for b in [1,5] 
+SUM 
+(e<b) + c;
+{
+    c = 1;
+}
+b=e+b+1+c;
+e=e-e;
+Println(e);
+
+int a, b, c, e;
+bool f;
+a = for b in [1,5] SUM (f&&true) + c;
 {
     c = 1;
 }
@@ -159,4 +180,36 @@ f=a||b;
 Print(f);
 
 
+int a,b;
+Input(a,
+c,
+b);
+//bool c;
+Input(a,
+c,
+b,d);
+
+int a,b;
+if (true) {
+    Input(a);
+    while (true)
+    {
+        {
+            Input(c,d);
+        }
+    }
+}
+
+Input(c,d);
+
+int a;
+{
+    int a,b;
+    {
+        a=2;
+        Print(b);
+    }
+    Print(a);
+}
+Print(a);
 
